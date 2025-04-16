@@ -1,0 +1,37 @@
+\usepackage{booktabs}
+\usepackage{float}
+
+\floatstyle{boxed}
+\newfloat{program}{thp}{lop}
+\floatname{program}{Output}
+
+\usepackage[section]{placeins}
+% See https://tex.stackexchange.com/questions/279/how-do-i-ensure-that-figures-appear-in-the-section-theyre-associated-with
+
+% \nonzeroparskip
+% % Used to create spacing between paragraphs
+% % See https://tex.stackexchange.com/questions/651036/change-line-spacing-along-the-document-in-memoir-class
+
+\renewcommand{\chaptername}{Module}
+\renewcommand*{\chapnamefont}{\normalfont\HUGE\bfseries\sffamily}
+\renewcommand*{\chapnumfont}{\normalfont\HUGE\bfseries\sffamily}
+\renewcommand*{\chaptitlefont}{\normalfont\HUGE\bfseries\sffamily}
+
+\setsecheadstyle{\sffamily}% Set \section style
+\setsubsecheadstyle{\sffamily}% Set \subsection style
+\setsubsubsecheadstyle{\sffamily}% Set \subsubsection style
+
+\setlrmarginsandblock{3.5cm}{2.5cm}{*}
+\setulmarginsandblock{2.5cm}{*}{1}
+\checkandfixthelayout 
+
+\raggedright
+\raggedbottom
+
+\nonzeroparskip
+\setlength{\parindent}{0pt}
+
+
+% https://tex.stackexchange.com/questions/61033/setting-toc-depth-not-working
+% https://tex.stackexchange.com/questions/3327/turn-on-subsection-numbering-in-memoir
+\setcounter{secnumdepth}{3}
