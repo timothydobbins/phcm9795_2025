@@ -46,7 +46,7 @@ Table 10.1 is an abbreviated look-up table that we can use to estimate the sampl
 #| tbl-cap: Sample size required to calculate a 95% confidence interval with a given precision
 
 library(tidyverse)
-library(huxtable)
+library(flextable)
 
 tab10_1 <- tibble::tribble(
   ~P, ~Prevalence,
@@ -66,14 +66,7 @@ tab10_1 <- tibble::tribble(
          `10%` = ceiling(ifelse(P > 0.10, 1.96^2 * P * (1-P)/(0.10^2), NA)),
          `15%` = ceiling(ifelse(P > 0.15, 1.96^2 * P * (1-P)/(0.15^2), NA)))
 
-huxtable(select(tab10_1, -P)) |>
-  set_align(2:6, everywhere, ".") |> 
-  set_number_format(everywhere, everywhere, fmt_pretty()) |> 
-  theme_article() |> 
-  insert_row("", "Width of 95% confidence interval (precision)", "", "", "", "", "", "", "", "", "", after = 0) |> 
-  merge_cells(1, 2:11) |> 
-  set_align(1, everywhere, "centre") |> 
-  set_width(0.95)
+flextable(select(tab10_1, -P))
 ```
 
 ### Worked Example {#wex10-1}
@@ -113,19 +106,11 @@ The power of a study, which was discussed in Module 4, is the chance of finding 
 
 df <- tibble::tribble(
   ~` `, ~Effect, ~`No effect`,
-  "Evidence", "✓", "ɑ",
-  "No evidence", "β", "✓"
+  "Evidence", "Correct", "ɑ",
+  "No evidence", "β", "Correct"
 )
 
-huxtable(df) |>
-  insert_row("Study result", "Truth", "", after=0) |> 
-  merge_cells(1, 2:3) |> 
-  theme_article() |> 
-  set_align(everywhere, 2:3, "center") |> 
-  set_width(0.8) |> 
-  set_bold(1, everywhere, TRUE) |> 
-  set_bold(2, everywhere, FALSE) |> 
-  set_escape_contents(everywhere, everywhere, FALSE)
+flextable(df)
 ```
 :::
 
@@ -137,19 +122,11 @@ The power of a study, which was discussed in Module 4, is the chance of finding 
 
 df <- tibble::tribble(
   ~` `, ~Effect, ~`No effect`,
-  "Evidence", "$\\checkmark$", "$\\alpha$",
-  "No evidence", "$\\beta$", "$\\checkmark$"
+  "Evidence", "Correct", "ɑ",
+  "No evidence", "β", "Correct"
 )
 
-huxtable(df) |>
-  insert_row("Study result", "Truth", "", after=0) |> 
-  merge_cells(1, 2:3) |> 
-  theme_article() |> 
-  set_align(everywhere, 2:3, "center") |> 
-  set_width(0.8) |> 
-  set_bold(1, everywhere, TRUE) |> 
-  set_bold(2, everywhere, FALSE) |> 
-  set_escape_contents(everywhere, everywhere, FALSE)
+flextable(df)
 ```
 :::
 
@@ -433,12 +410,7 @@ tab <- tibble::tribble(
    10L,    0.1,   101L,   1006,   1107
   )
 
-huxtable::huxtable(tab) |>
-  set_align(everywhere, everywhere, ".") |> 
-  theme_article() |> 
-  set_number_format(everywhere, everywhere, fmt_pretty()) |> 
-  set_width(0.8) |> 
-  set_caption("Increasing the number of controls per case")
+flextable(tab)
 ```
 
 This can be visualised graphically, as in @fig-unequal-controls.
@@ -486,20 +458,20 @@ One approach that is increasingly being used is to conduct a blinded interim ana
 
 In this module we have discussed the importance of conducting a clinical or epidemiological study with enough participants so that an effect or association can be identified if it exists (i.e. study power), and how this has to be balanced by the need to not enrol more participants than necessary because of resource issues. We have looked at the parameters that need to be considered when estimating the sample size for different studies and have used a look-up table to estimate required sample size for a prevalence study and Stata to estimate appropriate sample sizes in epidemiological research under the most straightforward situations. The common requirement in all the situations is that the researchers need to specify the minimum effect measure (e.g. difference in means, OR, RR etc) they want to detect with a given probability (usually 80% to 90%) at a certain level of significance (usually P\<0.05). The ultimate decision on the sample size depends on a compromise among different objectives such as power, minimum effect size, and available resources. To make the final decision, it is helpful to do some trial calculations using revised power and the minimum detectable effect measure.
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Stata notes {.unnumbered}
+<!-- # Stata notes {.unnumbered} -->
 
-{{< include 10.1-sample-size-stata.qmd >}}
+<!-- {{< include 10.1-sample-size-stata.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# R notes {.unnumbered}
+<!-- # R notes {.unnumbered} -->
 
-{{< include 10.2-sample-size-R.qmd >}}
+<!-- {{< include 10.2-sample-size-R.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Activities {.unnumbered}
+<!-- # Activities {.unnumbered} -->
 
-{{< include 10.3-sample-size-activities.qmd >}}
+<!-- {{< include 10.3-sample-size-activities.qmd >}} -->

@@ -73,11 +73,9 @@ tab_stage_out <- as.data.frame(tab_stage$frequencies[[1]]) |>
   mutate(`Relative frequency (%)` = 100*`Relative frequency (%)`,
          `Cumulative relative frequency (%)` = 100*`Cumulative relative frequency (%)`)
 
-huxtable(select(tab_stage_out, 1:4)) |> 
-  set_number_format(everywhere, 3:4, "%3.1f") |> 
-  theme_article() |> 
-  set_width(0.8) |> 
-  add_footnote("* Disease stage was missing for 6 participants")
+flextable(select(tab_stage_out, 1:4), , cwidth = c(1, 1, 1.5, 1.5)) |> 
+  colformat_double(j = 3, digits = 1) |> 
+  add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
 From @tbl-1-stage, we can see that 65.0% of participants had Stage 3 disease or lower.
@@ -120,7 +118,7 @@ pbc |>
 
 We can add percentages to two-way tables as either *column* or *row* percents. Using @tbl-1-sex-stage-freq as an example, column percents represent the relative frequencies of sex within each stage (@tbl-1-sex-stage-col).
 
-#### TKTK - fix missing "100%" cells
+<!-- TKTK - fix missing "100%" cells -->
 
 ```{r tbl-1-sex-stage-col, echo=FALSE, message=FALSE}
 #| tbl-cap: Frequency of participants by sex and stage of disease*, including column percents
@@ -139,10 +137,10 @@ pbc |>
 
 Conversely, row percents represent the relative frequencies of stage within each sex (@tbl-1-sex-stage-row).
 
-#### TKTK - fix missing "100%" cells
+<!-- TKTK - fix missing "100%" cells -->
 
 ```{r tbl-1-sex-stage-row, echo=FALSE, message=FALSE}
-#| tbl-cap: Frequency of participants by sex and stage of disease*, including row percents
+#| tbl-cap: Frequency of participants by sex and stage of disease, including row percents
 
 pbc |> 
   filter(!is.na(stage)) |> 
@@ -153,7 +151,7 @@ pbc |>
             include.table_percent = FALSE) |> 
   labelizor(part="all", j=2,
             labels = c(`Col. pct` = "Row %")) |> 
-  add_footer_lines("* Disease stage was missing for 6 participants")
+  add_footer_lines("*Stage was missing for 6 participants")
 ```
 
 #### Tables containing more than two variables

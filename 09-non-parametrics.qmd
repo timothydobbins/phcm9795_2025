@@ -1,7 +1,7 @@
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 library(tidyverse)
 library(jmv)
-library(huxtable)
+library(flextable)
 ```
 
 
@@ -116,11 +116,7 @@ df <- tibble::tribble(
    17L,       "No",             17L,  20.5,            20.5,               NA
   )
 
-huxtable(df) |>
-  set_align(everywhere, everywhere, "centre") |> 
-  set_number_format(everywhere, everywhere, fmt_pretty()) |> 
-  theme_article() |> 
-  set_width(0.95)
+flextable(df)
 ```
 
 By assigning ranks to individuals, we lose information about their actual values and this makes it more difficult to detect a difference. However, outliers and extreme values in the data are brought back closer to the data so that they are less influential. For this reason, non-parametric tests have less power than parametric tests and they require much larger differences in the data to show statistical significance between groups.
@@ -166,11 +162,7 @@ df <- tibble::tribble(
           ) |> 
   dplyr::mutate(`Difference (Drug 2 - Drug 1)` = `Score: Drug 2` - `Score: Drug 1`)
   
-huxtable(df) |>
-  set_align(everywhere, everywhere, "centre") |> 
-  set_number_format(everywhere, everywhere, fmt_pretty()) |> 
-  theme_article() |> 
-  set_width(0.8)
+flextable(df)
 ```
 
 The data shows that there is 1 person who has a negative difference, where the symptom score on drug 2 that is smaller than that for drug 1 (i.e., drug 2 is better than drug 1); and 10 people who have a positive difference. No one has the same score for both drugs.
@@ -205,20 +197,20 @@ The Spearman rank correlation coefficient is estimated as 0.75, demonstrating a 
 In this module, we have presented methods to conduct a hypothesis test with data that are not normally distributed. Non-parametric methods do not assume any distribution for the data and use significance tests based on ranks or sign (or both). A non-parametric test is always less powerful than its equivalent parametric test if the data are normally distributed and so whenever possible parametric significance tests should be used. In some cases when data are not normally distributed with a reasonably large sample size, the data can be transformed (most commonly by log transformation) to make the distribution normal. A parametric significance test should then be used with the transformed data to test the hypothesis.
 
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Stata notes {-}
+<!-- # Stata notes {-} -->
 
-{{< include 09.1-non-parametrics-stata.qmd >}}
+<!-- {{< include 09.1-non-parametrics-stata.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# R notes {-}
+<!-- # R notes {-} -->
 
-{{< include 09.2-non-parametrics-R.qmd >}}
+<!-- {{< include 09.2-non-parametrics-R.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Activities {-}
+<!-- # Activities {-} -->
 
-{{< include 09.3-non-parametrics-activities.qmd >}}
+<!-- {{< include 09.3-non-parametrics-activities.qmd >}} -->

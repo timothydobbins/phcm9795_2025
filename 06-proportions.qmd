@@ -141,7 +141,7 @@ As introduced in PHCM9794: Foundations of Epidemiology, 2-by-2 contingency table
 #| label: tbl-2-by-2-trad
 #| tbl-cap: Traditional format for presenting a contingency table
 
-library(huxtable)
+library(flextable)
 
 v1 <- tibble::tribble(
   ~` `, ~`Outcome present`, ~`Outcome absent`, ~`Total`,
@@ -150,28 +150,7 @@ v1 <- tibble::tribble(
   "Total", "a+c", "b+d", "N"
 )  
 
-huxtable::huxtable(v1) |> 
-  set_align(everywhere, everywhere, "center") |> 
-  theme_article() |> 
-  set_width(0.8)
-```
-
-**Note for Stata users:** It is important to note that Stata presents the exposure or intervention (present, absent) in the columns and the outcome or disease (present, absent) in the rows (e.g. @tbl-2-by-2-stata). This is opposite to the way most epidemiological tables are presented, with exposure in rows and outcome in columns. Care must be taken when reading 2-by-2 tables generated from Stata.
-
-
-```{r tbl-2-by-2-stata, echo=FALSE}
-#| tbl-cap: Stata format for presenting a contingency table
-v2 <- tibble::tribble(
-  ~` `, ~`Exposure present`, ~`Exposure absent`, ~`Total`,
-  "Outcome present", "a", "c", "a+c",
-  "Outcome absent",  "b", "d", "b+d",
-  "Total", "a+b", "c+d", "N"
-)  
-
-huxtable::huxtable(v2)  |> 
-  set_align(everywhere, everywhere, "center") |> 
-  theme_article() |> 
-  set_width(0.8)
+flextable(v1)
 ```
 
 When using a statistics program, it is recommended that the outcome and exposure variables are coded by assigning 'absent' as 0 and 'present' as 1, for example 'No' = 0 and 'Yes' = 1. This is needed for some of the commands to work (e.g. the epidemiology table commands). This coding ensures that measures of association, such as the odds ratio or relative risk, are computed correctly by Stata. While R does not require this coding to be followed, it is good practice nonetheless.
@@ -229,10 +208,7 @@ v1 <- tibble::tribble(
   "Total", "a+c", "b+d", "N"
 )  
 
-huxtable::huxtable(v1) |>
-  set_align(everywhere, everywhere, "center") |> 
-  theme_article() |> 
-  set_width(0.8)
+flextable(v1)
 ```
 
 In the example in Table @tbl-cc, we can calculate the odds of being exposed in the cases as $a \div c$. Similarly, we can calculate the odds of being exposed in the controls as $b \div d$. We can the calculate the *odds ratio* as:
@@ -273,9 +249,7 @@ tibble::tribble(
       "Placebo",      4L,        46L,    50L,
         "Total",     19L,        81L,   100L
   ) |> 
-  huxtable() |>
-  theme_article() |> 
-  set_width(0.8)
+  flextable()
 ```
 
 We can use Stata or R to calculate the relative risk (RR=3.75) and its 95% confidence interval (1.34 to 10.51). This tells us that nausea is 3.75 times more likely to occur in the active drug group compared with the placebo group. Because this is a randomised controlled trial, the relative risk would be an appropriate measure of association.
@@ -305,11 +279,7 @@ df <- tibble::tribble(
          "Total",                            100L,                                  200L,   300L
   )
 
-huxtable(df) |> 
-  add_rows(c(NA, "(Oropharyngeal cancer)", "(No oropharyngeal cancer)", NA), after=1) |> 
-  theme_article() |> 
-  set_align(1:2, everywhere, "center") |> 
-  set_align(3:5, 2:3, "center")
+flextable(df)
 ```
 
 The odds ratio is the odds of being HPV positive in cases (those with oropharyngeal cancer) compared to the odds of being HPV positive in the controls (those without oropharyngeal cancer):
@@ -329,20 +299,20 @@ The odds ratio is estimated as 17.6, and its 95% confidence interval is estimate
 The interpretation of the confidence intervals for both the relative risk and the odds ratio is the same as for the confidence intervals around other summary measures in that it shows the region in which we are 95% confident that the true population estimate lies.
 
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Stata notes {-}
+<!-- # Stata notes {-} -->
 
-{{< include 06.1-proportions-stata.qmd >}}
+<!-- {{< include 06.1-proportions-stata.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# R notes {-}
+<!-- # R notes {-} -->
 
-{{< include 06.2-proportions-R.qmd >}}
+<!-- {{< include 06.2-proportions-R.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Activities {-}
+<!-- # Activities {-} -->
 
-{{< include 06.3-proportions-activities.qmd >}}
+<!-- {{< include 06.3-proportions-activities.qmd >}} -->

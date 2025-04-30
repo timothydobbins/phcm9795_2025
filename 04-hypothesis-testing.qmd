@@ -1,5 +1,5 @@
 ```{r include=FALSE}
-library(huxtable)
+library(flextable)
 ```
 
 # An introduction to hypothesis testing
@@ -72,9 +72,7 @@ tab4_1 <- tibble::tribble(
     "≥0.1", "Little or no evidence"
 )
 
-huxtable(tab4_1) |>
-    theme_article() |>
-    set_width(0.8)
+flextable(tab4_1)
 ```
 
 P-values are usually generated using statistical software although other methods such as statistical tables or Excel functions can be used to generate test statistics and determine the P-value. In traditional statistics, the probability level was described as a lower-case p but in many journals today, probability is commonly described by upper case P. Both have the same meaning. 
@@ -112,45 +110,45 @@ The other situation is where, in reality, the null hypothesis is false. A correc
 
 The error in falsely rejecting the null hypothesis when it is true (type I error), or in falsely accepting the null hypothesis when it is not true (type II error) is summarised in @tbl-mod4-alpha-beta. We will return to these concepts in Module 10, when discussing how to determine the appropriate sample size of a study.
 
-```{r tbl-mod4-alpha-beta, echo=FALSE}
-#| tbl-cap: Comparison of study result with the truth
+<!-- ```{r tbl-mod4-alpha-beta, echo=FALSE} -->
+<!-- #| tbl-cap: Comparison of study result with the truth -->
 
-if (knitr::is_html_output()) {
-    df <- tibble::tribble(
-        ~` `, ~Effect, ~`No effect`,
-        "Evidence", "Correct conclusion", "ɑ",
-        "No evidence", "β", "Correct conclusion"
-    )
+<!-- if (knitr::is_html_output()) { -->
+<!--     df <- tibble::tribble( -->
+<!--         ~` `, ~Effect, ~`No effect`, -->
+<!--         "Evidence", "Correct conclusion", "ɑ", -->
+<!--         "No evidence", "β", "Correct conclusion" -->
+<!--     ) -->
 
-    huxtable(df) |>
-        insert_row("Study result", "Truth", "", after = 0) |>
-        merge_cells(1, 2:3) |>
-        theme_article() |>
-        set_align(everywhere, 2:3, "center") |>
-        set_width(0.8) |>
-        set_bold(1, everywhere, TRUE) |>
-        set_bold(2, everywhere, FALSE) |>
-        set_escape_contents(everywhere, everywhere, FALSE)
-}
+<!--     huxtable(df) |> -->
+<!--         insert_row("Study result", "Truth", "", after = 0) |> -->
+<!--         merge_cells(1, 2:3) |> -->
+<!--         theme_article() |> -->
+<!--         set_align(everywhere, 2:3, "center") |> -->
+<!--         set_width(0.8) |> -->
+<!--         set_bold(1, everywhere, TRUE) |> -->
+<!--         set_bold(2, everywhere, FALSE) |> -->
+<!--         set_escape_contents(everywhere, everywhere, FALSE) -->
+<!-- } -->
 
-if (knitr::is_latex_output()) {
-    df <- tibble::tribble(
-        ~` `, ~Effect, ~`No effect`,
-        "Evidence", "$\\checkmark$", "$\\alpha$",
-        "No evidence", "$\\beta$", "$\\checkmark$"
-    )
+<!-- if (knitr::is_latex_output()) { -->
+<!--     df <- tibble::tribble( -->
+<!--         ~` `, ~Effect, ~`No effect`, -->
+<!--         "Evidence", "$\\checkmark$", "$\\alpha$", -->
+<!--         "No evidence", "$\\beta$", "$\\checkmark$" -->
+<!--     ) -->
 
-    huxtable(df) |>
-        insert_row("Study result", "Truth", "", after = 0) |>
-        merge_cells(1, 2:3) |>
-        theme_article() |>
-        set_align(everywhere, 2:3, "center") |>
-        set_width(0.8) |>
-        set_bold(1, everywhere, TRUE) |>
-        set_bold(2, everywhere, FALSE) |>
-        set_escape_contents(everywhere, everywhere, FALSE)
-}
-```
+<!--     huxtable(df) |> -->
+<!--         insert_row("Study result", "Truth", "", after = 0) |> -->
+<!--         merge_cells(1, 2:3) |> -->
+<!--         theme_article() |> -->
+<!--         set_align(everywhere, 2:3, "center") |> -->
+<!--         set_width(0.8) |> -->
+<!--         set_bold(1, everywhere, TRUE) |> -->
+<!--         set_bold(2, everywhere, FALSE) |> -->
+<!--         set_escape_contents(everywhere, everywhere, FALSE) -->
+<!-- } -->
+<!-- ``` -->
 
 ## Confidence intervals in hypothesis testing
 In Module 3, the 95% confidence interval around a mean value was calculated to show the precision of the summary statistic. The 95% confidence intervals around other summary statistics can also be calculated. 
@@ -239,10 +237,7 @@ df <- tibble::tribble(
     "Binary", "Odds ratio", 1L
 )
 
-huxtable(df) |>
-    add_rows(c(NA, NA, "(indicating no difference)"), after = 1) |>
-    merge_repeated_rows(everywhere, 1) |>
-    theme_article()
+flextable(df)
 ```
 
 ## One-sample t-test
@@ -318,21 +313,21 @@ In the following modules in this course, several formal statistical tests will b
 
 Selecting the correct test to use in each situation depends on the study design and the nature of the variables collected. Figure 1 in the Appendix shows a decision tree which enables you to decide the type of test to select based on the nature of the data.
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Jamovi notes {-}
+<!-- # Jamovi notes {-} -->
 
-{{< include 04.1-hypothesis-testing-jamovi.qmd >}}
+<!-- {{< include 04.1-hypothesis-testing-jamovi.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# R notes {-}
+<!-- # R notes {-} -->
 
-{{< include 04.2-hypothesis-testing-R.qmd >}}
+<!-- {{< include 04.2-hypothesis-testing-R.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Activities {-}
+<!-- # Activities {-} -->
 
-{{< include 04.3-hypothesis-testing-activities.qmd >}}
+<!-- {{< include 04.3-hypothesis-testing-activities.qmd >}} -->
 

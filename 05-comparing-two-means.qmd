@@ -187,20 +187,20 @@ flextable(df)
 
 The t-value is calculated as −0.96 with 106 degrees of freedom, providing a two-sided P-value of 0.34. Thus these data provide no evidence of a difference in systolic blood pressure between the two sites.
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Jamovi notes {.unnumbered}
+<!-- # Jamovi notes {.unnumbered} -->
 
-{{< include 05.1-comparing-two-means-jamovi.qmd >}}
+<!-- {{< include 05.1-comparing-two-means-jamovi.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# R notes {.unnumbered}
+<!-- # R notes {.unnumbered} -->
 
-{{< include 05.2-comparing-two-means-R.qmd >}}
+<!-- {{< include 05.2-comparing-two-means-R.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Activities {.unnumbered}
+<!-- # Activities {.unnumbered} -->
 
-{{< include 05.3-comparing-two-means-activities.qmd >}}
+<!-- {{< include 05.3-comparing-two-means-activities.qmd >}} -->

@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; An introduction to sample size estimation – PHCM9795: Foundations of Biostatistics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./09-non-parametrics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37e38b627515668d8a78bbca23c297a0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9a71a2450f5674972ff858c43d8deec0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #ffdc00;
+      }
+</style>
+<link href="site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-sample-size.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">An introduction to sample size estimation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">An introduction to sample size estimation</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">PHCM9795: Foundations of Biostatistics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summarising and presenting data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability and probability distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-precision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Precision, standard errors and confidence intervals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">An introduction to hypothesis testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-comparing-two-means.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing the means of two groups</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-proportions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary statistics for binary data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-testing-proportions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Hypothesis testing for categorical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-correlation-and-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation and simple linear regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-non-parametrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analysing non-normal data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-sample-size.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">An introduction to sample size estimation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#optional-readings" id="toc-optional-readings" class="nav-link" data-scroll-target="#optional-readings">Optional readings</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">10.1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#under-and-over-sized-studies" id="toc-under-and-over-sized-studies" class="nav-link" data-scroll-target="#under-and-over-sized-studies"><span class="header-section-number">10.1.1</span> Under and over-sized studies</a></li>
+  </ul></li>
+  <li><a href="#sample-size-estimation-for-descriptive-studies" id="toc-sample-size-estimation-for-descriptive-studies" class="nav-link" data-scroll-target="#sample-size-estimation-for-descriptive-studies"><span class="header-section-number">10.2</span> Sample size estimation for descriptive studies</a>
+  <ul class="collapse">
+  <li><a href="#wex10-1" id="toc-wex10-1" class="nav-link" data-scroll-target="#wex10-1"><span class="header-section-number">10.2.1</span> Worked Example</a></li>
+  </ul></li>
+  <li><a href="#sample-size-estimation-for-analytic-studies" id="toc-sample-size-estimation-for-analytic-studies" class="nav-link" data-scroll-target="#sample-size-estimation-for-analytic-studies"><span class="header-section-number">10.3</span> Sample size estimation for analytic studies</a>
+  <ul class="collapse">
+  <li><a href="#factors-to-be-considered" id="toc-factors-to-be-considered" class="nav-link" data-scroll-target="#factors-to-be-considered"><span class="header-section-number">10.3.1</span> Factors to be considered</a></li>
+  <li><a href="#power-and-significance-level" id="toc-power-and-significance-level" class="nav-link" data-scroll-target="#power-and-significance-level"><span class="header-section-number">10.3.2</span> Power and significance level</a></li>
+  </ul></li>
+  <li><a href="#detecting-the-difference-between-two-means" id="toc-detecting-the-difference-between-two-means" class="nav-link" data-scroll-target="#detecting-the-difference-between-two-means"><span class="header-section-number">10.4</span> Detecting the difference between two means</a>
+  <ul class="collapse">
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">10.4.1</span> Worked Example</a></li>
+  </ul></li>
+  <li><a href="#detecting-the-difference-between-two-proportions" id="toc-detecting-the-difference-between-two-proportions" class="nav-link" data-scroll-target="#detecting-the-difference-between-two-proportions"><span class="header-section-number">10.5</span> Detecting the difference between two proportions</a>
+  <ul class="collapse">
+  <li><a href="#wex10-3" id="toc-wex10-3" class="nav-link" data-scroll-target="#wex10-3"><span class="header-section-number">10.5.1</span> Worked Example</a></li>
+  </ul></li>
+  <li><a href="#detecting-an-association-using-a-relative-risk" id="toc-detecting-an-association-using-a-relative-risk" class="nav-link" data-scroll-target="#detecting-an-association-using-a-relative-risk"><span class="header-section-number">10.6</span> Detecting an association using a relative risk</a>
+  <ul class="collapse">
+  <li><a href="#wex10-4" id="toc-wex10-4" class="nav-link" data-scroll-target="#wex10-4"><span class="header-section-number">10.6.1</span> Worked Example</a></li>
+  </ul></li>
+  <li><a href="#detecting-an-association-using-an-odds-ratio" id="toc-detecting-an-association-using-an-odds-ratio" class="nav-link" data-scroll-target="#detecting-an-association-using-an-odds-ratio"><span class="header-section-number">10.7</span> Detecting an association using an odds ratio</a>
+  <ul class="collapse">
+  <li><a href="#wex10-5" id="toc-wex10-5" class="nav-link" data-scroll-target="#wex10-5"><span class="header-section-number">10.7.1</span> Worked Example</a></li>
+  </ul></li>
+  <li><a href="#factors-that-influence-power" id="toc-factors-that-influence-power" class="nav-link" data-scroll-target="#factors-that-influence-power"><span class="header-section-number">10.8</span> Factors that influence power</a>
+  <ul class="collapse">
+  <li><a href="#dropouts" id="toc-dropouts" class="nav-link" data-scroll-target="#dropouts"><span class="header-section-number">10.8.1</span> Dropouts</a></li>
+  <li><a href="#unequal-groups" id="toc-unequal-groups" class="nav-link" data-scroll-target="#unequal-groups"><span class="header-section-number">10.8.2</span> Unequal groups</a></li>
+  </ul></li>
+  <li><a href="#limitations-in-sample-size-estimations" id="toc-limitations-in-sample-size-estimations" class="nav-link" data-scroll-target="#limitations-in-sample-size-estimations"><span class="header-section-number">10.9</span> Limitations in sample size estimations</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10.10</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="learning-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>By the end of this module you will be able to:</p>
+<ul>
+<li>Explain the issues involved in sample size estimation for epidemiological studies;</li>
+<li>Estimate sample sizes for descriptive and analytic studies;</li>
+<li>Compute the sample size needed for planned statistical tests;</li>
+<li>Adjust sample size calculations for factors that influence study power.</li>
+</ul>
+</section>
+<section id="optional-readings" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="optional-readings">Optional readings</h2>
+<p><span class="citation" data-cites="kirkwood_sterne01">Kirkwood and Sterne (<a href="references.html#ref-kirkwood_sterne01" role="doc-biblioref">2001</a>)</span>; Chapter 35. <a href="http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728">[UNSW Library Link]</a></p>
+<p><span class="citation" data-cites="bland15">Bland (<a href="references.html#ref-bland15" role="doc-biblioref">2015</a>)</span>; Chapter 18. <a href="http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730">[UNSW Library Link]</a></p>
+<p>For interest: <span class="citation" data-cites="woodward13">Woodward (<a href="references.html#ref-woodward13" role="doc-biblioref">2013</a>)</span>; Chapter 8. <a href="http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=1575748">[UNSW Library Link]</a></p>
+</section>
+<section id="introduction" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">10.1</span> Introduction</h2>
+<p>Determining the appropriate sample size (the number of participants in a study) is one of the most critical issues when designing a research study. A common question when planning a project is “How many participants do I need?” The sample size needs to be large enough to ensure that the results can be generalised to the population and will be accurate, but small enough for the study question to be answered with the resources available. In general, the larger the sample size, the more precise the study results will be.</p>
+<p>Unfortunately, estimating the sample size required for a study is not straightforward and the method used varies with the study design and the type of statistical test that will be conducted on the data collected. In the past, researchers calculated the sample size by hand using complicated mathematical formula. More recently, look-up tables have been created which has removed the need for hand calculations. Now, most researchers use computer programs where parameters relevant to the particular study design are entered and the sample size is automatically calculated. In this module, we will use an abbreviated look-up table to demonstrate the parameters that need to be considered when estimating sample sizes for a confidence interval and use software for all other sample size calculations. The look-up table allows you to see at a glance, the impact of different factors on the sample size estimation.</p>
+<section id="under-and-over-sized-studies" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="under-and-over-sized-studies"><span class="header-section-number">10.1.1</span> Under and over-sized studies</h3>
+<p>In health research, there are different implications for interpreting the results if the sample size is too small or too large.</p>
+<p>An under-sized study is one which lacks the power to find an effect or association when, in truth, one exists. If the sample size is too small, an important difference between groups may not be statistically significant and so will not be detected by the study. In fact, it is considered unethical to conduct a health study which is poorly designed so that it is not possible to detect an effect or association if it exists. Often, Ethics Committees request evidence of sample size calculations before a study is approved.</p>
+<p>A classic paper by Freiman et al examined 71 randomised controlled trials which reported an absence of clinical effect between two treatments.<span class="citation" data-cites="freiman_etal78">(<a href="references.html#ref-freiman_etal78" role="doc-biblioref">Freiman et al. 1978</a>)</span> Many of the trials were too small to show that a clinically important difference was statistically significant. If the sample size of an analytic study is too small, then only very limited conclusions can be drawn about the results.</p>
+<p>In general, the larger the sample size the more precise the estimates will be. However, large sample sizes have their own effect on the interpretation of the results. An over-sized study is one in which a small difference between groups, which is not important in clinical or public health terms, is statistically significant. When the study sample is large, the null hypothesis could be rejected in error and research resources may be wasted. This type of study may be unethical due to the unnecessary enrolment of a large number of people.</p>
+</section>
+</section>
+<section id="sample-size-estimation-for-descriptive-studies" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="sample-size-estimation-for-descriptive-studies"><span class="header-section-number">10.2</span> Sample size estimation for descriptive studies</h2>
+<p>To estimate the sample size required for a descriptive study, we usually focus on specifying the width of the confidence interval around our primary estimate. For example, to estimate the sample size for a study designed to measure a prevalence we need to:</p>
+<ul>
+<li>nominate the expected prevalence based on other available evidence;</li>
+<li>nominate the required level of precision around the estimate. For this, the width of the 95% confidence interval (i.e.&nbsp;the distance equal to 1.96 <span class="math inline">\(\times\)</span> SE) is used.</li>
+</ul>
+<p>Table 10.1 is an abbreviated look-up table that we can use to estimate the sample size for this type of study. Note that the sample size required to detect an expected population prevalence of 5% is the same as to detect a prevalence of 95%. Similarly 10% is equivalent to 90% etc. It is symmetric about 50%. From <a href="#tbl-10-1" class="quarto-xref">Table&nbsp;<span>10.1</span></a>, you can see that the sample size required increases as the expected prevalence approaches 50% and as the precision increases (i.e.&nbsp;the required 95% CI becomes narrower).</p>
+<div class="cell">
+<div id="tbl-10-1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-10-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.1: Sample size required to calculate a 95% confidence interval with a given precision
+</figcaption>
+<div aria-describedby="tbl-10-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-24cfb8c6{}.cl-24cbd558{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-24cd4384{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-24cd4385{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-24cd5162{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24cd5163{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24cd5164{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24cd516c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24cd516d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24cd516e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-24cfb8c6"><thead><tr style="overflow-wrap:break-word;"><th class="cl-24cd5162"><p class="cl-24cd4384"><span class="cl-24cbd558">Prevalence</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">1%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">1.5%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">2%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">2.5%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">3%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">3.5%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">4%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">5%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">10%</span></p></th><th class="cl-24cd5163"><p class="cl-24cd4385"><span class="cl-24cbd558">15%</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-24cd5164"><p class="cl-24cd4384"><span class="cl-24cbd558">5% or 95%</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">1,825</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">812</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">457</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">292</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">203</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">149</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">115</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558"></span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558"></span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-24cd5164"><p class="cl-24cd4384"><span class="cl-24cbd558">10% or 90%</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">3,458</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">1,537</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">865</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">554</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">385</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">283</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">217</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">139</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558"></span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-24cd5164"><p class="cl-24cd4384"><span class="cl-24cbd558">15% or 85%</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">4,899</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">2,177</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">1,225</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">784</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">545</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">400</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">307</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">196</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">49</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-24cd5164"><p class="cl-24cd4384"><span class="cl-24cbd558">20% or 80%</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">6,147</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">2,732</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">1,537</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">984</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">683</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">502</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">385</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">246</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">62</span></p></td><td class="cl-24cd516c"><p class="cl-24cd4385"><span class="cl-24cbd558">28</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-24cd516d"><p class="cl-24cd4384"><span class="cl-24cbd558">25% or 75%</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">7,203</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">3,202</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">1,801</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">1,153</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">801</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">588</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">451</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">289</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">73</span></p></td><td class="cl-24cd516e"><p class="cl-24cd4385"><span class="cl-24cbd558">33</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<section id="wex10-1" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="wex10-1"><span class="header-section-number">10.2.1</span> Worked Example</h3>
+<p>A descriptive cross-sectional study is designed to measure the prevalence of bronchitis in children age 0-2 years with a 95% CI of <span class="math inline">\(\pm\)</span> 4%. The prevalence is expected to be 20%. From the table, a sample size of at least 385 will be required for the width of the 95% CI to be <span class="math inline">\(\pm\)</span> 4% (i.e.&nbsp;the reported precision of the summary statistic will be 20% (95% CI 16% to 24%)).</p>
+<p>If the prevalence turns out to be higher than the researchers expected or if they decided that they wanted a narrower 95% CI (i.e.&nbsp;increase precision), a larger sample size would be required.</p>
+<ul>
+<li>What sample size would be required if the prevalence was 15% and the desired 95% CI was <span class="math inline">\(\pm\)</span> 3%?</li>
+<li>Answer: 545</li>
+</ul>
+</section>
+</section>
+<section id="sample-size-estimation-for-analytic-studies" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="sample-size-estimation-for-analytic-studies"><span class="header-section-number">10.3</span> Sample size estimation for analytic studies</h2>
+<p>Analytic study designs are used to compare characteristics between different groups in the population. The main study designs are analytic cross-sectional studies, case-control studies, cohort studies and randomised controlled trials. For analytic study designs, the outcome measure of interest can be a mean value, a proportion or a relative risk if a random sample has been enrolled. For case-control studies the most appropriate measure of association is an odds ratio.</p>
+<section id="factors-to-be-considered" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="factors-to-be-considered"><span class="header-section-number">10.3.1</span> Factors to be considered</h3>
+<p>The first important decision in estimating a required sample size for an analytic study is to select the type of statistical test that will be used to report or analyse the data. Each type of test is associated with a different method of sample size estimation.</p>
+<p>Once the statistical method has been determined, the following issues need to be decided:</p>
+<ul>
+<li>Statistical power: the chance of finding a difference if one exists, e.g.&nbsp;80%;</li>
+<li>Level of significance: the P value that will be considered significant, e.g.&nbsp;P&lt;0.05;</li>
+<li>Minimum effect size of interest: the size of the difference between groups e.g.&nbsp;the difference in the proportion of parents who oppose immunisation in two different regions or the difference in mean values of blood pressure in two groups of people with different types of cardiac disease;</li>
+<li>Variability: the spread of the measurements, e.g.&nbsp;the expected standard deviation of the main outcome variable (if continuous), or the expected proportions;</li>
+<li>Resources: an estimate of the number of participants available and amount of funding to run the study.</li>
+</ul>
+<p>In addition to deciding the level of power and probability that will be used, the difference between groups that is regarded as being important has to be estimated. The smallest difference between study groups that we want to detect is described as the minimum expected effect size. This is determined on the basis of clinical judgement, public health importance and expertise in the condition being researched, or may it be need to be determined from a pilot study or a literature review. The smaller the expected effect or association, the larger the sample size will need to obtain statistical significance. We also need some knowledge of how variable the measurement is expected to be. For this we often use the standard deviation for a continuous measure. As measurement variability increases, the sample size will need to increase in order to detect the expected difference between the groups. Above all, a study has to be practical in terms of the availability of a population from which to draw sufficient numbers for the study and in terms of the funds that are available to conduct the study.</p>
+</section>
+<section id="power-and-significance-level" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="power-and-significance-level"><span class="header-section-number">10.3.2</span> Power and significance level</h3>
+<p>The power of a study, which was discussed in Module 4, is the chance of finding a statistically significant difference when one exists, i.e.&nbsp;the probability of correctly rejecting the null hypothesis. The relationship between the power of a study and statistical significance is shown in <a href="#tbl-truth-vs-study-html" class="quarto-xref">Table&nbsp;<span>10.2</span></a>.</p>
+<div class="cell">
+<div id="tbl-truth-vs-study-html" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-truth-vs-study-html-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.2: Comparison of study result with the truth
+</figcaption>
+<div aria-describedby="tbl-truth-vs-study-html-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-24d92956{}.cl-24d69484{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-24d7aad6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-24d7b5da{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24d7b5e4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24d7b5e5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-24d92956"><thead><tr style="overflow-wrap:break-word;"><th class="cl-24d7b5da"><p class="cl-24d7aad6"><span class="cl-24d69484"> </span></p></th><th class="cl-24d7b5da"><p class="cl-24d7aad6"><span class="cl-24d69484">Effect</span></p></th><th class="cl-24d7b5da"><p class="cl-24d7aad6"><span class="cl-24d69484">No effect</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-24d7b5e4"><p class="cl-24d7aad6"><span class="cl-24d69484">Evidence</span></p></td><td class="cl-24d7b5e4"><p class="cl-24d7aad6"><span class="cl-24d69484">Correct</span></p></td><td class="cl-24d7b5e4"><p class="cl-24d7aad6"><span class="cl-24d69484">ɑ</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-24d7b5e5"><p class="cl-24d7aad6"><span class="cl-24d69484">No evidence</span></p></td><td class="cl-24d7b5e5"><p class="cl-24d7aad6"><span class="cl-24d69484">β</span></p></td><td class="cl-24d7b5e5"><p class="cl-24d7aad6"><span class="cl-24d69484">Correct</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The power of a study is expressed as 1– β where β is the probability of a false negative (that is, the probability of a Type II error - incorrectly not rejecting the null hypothesis. In most research, power is generally set to 80% (a Type II error rate of 20%). However, in some studies, especially in some clinical trials where rigorous results are required, power is set to 90% (a Type II error rate of 10%).</p>
+<p>The significance level, or α level, is the level at which the P value of a test is considered to be statistically significant. The α level is usually set at 5% indicating a probability of &lt;0.05 will be regarded as statistically significant. Occasionally, especially if several outcome measures are being compared, the α level is set at 1% indicating a probability of &lt;0.01 will be regarded as statistically significant.</p>
+<p>The calculation of sample sizes for analytic studies are based on calculations that are somewhat tedious to compute by hand. Software packages are the standard method of calculating sample sizes for these types of study, and examples from both R and Stata will be provided.</p>
+</section>
+</section>
+<section id="detecting-the-difference-between-two-means" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="detecting-the-difference-between-two-means"><span class="header-section-number">10.4</span> Detecting the difference between two means</h2>
+<p>The test that is used to show that two mean values are significantly different from one another is the independent samples t-test (Module 5). The sample size needed for this test to have sufficient power can be calculated using R and Stata as shown in the Worked Example below.</p>
+<section id="worked-example" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">10.4.1</span> Worked Example</h3>
+<p>There is a hypothesis that the use of the oral contraceptive (OC) pill in premenopausal women can increase systolic blood pressure. A study was planned to test this hypothesis using a two sided t-test. The investigators are interested in detecting an increase of at least 5 mm Hg systolic blood pressure in the women using OC compared to the non-OC users with 90% power at a 5% significance level. A pilot study shows that the SD of systolic blood pressure in the target group is 25 mm Hg and the mean systolic blood pressure of non-OC user women is 110 mm Hg. What is the minimum number of women in each group that need to be recruited for the study to detect this difference?</p>
+<p><strong>Solution</strong> The effect size of interest is 5 mm Hg and the associated standard deviation is 25 mm Hg. For power of 90% and alpha of 5%, the sample size calculation using the Stata can be calculated using the <code>power twomeans</code> command:</p>
+<section id="output-10.1-two-independent-samples-t-test-sample-size-calculation" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="output-10.1-two-independent-samples-t-test-sample-size-calculation">Output 10.1: Two independent samples t-test sample size calculation</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-lst-cap="Some stuff"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>. power twomeans <span class="dv">110</span> <span class="dv">115</span>, <span class="fu">sd</span>(<span class="dv">25</span>) <span class="fu">power</span>(<span class="fl">0.9</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Performing iteration ...</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Estimated sample sizes <span class="cf">for</span> a two<span class="sc">-</span>sample means test</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>t test assuming sd1 <span class="ot">=</span> sd2 <span class="ot">=</span> sd</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Ho<span class="sc">:</span> m2 <span class="ot">=</span> m1 versus  Ha<span class="sc">:</span> m2 <span class="sc">!=</span> m1</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Study parameters<span class="sc">:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        alpha <span class="ot">=</span>    <span class="fl">0.0500</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        power <span class="ot">=</span>    <span class="fl">0.9000</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        delta <span class="ot">=</span>    <span class="fl">5.0000</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>           m1 <span class="ot">=</span>  <span class="fl">110.0000</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>           m2 <span class="ot">=</span>  <span class="fl">115.0000</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>           sd <span class="ot">=</span>   <span class="fl">25.0000</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Estimated sample sizes<span class="sc">:</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            N <span class="ot">=</span>     <span class="dv">1</span>,<span class="dv">054</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  N per group <span class="ot">=</span>       <span class="dv">527</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can use the <code>epi.sscompc</code> function within the <code>epiR</code> package in R to calculate the sample size:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.sscompc</span>(<span class="at">treat=</span><span class="dv">110</span>, <span class="at">control=</span><span class="dv">115</span>, <span class="at">n=</span><span class="cn">NA</span>, <span class="at">sigma=</span><span class="dv">25</span>, <span class="at">power=</span><span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$n.total
+[1] 1052
+
+$n.treat
+[1] 526
+
+$n.control
+[1] 526
+
+$power
+[1] 0.9
+
+$delta
+[1] 5</code></pre>
+</div>
+</div>
+<p>Note that Stata and R provide slightly different estimated sample sizes. This difference is immaterial from a practical point of view, and highlights the importance of referencing which software package has been used when writing up results.</p>
+<p>From the output, we can see that with 90% power we will need 526 or 527 participants in each group, i.e., 1052 or 1054 participants in total.</p>
+<p>If the above were carried out by taking baseline measures of systolic blood pressure, and then again when the women were taking the OC pills, it would be a matched-pair study. Computing sample sizes for paired studies requires an estimate of the correlation between the paired obervations. If we do not have any estimates for this correlation, we can assume a value of 0. If the correlation is positive, a zero for correlation would give a more conservative estimate of sample size required (i.e.&nbsp;estimate a sample size larger than necessary). While a negative correlation would require a bigger sample size than a zero correlation, it is relatively uncommon to encounter negative correlations between pairs. Any discussions on the effect of correlation on sample size is beyond the scope of this course. Thus, we will always assume a correlation of zero between paired measurements in this course.</p>
+<p>We can compute the required sample size in Stata using the <code>power pairedmeans</code> command:</p>
+</section>
+<section id="output-10.2-paired-samples-t-test-sample-size-using-worked-example-10.2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="output-10.2-paired-samples-t-test-sample-size-using-worked-example-10.2">Output 10.2: Paired samples t-test sample size using Worked Example 10.2</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>. power pairedmeans <span class="dv">110</span> <span class="dv">115</span>, <span class="fu">corr</span>(<span class="dv">0</span>) <span class="fu">power</span>(<span class="fl">0.9</span>) <span class="fu">sd</span>(<span class="dv">25</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Performing iteration ...</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Estimated sample size <span class="cf">for</span> a two<span class="sc">-</span>sample paired<span class="sc">-</span>means test</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Paired t test assuming sd1 <span class="ot">=</span> sd2 <span class="ot">=</span> sd</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>Ho<span class="sc">:</span> d <span class="ot">=</span> d0  versus  Ha<span class="sc">:</span> d <span class="sc">!=</span> d0</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Study parameters<span class="sc">:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        alpha <span class="ot">=</span>    <span class="fl">0.0500</span>          ma1 <span class="ot">=</span>  <span class="fl">110.0000</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        power <span class="ot">=</span>    <span class="fl">0.9000</span>          ma2 <span class="ot">=</span>  <span class="fl">115.0000</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        delta <span class="ot">=</span>    <span class="fl">0.1414</span>           sd <span class="ot">=</span>   <span class="fl">25.0000</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>           d0 <span class="ot">=</span>    <span class="fl">0.0000</span>         corr <span class="ot">=</span>    <span class="fl">0.0000</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>           da <span class="ot">=</span>    <span class="fl">5.0000</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>         sd_d <span class="ot">=</span>   <span class="fl">35.3553</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>Estimated sample size<span class="sc">:</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            N <span class="ot">=</span>       <span class="dv">528</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As discussed in the R notes, calculating the sample size required for a paired t-test is a little more cumbersome in R. Here, only the output of the process is provided - refer to the R notes for detail on the code.</p>
+</section>
+<section id="output-10.2-paired-samples-t-test-sample-size-using-worked-example-10.2-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="output-10.2-paired-samples-t-test-sample-size-using-worked-example-10.2-1">Output 10.2: Paired samples t-test sample size using Worked Example 10.2</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Paired t test power calculation 
+
+              n = 527.2954
+              d = 0.1414214
+      sig.level = 0.05
+          power = 0.9
+    alternative = two.sided
+
+NOTE: n is number of *pairs*</code></pre>
+</div>
+</div>
+<p>Assuming a correlation of 0 between the two sets of measurements, we can see that we will need 528 pairs of measurements to achieve a power of 90% (virtually the same as for an independent samples study).</p>
+</section>
+</section>
+</section>
+<section id="detecting-the-difference-between-two-proportions" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="detecting-the-difference-between-two-proportions"><span class="header-section-number">10.5</span> Detecting the difference between two proportions</h2>
+<p>The statistical test for deciding if there is a significant difference between two independent proportions is a Pearson’s chi-squared test (Module 7).</p>
+<p>Other than the power and alpha required for the test, the expected prevalence or incidence rate of the outcome factor needs to be estimated for each of the two groups being compared, based on what is known from other studies or what is expected. Occasionally, we may not know the expected proportion in one of the groups, e.g.&nbsp;in a randomised control trial of a novel intervention. In the sample size calculation for such a study, we should instead justify the minimum expected difference between the proportions based on what is important from a clinical or public health perspective. Based on the minimum difference, we can then derive the expected proportion for both groups. Note that the smaller the difference, the larger the sample size required.</p>
+<p>The sample size required in each group to observe a difference in two independent proportions can be calculated using the power twoproportions command in Stata.</p>
+<section id="wex10-3" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="wex10-3"><span class="header-section-number">10.5.1</span> Worked Example</h3>
+<p>If we expect that the prevalence of smoking in two comparison groups (e.g.&nbsp;males and females) will be 35% and 20%. The sample size required in each group to show that the prevalences are significantly different at P&lt;0.05 with 80% power is shown in Output 10.3.</p>
+<section id="output-10.3-sample-size-calculation-for-two-independent-proportions" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="output-10.3-sample-size-calculation-for-two-independent-proportions">Output 10.3: Sample size calculation for two independent proportions</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Estimated sample sizes <span class="cf">for</span> a two<span class="sc">-</span>sample proportions test</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Pearson<span class="st">'s chi-squared test </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">Ho: p2 = p1  versus  Ha: p2 != p1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">Study parameters:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">        alpha =    0.0500</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">        power =    0.8000</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">        delta =   -0.1500  (difference)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">           p1 =    0.3500</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">           p2 =    0.2000</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">Estimated sample sizes:</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">            N =       276</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">  N per group =       138</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>From Output 10.3, we see that we would need 138 males and 138 females (i.e.&nbsp;a total sample size of 276 participants).</p>
+<p>What sample size would be required if the prevalence of smoking among men was 30%?</p>
+<p>Answer = 294 men and 294 women would be needed.</p>
+<p>[Command: <code>power twoproportions .3 .2, test(chi2)</code>]</p>
+<p>To do the same problem using R, we use the <code>epi.sscohortc</code> function. We need to specify the risk of the the outcome each group (labelled group 0 and 1) and the desired power:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.sscohortc</span>(<span class="at">irexp1=</span><span class="fl">0.35</span>, <span class="at">irexp0=</span><span class="fl">0.2</span>, <span class="at">n=</span><span class="cn">NA</span>, <span class="at">power=</span><span class="fl">0.8</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$n.total
+[1] 276
+
+$n.exp1
+[1] 138
+
+$n.exp0
+[1] 138
+
+$power
+[1] 0.8
+
+$irr
+[1] 1.75
+
+$or
+[1] 2.153846</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="detecting-an-association-using-a-relative-risk" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="detecting-an-association-using-a-relative-risk"><span class="header-section-number">10.6</span> Detecting an association using a relative risk</h2>
+<p>The relative risk is used to describe the association between an exposure and an outcome variable if the sample has been randomly selected from the population. This statistic is often used to describe the effect or association of an exposure in a cross-sectional or cohort study or the effect/association of a treatment in an randomised controlled trial. To estimate the sample size required for the RR to have a statistically significant P value, i.e.&nbsp;to show a significant association, we need to define: - the size of the RR that is considered to be of clinical or public health importance; - the event rate (rate of outcome) among the group who are not exposed to the factor of interest (reference group); - the desired level of significance (usually 0.05); - the desired power of the study (usually 80% or 90%).</p>
+<p>In general, a RR of 2.0 or greater is considered to be of public health importance, however, a smaller RR can be important when exposure is high. For example, there may be a relatively small risk of respiratory infection among young children with a parent who smokes (RR ~ 1.2). If 25% of children are exposed to smoking in their home, then the high exposure rate leads to a very large number of children who have preventable respiratory infections across the community.</p>
+<section id="wex10-4" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="wex10-4"><span class="header-section-number">10.6.1</span> Worked Example</h3>
+<p>A study is planned to investigate the effect of an environmental exposure on the incidence of a certain common disease. In the general (unexposed) population the incidence rate of the disease is 50% and it is assumed that the incidence rate would be 75% in the exposed population. Thus the relative risk of interest would be 1.5 (i.e.&nbsp;0.75 / 0.50). We want to detect this effect with 90% power at a 5% level of significance.</p>
+<p>We can use the Stata command <code>power twoproportions</code> as below:</p>
+<section id="output-10.4-sample-size-calculation-for-relative-risk" class="level4" data-number="10.6.1.1">
+<h4 data-number="10.6.1.1" class="anchored" data-anchor-id="output-10.4-sample-size-calculation-for-relative-risk"><span class="header-section-number">10.6.1.1</span> Output 10.4: Sample size calculation for relative risk</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Estimated sample sizes <span class="cf">for</span> a two<span class="sc">-</span>sample proportions test</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Pearson<span class="st">'s chi-squared test </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">Ho: p2 = p1  versus  Ha: p2 != p1</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="st">Study parameters:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="st">        alpha =    0.0500</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="st">        power =    0.9000</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="st">        delta =    1.5000  (relative risk)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="st">           p1 =    0.5000</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="st">           p2 =    0.7500</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="st">        rrisk =    1.5000</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="st">Estimated sample sizes:</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="st">            N =       154</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="st">  N per group =        77</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>From Output 10.4, we can see that for a control proportion of 0.5 and RR of 1.5, we need a total sample size of 154, that is 77 people would be needed in each of the exposure groups.</p>
+<p>The <code>epiR</code> package does not have a function to estimate sample size and power directly for a relative risk, but we can use the <code>epi.sscohortc</code> function. To do this, we recognise that the assumed rate in the exposed group will equal the rate in the unexposed group multiplied by the relative risk.</p>
+<p>Here we define the risk in the unexposed group as 0.5 and the desired relative risk to detect is 1.5. So we specify <code>irexp0 = 0.5</code> and <code>irexp1 = 1.5 * 0.5</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.sscohortc</span>(<span class="at">irexp1=</span><span class="fl">1.5</span><span class="sc">*</span><span class="fl">0.5</span>, <span class="at">irexp0=</span><span class="fl">0.5</span>, <span class="at">n=</span><span class="cn">NA</span>, <span class="at">power=</span><span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$n.total
+[1] 154
+
+$n.exp1
+[1] 77
+
+$n.exp0
+[1] 77
+
+$power
+[1] 0.9
+
+$irr
+[1] 1.5
+
+$or
+[1] 3</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="detecting-an-association-using-an-odds-ratio" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="detecting-an-association-using-an-odds-ratio"><span class="header-section-number">10.7</span> Detecting an association using an odds ratio</h2>
+<p>If we are designing a case-control study, the appropriate measure of effect is an odds ratio. The method for estimating the sample size required to detect an odds ratio of interest is slightly different to that for the relative risk. However, the same parameters are required for the estimation:</p>
+<ul>
+<li>the minimum OR to be considered clinically important;</li>
+<li>the proportion of exposed among the control group;</li>
+<li>the desired level of significance (usually 0.05);</li>
+<li>the desired power of the study (usually 80% or 90%).</li>
+</ul>
+<section id="wex10-5" class="level3" data-number="10.7.1">
+<h3 data-number="10.7.1" class="anchored" data-anchor-id="wex10-5"><span class="header-section-number">10.7.1</span> Worked Example</h3>
+<p>A case-control study is designed to examine an association between an exposure and outcome factor. Existing literature shows that 30% of the controls are expected to be exposed. We want to detect a minimum OR of 2.0 with 90% power and 5% level of significance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>. power twoproportions .<span class="dv">3</span>, <span class="fu">test</span>(chi2) <span class="fu">oratio</span>(<span class="dv">2</span>) <span class="fu">power</span>(<span class="fl">0.9</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Estimated sample sizes <span class="cf">for</span> a two<span class="sc">-</span>sample proportions test</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Pearson<span class="st">'s chi-squared test </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">Ho: p2 = p1  versus  Ha: p2 != p1</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">Study parameters:</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="st">        alpha =    0.0500</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="st">        power =    0.9000</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="st">        delta =    2.0000  (odds ratio)</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="st">           p1 =    0.3000</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="st">           p2 =    0.4615</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="st">   odds ratio =    2.0000</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="st">Estimated sample sizes:</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="st">            N =       376</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="st">  N per group =       188</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can use the <code>epi.sscc</code> function in R to calculate a sample size based on an odds ratio in a case-control study:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.sscc</span>(<span class="at">OR=</span><span class="dv">2</span>, <span class="at">p0=</span><span class="fl">0.3</span>, <span class="at">n=</span><span class="cn">NA</span>, <span class="at">power=</span><span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$n.total
+[1] 376
+
+$n.case
+[1] 188
+
+$n.control
+[1] 188
+
+$power
+[1] 0.9
+
+$OR
+[1] 2</code></pre>
+</div>
+</div>
+<p>We find that 188 controls and 188 cases are required i.e.&nbsp;a total of 376 participants.</p>
+<p>This sample size would be smaller if we increased the effect size (OR) or reduced the study power to 80%. You could try this in either Stata or R (answer: 141 per group if power is reduced to 80%).</p>
+</section>
+</section>
+<section id="factors-that-influence-power" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="factors-that-influence-power"><span class="header-section-number">10.8</span> Factors that influence power</h2>
+<section id="dropouts" class="level3" data-number="10.8.1">
+<h3 data-number="10.8.1" class="anchored" data-anchor-id="dropouts"><span class="header-section-number">10.8.1</span> Dropouts</h3>
+<p>It is common to increase estimated sample sizes to allow for drop-outs or non-response. To account for drop-outs, the estimated sample size can be divided by (1 minus the dropout rate). Consider the following case:</p>
+<ul>
+<li>n-completed: the number who will complete the study (i.e.&nbsp;n after drop-out)</li>
+<li>n-recruited: the number who should be recruited (i.e.&nbsp;n before drop-out)</li>
+<li>d: drop-out rate (as a proportion - i.e.&nbsp;a number between 0 and 1)</li>
+</ul>
+<p>Then n-completed = n-recruited × (1 - d)</p>
+<p>Re-arranging this formula gives: n-recruited = n-completed ÷ (1 - d).</p>
+</section>
+<section id="unequal-groups" class="level3" data-number="10.8.2">
+<h3 data-number="10.8.2" class="anchored" data-anchor-id="unequal-groups"><span class="header-section-number">10.8.2</span> Unequal groups</h3>
+<p>Many factors that come into play in a study can reduce the estimated power of a study. In clinical trials, it is not unusual for recruitment goals to be much harder to achieve than expected and therefore for the target sample size to be impossible to realise within the timeframe planned for recruitment.</p>
+<p>In case-control studies, the number of potential case participants available may be limited but study power can be maintained by enrolling a greater number of controls than cases. Or in an experimental study, more participants may be randomised to the new treatment group to test its effects accurately when much is known about the effect of standard care and a more precise estimate of the new treatment effect is required.</p>
+<p>However, there is a trade-off between increasing the ratio of group size and the total number that needs to be enrolled. Consider Worked Example @ref(wex10-5): selecting an equal number of controls and cases would require 188 cases and 188 controls, a total of 376 participants.</p>
+<p>We may want to reduce the number of cases required, by selecting 2 controls for every case. Selecting 2 controls (N1) per case (N2) (corresponding to a ratio of N2/N1 of 0.5) would require 140 cases and 280 controls, a total of 420 participants. We can extend this example and investigate the impact of changing the ratio of controls per case.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-2564acd8{}.cl-2561f740{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-256312b0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-25631daa{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-25631dab{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-25631dac{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2564acd8"><thead><tr style="overflow-wrap:break-word;"><th class="cl-25631daa"><p class="cl-256312b0"><span class="cl-2561f740">Controls per case</span></p></th><th class="cl-25631daa"><p class="cl-256312b0"><span class="cl-2561f740">Allocation ratio (N2/N1)</span></p></th><th class="cl-25631daa"><p class="cl-256312b0"><span class="cl-2561f740">Number of cases required</span></p></th><th class="cl-25631daa"><p class="cl-256312b0"><span class="cl-2561f740">Number of controls required</span></p></th><th class="cl-25631daa"><p class="cl-256312b0"><span class="cl-2561f740">Total participants required</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">1</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">1.0000</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">188</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">188</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">376</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">2</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">0.5000</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">140</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">280</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">420</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">3</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">0.3333</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">124</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">371</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">495</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">4</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">0.2500</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">116</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">462</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">578</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">5</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">0.2000</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">111</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">553</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">664</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">6</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">0.1666</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">108</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">644</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">752</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">7</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">0.1429</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">105</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">734</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">839</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">8</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">0.1250</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">104</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">825</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">929</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">9</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">0.1111</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">102</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">916</span></p></td><td class="cl-25631dab"><p class="cl-256312b0"><span class="cl-2561f740">1,018</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-25631dac"><p class="cl-256312b0"><span class="cl-2561f740">10</span></p></td><td class="cl-25631dac"><p class="cl-256312b0"><span class="cl-2561f740">0.1000</span></p></td><td class="cl-25631dac"><p class="cl-256312b0"><span class="cl-2561f740">101</span></p></td><td class="cl-25631dac"><p class="cl-256312b0"><span class="cl-2561f740">1,006</span></p></td><td class="cl-25631dac"><p class="cl-256312b0"><span class="cl-2561f740">1,107</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>This can be visualised graphically, as in <a href="#fig-unequal-controls" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-unequal-controls" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unequal-controls-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-sample-size_files/figure-html/fig-unequal-controls-1.png" class="img-fluid figure-img" style="width:66.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unequal-controls-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Increasing the number of controls per case
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see that the number of cases required drops off if we go from 1 to 2 controls per case, and again from 2 to 3 controls per case. Once we go from 3 to 4 controls per case, we only reduce the number of cases by 8 (124 vs 116 cases), but at an increase of 91 (371 vs 462) controls. Clearly, this reduction in cases is not offset by the extra controls required.</p>
+<p>In Stata, the allocation ratio is the number in the experimental group / the number in the control group. There is some inconsistency in R, which as of May 2023, leads to inconsistent results between Stata and R for case-control studies with unequal group sizes.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 34%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Stata</th>
+<th style="text-align: center;">R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Difference in means</td>
+<td style="text-align: center;">ratio = n-exposed / n-controls</td>
+<td style="text-align: center;">ratio = n-exposed / n-unexposed</td>
+</tr>
+<tr class="even">
+<td>Difference in proportions</td>
+<td style="text-align: center;">ratio = n-exposed / n-controls</td>
+<td style="text-align: center;">ratio = n-exposed / n-unexposed</td>
+</tr>
+<tr class="odd">
+<td>Relative risk</td>
+<td style="text-align: center;">ratio = n-exposed / n-controls</td>
+<td style="text-align: center;">ratio = n-exposed / n-unexposed</td>
+</tr>
+<tr class="even">
+<td>Odds ratio</td>
+<td style="text-align: center;">ratio = n-cases / n-controls</td>
+<td style="text-align: center;">ratio = n-controls / n-cases</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="limitations-in-sample-size-estimations" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="limitations-in-sample-size-estimations"><span class="header-section-number">10.9</span> Limitations in sample size estimations</h2>
+<p>In this module we have seen how to use Stata for estimating the sample size requirement of a study given the statistical test that will be used and the expected characteristics of the sample. However, once a study is underway, it is not unusual for sample size to be compromised by the lack of research resources, difficulties in recruiting participants or, in a clinical trial, participants wanting to change groups when information about the new experimental treatment rapidly becomes available in the press or on the internet.</p>
+<p>One approach that is increasingly being used is to conduct a blinded interim analysis say when 50% of the total data that are planned have been collected. In this, a statistician external to the research team who is blinded to the interpretation of the group code is asked to measure the effect size in the data with the sole aim of validating the sample size requirement. It is rarely a good idea to use an interim analysis to reduce the planned sample size and terminate a trial early because the larger the sample size, the greater the precision with which the treatment effect is estimated. However, interim analyses are useful for deciding whether the sample size needs to be increased in order to answer the study question and avoid a Type II error.</p>
+</section>
+<section id="summary" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.10</span> Summary</h2>
+<p>In this module we have discussed the importance of conducting a clinical or epidemiological study with enough participants so that an effect or association can be identified if it exists (i.e.&nbsp;study power), and how this has to be balanced by the need to not enrol more participants than necessary because of resource issues. We have looked at the parameters that need to be considered when estimating the sample size for different studies and have used a look-up table to estimate required sample size for a prevalence study and Stata to estimate appropriate sample sizes in epidemiological research under the most straightforward situations. The common requirement in all the situations is that the researchers need to specify the minimum effect measure (e.g.&nbsp;difference in means, OR, RR etc) they want to detect with a given probability (usually 80% to 90%) at a certain level of significance (usually P&lt;0.05). The ultimate decision on the sample size depends on a compromise among different objectives such as power, minimum effect size, and available resources. To make the final decision, it is helpful to do some trial calculations using revised power and the minimum detectable effect measure.</p>
+<!--  -->
+<!-- # Stata notes {.unnumbered} -->
+<!-- {{< include 10.1-sample-size-stata.qmd >}} -->
+<!--  -->
+<!-- # R notes {.unnumbered} -->
+<!-- {{< include 10.2-sample-size-R.qmd >}} -->
+<!--  -->
+<!-- # Activities {.unnumbered} -->
+<!-- {{< include 10.3-sample-size-activities.qmd >}} -->
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-bland15" class="csl-entry" role="listitem">
+Bland, Martin. 2015. <em>An <span>Introduction</span> to <span>Medical Statistics</span></em>. 4th Edition. Oxford, New York: Oxford University Press.
+</div>
+<div id="ref-freiman_etal78" class="csl-entry" role="listitem">
+Freiman, Jennie A., Thomas C. Chalmers, Harry Smith, and Roy R. Kuebler. 1978. <span>“The <span>Importance</span> of <span>Beta</span>, the <span>Type II Error</span> and <span>Sample Size</span> in the <span>Design</span> and <span>Interpretation</span> of the <span>Randomized Control Trial</span>.”</span> <em>New England Journal of Medicine</em> 299 (13): 690–94. <a href="https://doi.org/10.1056/NEJM197809282991304">https://doi.org/10.1056/NEJM197809282991304</a>.
+</div>
+<div id="ref-kirkwood_sterne01" class="csl-entry" role="listitem">
+Kirkwood, Betty, and Jonathan Sterne. 2001. <em>Essentials of <span>Medical Statistics</span></em>. 2nd edition. Malden, Mass: Wiley-Blackwell.
+</div>
+<div id="ref-woodward13" class="csl-entry" role="listitem">
+Woodward, Mark. 2013. <em>Epidemiology: <span>Study Design</span> and <span>Data Analysis</span></em>. 3rd edition. <span>Chapman and Hall/CRC</span>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./09-non-parametrics.html" class="pagination-link" aria-label="Analysing non-normal data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analysing non-normal data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -150,7 +150,7 @@ For other types of paired data such as twins or matched cases and controls, the 
 ```{r tbl-7-1, echo=FALSE}
 #| tbl-cap: Table layout for testing matched proportions
 
-library(huxtable)
+library(flextable)
 
 tab7_1 <- tibble::tribble(
   ~` `, ~`Negative at follow-up`, ~`Positive at follow-up`, ~Total,
@@ -158,10 +158,7 @@ tab7_1 <- tibble::tribble(
   "Positive at baseline",  "c", "d", "c + d",
   "Total", "a + c", "b + d", "N")
 
-huxtable(tab7_1) |> 
-  set_align(everywhere, everywhere, "centre") |> 
-  theme_article() |> 
-  set_width(0.8)
+flextable(tab7_1)
 ```
 
 ### Worked Example 7.3
@@ -201,20 +198,20 @@ In this study of 60 participants, where each participant received both drugs, 41
 
 In Module 6, we estimated proportions and measures of association for categorical data and conducted a one-sample test of proportions. In this module, we conduct significance tests for two or more independent proportions using the chi-squared test. The chi-squared test can also be used to conduct a significance test when there are more than two categories in both variables. The McNemar's test is used when we have paired data.
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Stata notes {-}
+<!-- # Stata notes {-} -->
 
-{{< include 07.1-testing-proportions-stata.qmd >}}
+<!-- {{< include 07.1-testing-proportions-stata.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# R notes {-}
+<!-- # R notes {-} -->
 
-{{< include 07.2-testing-proportions-R.qmd >}}
+<!-- {{< include 07.2-testing-proportions-R.qmd >}} -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-# Activities {-}
+<!-- # Activities {-} -->
 
-{{< include 07.3-testing-proportions-activities.qmd >}}
+<!-- {{< include 07.3-testing-proportions-activities.qmd >}} -->
