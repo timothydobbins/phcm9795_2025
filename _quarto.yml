@@ -46,4 +46,4 @@ format:
     sansfont: Clancy
     include-in-header: preamble.tex
     highlight-style: monochrome
-    keep-md: true
+
