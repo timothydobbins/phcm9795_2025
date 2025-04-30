@@ -11,7 +11,7 @@ book:
   chapters:
     - index.qmd
     - 01-intro.qmd
-    # - 02-probability.qmd
+    - 02-probability.qmd
     # - 03-precision.qmd
     # - 04-hypothesis-testing.qmd - DONE
     # - 05-comparing-two-means.qmd - DONE

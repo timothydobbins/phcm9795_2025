@@ -34,6 +34,7 @@ library(jmv)
 library(flextable)
 library(ftExtra)
 library(gtsummary)
+library(huxtable)
 
 pbc <- readRDS("data/examples/mod01_pbc.rds") |> 
   mutate(sex = factor(sex, levels=c(1,2),
@@ -72,9 +73,11 @@ tab_stage_out <- as.data.frame(tab_stage$frequencies[[1]]) |>
   mutate(`Relative frequency (%)` = 100*`Relative frequency (%)`,
          `Cumulative relative frequency (%)` = 100*`Cumulative relative frequency (%)`)
 
-flextable(select(tab_stage_out, 1:4), cwidth = c(1, 1, 1.5, 1.5)) |> 
-  colformat_double(j = c(3,4), digits = 1) |> 
-  add_footer_lines("* Disease stage was missing for 6 participants")
+huxtable(select(tab_stage_out, 1:4)) |> 
+  set_number_format(everywhere, 3:4, "%3.1f") |> 
+  theme_article() |> 
+  set_width(0.8) |> 
+  add_footnote("* Disease stage was missing for 6 participants")
 ```
 
 From @tbl-1-stage, we can see that 65.0% of participants had Stage 3 disease or lower.
@@ -107,7 +110,7 @@ Using our PBC data, we can summarise the two categorical variables: sex and stag
 
 pbc |> 
   filter(!is.na(stage)) |> 
-  rename(Sex=sex, `Stage of disease`=stage) |> 
+  rename(Sex=sex, `Stage of disease *`=stage) |> 
   proc_freq("Sex", "Stage of disease *",
             include.row_percent = FALSE,
             include.column_percent = FALSE,
