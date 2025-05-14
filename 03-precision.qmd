@@ -1,15 +1,15 @@
-# Precision, standard errors and confidence intervals
+# Continuous probability distributions, sampling and precision
 
 ## Learning objectives {.unnumbered}
 
 By the end of this module you will be able to:
 
--   Explain the purpose of sampling, different sampling methods and their implications for data analysis;
--   Distinguish between standard deviation of a sample and standard error of a mean;
--   Recognise the importance of the central limit theorem;
--   Calculate the standard error of a mean;
--   Calculate and interpret confidence intervals for a mean;
--   Be familiar with the t-distribution and when to use it.
+-   Describe the characteristics of a Normal distribution
+-   Compute probabilities from a Normal distribution using statistical software
+-   Briefly outline other types of distributions
+-   Explain the purpose of sampling, different sampling methods and their implications for data analysis
+-   Distinguish between standard deviation of a sample and standard error of a mean
+-   Calculate and interpret confidence intervals for a mean
 
 ## Optional readings {.unnumbered}
 
@@ -19,13 +19,15 @@ By the end of this module you will be able to:
 
 ## Introduction
 
+In this module, we will continue our introduction to probability by considering probability distributions for continuous data. We will introduce one of the most important distributions in statistics: the Normal distribution.
+
 To describe the characteristics of a population we can gather data about the entire population (as is undertaken in a national census) or we can gather data from a sample of the population. When undertaking a research study, taking a sample from a population is far more cost-effective and less time consuming than collecting information from the entire population. When a sample of a population is selected, summary statistics that describe the sample are used to make inferences about the total population from which the sample was drawn. These are referred to as inferential statistics.
 
 However, for the inferences about the population to be valid, a random sample of the population must be obtained. The goal of using random sampling methods is to obtain a sample that is representative of the target population. In other words, apart from random error, the information derived from the sample is expected to be much the same as the information collected from a complete population census as long as the sample is large enough.
 
 ## Probability for continuous variables
 
-Calculating the probability for a discrete random variable is relatively straightforward, as there are only a finite number of possible events. However, there are an infinite number of possible values for a continuous variable, and we calculate the probability that the continuous variable lies in a range of values.
+Calculating the probability for a categorical random variable is relatively straightforward, as there are only a finite number of possible events. However, there are an infinite number of possible values for a continuous variable, and we calculate the probability that the continuous variable lies in a range of values.
 
 ## Normal distribution
 
@@ -45,7 +47,7 @@ knitr::include_graphics(here::here("img", "mod02", "heights.png"))
 
 The Normal distribution, also called the Gaussian distribution (named after Johann Carl Friedrich Gauss, 1777–1855), has been shown to fit the frequency distribution of many naturally occurring variables. It is characterised by its bell-shaped, symmetric curve and its tails that approach zero on either side.
 
-There are two reasons for the importance of the Normal distribution in biostatistics (Kirkwood and Sterne, 2003). The first is that many variables can be modelled reasonably well using the Normal distribution. Even if the observed data were not Normally distributed, it can often be made reasonably Normal after applying some transformation of the data. The second (and possible most important) reason, is based on the central limit theorem and will be discussed in Module 3.
+There are two reasons for the importance of the Normal distribution in biostatistics (Kirkwood and Sterne, 2003). The first is that many variables can be modelled reasonably well using the Normal distribution. Even if the observed data were not Normally distributed, it can often be made reasonably Normal after applying some transformation of the data. The second (and possible most important) reason, is based on the central limit theorem and will be discussed later in this module.
 
 The Normal distribution is characterised by two parameters: the mean ($\mu$) and the standard deviation ($\sigma$). The mean defines where the middle of the Normal distribution is located, and the standard deviation defines how wide the tails of the distribution are.
 
@@ -91,37 +93,47 @@ For example, if we take a sample of children and measure their weights, it is us
 
 ## Assessing Normality
 
-There are several ways to assess whether a continuous variable is Normally distributed. With a large sample, simply plotting a histogram is one of the best ways to assess whether a variable is Normally distributed. For smaller samples, examining a histogram can be less clear, particularly for histograms with only a small number of bins. However, if a histogram looks bell-shaped and approximately symmetrical, assuming Normality would be reasonable.
+There are several ways to assess whether a continuous variable is Normally distributed. The best way to assess whether a variable is Normally distributed is to plot its distribution, using a density plot for example. If the density plot looks appoximately bell-shaped and approximately symmetrical, assuming Normality would be reasonable.
 
-It may be useful to examine a boxplot of a variable in conjunction with a histogram. However a boxplot in isolation is not as useful as a histogram, as a boxplot only indicates whether a variable is distributed symmetrically (indicated by equal "whiskers"). A boxplot cannot give an indication of whether the distribution is bell-shaped, or flat.
+It may be useful to examine a boxplot of a variable in conjunction with a density plot. However a boxplot in isolation is not as useful as a density plot, as a boxplot only indicates whether a variable is distributed symmetrically (indicated by equal "whiskers"). A boxplot cannot give an indication of whether the distribution is bell-shaped, or flat.
 
-> For your information: There are formal tests in Stata and R that test for Normality. These tests are beyond the scope of this course and are not recommended.
+> For your information: There are formal tests that test for Normality. These tests are beyond the scope of this course and are not recommended.
 
-The histogram for our 30 weights is approximately bell-shaped and roughly symmetrical. The mean and median (50th percentile) values are similar, as would be expected for a Normal distribution. Thus, it would be reasonable to assume that the data are Normally distributed.
+We can construct a density plot for `age` in the `pbc` data introduced in Module 1. We can see that the density plot is approximately approximately bell-shaped and roughly symmetrical. The mean (50.7 years) and median (51 years) are similar, as would be expected for a Normal distribution. Thus, it would be reasonable to assume that age is Normally distributed in this set of data.
 
-```{r fig-2-6, echo=FALSE, out.width = "90%", fig.cap="Histogram and boxplot of weight of 30 students attending a gym"}
-knitr::include_graphics(here::here("img", "mod02", "weights-hist-boxplot.png"))
+```{r fig-age-pbc, echo=FALSE, out.width = "50%", fig.cap="Density plot of participant age from PBC study data"}
+library(dplyr)
+library(jmv)
+library(flextable)
+
+pbc <- readRDS("data/examples/mod01_pbc.rds") |> 
+  rename(`Age (years)` = age)
+
+desc <- descriptives(pbc, vars="Age (years)", dens=TRUE)
+desc$plots
 ```
 
 ## Non-Normally distributed measurements
 
-In the above example, diastolic blood pressure was Normally distributed with an approximately bell-shaped frequency histogram. However, not all measurements are Normally distributed, and the symmetry of the bell shape may be distorted by the presence of some very small or very large values. Non-Normal distributions such as this are called skewed distributions.
+Not all measurements are Normally distributed, and the symmetry of the bell shape may be distorted by the presence of some very small or very large values. Non-Normal distributions such as this are called skewed distributions.
 
 When there are some very large values, the distribution is said to be positively skewed.This often occurs when measuring variables related to time, such as days of hospital stay, where most patients have short stays (say 1 - 5 days) but a few patients with serious medical conditions have very long lengths of hospital stay (say 20 - 100 days).
 
 In practice, most parametric summary statistics are quite robust to minor deviations from Normality and non-parametric statistical methods are only required when the sample size is small and/or the data are obviously skewed with some influential outliers.
 
-When the data are markedly skewed, histograms and boxplots can look very different. For example, data of length of hospital stay in a sample of children are shown as a histogram and as a box plot in @fig-2-7.
+When the data are markedly skewed, density plots are not all bell-shaped. For example, serum bilirubin measured from participants in the PBC study are presented in @fig-bili-pbc.
 
-```{r fig-2-7, echo=FALSE, out.width = "90%", fig.cap="Histogram and boxplot of length of stay"}
-knitr::include_graphics(here::here("img", "mod02", "los-hist-boxplot.png"))
+```{r fig-bili-pbc, echo=FALSE, out.width = "50%", fig.cap="Density plot of serum bilirubin from PBC study data"}
+pbc <- pbc |> 
+  rename(`Serum bilirubin` = bili)
+
+desc <- descriptives(pbc, vars="Serum bilirubin", dens=TRUE)
+desc$plots
 ```
 
-In the histogram of @fig-2-7, there is a tail of values to the right, so we would conclude that the distribution is skewed to the right. In the boxplot, the whiskers appear to be fairly symmetric, but there are some unusual values (denoted by dots) above the box and its whiskers. Stata defines these unusual values as being more than 1.5 times the IQR from the edge of the box.
+In the plot of @fig-bili-pbc, there is a tail of values to the right, so we would conclude that the distribution is skewed to the right. The mean (3.2 mg/dL) is much larger than the median (1.4 mg/dL), as expected from a skewed distribution.
 
-The presence of unusual values may be an indication that the data are not Normally distributed. Both the histogram and the box plot show that the distribution has a marked tail towards high values and that non-parametric statistics should be used to generate summary statistics and analyse the data.
-
-Note that Stata has defined points as being unusual, or outliers. Outliers can be problematic and the decision to include them or omit them from further analyses can be difficult. After detecting any outliers or extreme values, you should not automatically exclude them from the analysis, particularly if the sample was selected randomly from a population. First, it is important to check the original data collection form or questionnaire to rule out the possibility of a data entry error. If the outlier is not a data entry error, it is then important to decide whether the observation is biologically plausible and, if it is, it should be included in the analysis.
+When inspecting distribution plots, you may detect some points as being unusual, or outliers. Outliers can be problematic and the decision to include them or omit them from further analyses can be difficult. After detecting any outliers or extreme values, you should not automatically exclude them from the analysis, particularly if the sample was selected randomly from a population. First, it is important to check the original data collection form or questionnaire to rule out the possibility of a data entry error. If the outlier is not a data entry error, it is then important to decide whether the observation is biologically plausible and, if it is, it should be included in the analysis.
 
 ## Parametric and non-parametric statistical methods
 
@@ -176,8 +188,6 @@ Take for example, a set of weights of students attending a university gym in a p
 ```{r tbl-3-weights, echo=FALSE}
 #| tbl-cap: Weight of 30 gym attendees
 
-library(flextable)
-
 tab1_ages <- tibble::tribble(
     ~v1, ~v2, ~v3, ~v4, ~v5, ~v6,
     65.0, 70.0, 70.0, 67.5, 65.0, 80.0,
@@ -187,7 +197,10 @@ tab1_ages <- tibble::tribble(
     75.0, 62.5, 70.0, 75.0, 72.5, 70.0
 )
 
-flextable(tab1_ages)
+flextable(tab1_ages) |> 
+  delete_part(part="header") |> 
+  theme_booktabs() |> 
+  colformat_double(digits=1)
 ```
 
 We can calculate the mean (70.0kg) and the standard deviation (5.04kg). Hence, the standard error of the mean is estimated as:
@@ -216,7 +229,7 @@ The sample size n = 30 and above is a rule of thumb for the central limit theore
 
 ## 95% confidence interval of the mean
 
-In Module 2, we showed that the characteristics of a Standard Normal Distribution are that 95% of the data lie within 1.96 standard deviations from the mean (@fig-2-2). Because the central limit theorem states that the sampling distribution of the mean is approximately Normal in large enough samples, we expect that 95% of the mean values would fall within 1.96 × SE units above and below the measured mean population value.
+Earlier, we showed that the characteristics of a Standard Normal Distribution are that 95% of the data lie within 1.96 standard deviations from the mean (@fig-2-2). Because the central limit theorem states that the sampling distribution of the mean is approximately Normal in large enough samples, we expect that 95% of the mean values would fall within 1.96 × SE units above and below the measured mean population value.
 
 For example, if we repeated the study on weight 100 times using 100 different random samples from the population and calculated the mean weight for each of the 100 samples, approximately 95% of the values for the mean weight calculated for each of the 100 samples would fall within 1.96 × SE of the population mean weight.
 

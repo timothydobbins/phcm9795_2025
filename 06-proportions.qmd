@@ -14,8 +14,6 @@ By the end of this module you will be able to:
 
 @bland15; Section 8.6, Section 13.7 [[UNSW Library Link]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
 
-@acock10; Section 7.5.
-
 ## Introduction
 
 In Modules 4 and 5, we discussed methods used to analyse continuous data. In Modules 6 and 7, we will focus on analysing categorical data.
@@ -69,7 +67,7 @@ The prevalence of scabies among children in the village is 21.9% (95% CI 16.3%, 
 
 ### Calculating the 95% confidence interval of a proportion (Wilson method)
 
-Another method to calculate the confidence interval of a proportion is the Wilson (sometimes also called the 'score') method. We can use it in situations where it is not appropriate to use the normal approximation to the binomial distribution as described above i.e. if the sample size is small ($n < 30$) or the number of subjects with the rarer outcome is 5 or fewer. This method much more difficult to implement by hand than the standard confidence interval, and so we will not discuss the hand calculation using the mathematical equation in this course. Instead, we use statistical software to do this (see the Stata or R notes for detail).
+Another method to calculate the confidence interval of a proportion is the Wilson (sometimes also called the 'score') method. We can use it in situations where it is not appropriate to use the normal approximation to the binomial distribution as described above i.e. if the sample size is small ($n < 30$) or the number of subjects with the rarer outcome is 5 or fewer. This method much more difficult to implement by hand than the standard confidence interval, and so we will not discuss the hand calculation using the mathematical equation in this course. Instead, we use statistical software to do this (see the jamovi or R notes for detail).
 
 When using software, our worked example provides a 95% confidence interval of the prevalence of scabies of 16.9% to 27.9%.
 
@@ -114,7 +112,7 @@ z &= \frac{(0.18 - 0.20)}{\sqrt{\frac{0.20 × (1 - 0.20)}{300}}} \\
 \end{aligned}
 $$
 
-The P-value for the test above can be obtained from a Normal distribution table as $P = 2 × 0.192 = 0.38$ (using Table A2.1 in the Appendix), or using the hand-calculator in Stata. This indicates that there is insufficient evidence to conclude that there is a difference between the proportion of smokers in the community and the country. This is consistent with our 95% confidence interval which crosses the null value of 20%.
+The P-value for the test above can be obtained from a Normal distribution table as $P = 2 × 0.192 = 0.38$ (using statistical software). This indicates that there is insufficient evidence to conclude that there is a difference between the proportion of smokers in the community and the country. This is consistent with our 95% confidence interval which crosses the null value of 20%.
 
 
 ```{r, echo=FALSE, out.width = "66%",}
@@ -127,9 +125,7 @@ knitr::include_graphics(here::here("img", "mod06", "z-curve.png"))
 We can use the binomial distribution to obtain an exact P-value for testing a single proportion. Historically, this was a time consuming process with much hand calculation. These days, statistical software performs the calculations quickly and efficiently, and is the preferred method.
 
 ### Worked example 6.3
-The file `mod06_smoking_status.csv` contains the data for this example. In the data file, smokers are coded as 1 and non-smokers are coded as 0.
-
-In Stata, we can use the `prtest` command to perform a z-test, or the `bitest` command to perform the exact binomial test. In R, we can use the `prop.test` function to perform a z-test, or the `binom.test` function to perform the exact binomial test.
+The file `mod06_smoking_status.csv` contains the data for this example. In the data file, smokers are coded as 1 and non-smokers are coded as 0. In jamovi, we can perform the binomial test, while in R, we can use the `prop.test` function to perform a z-test, or the `binom.test` function to perform the binomial test.
 
 The z-test provides a two-sided P-value of 0.39, while the binomial test gives a two-sided P-value of 0.43. Both tests provide little evidence against the hypothesis that the prevalence of smoking in the community is 20%.
 
@@ -153,7 +149,7 @@ v1 <- tibble::tribble(
 flextable(v1)
 ```
 
-When using a statistics program, it is recommended that the outcome and exposure variables are coded by assigning 'absent' as 0 and 'present' as 1, for example 'No' = 0 and 'Yes' = 1. This is needed for some of the commands to work (e.g. the epidemiology table commands). This coding ensures that measures of association, such as the odds ratio or relative risk, are computed correctly by Stata. While R does not require this coding to be followed, it is good practice nonetheless.
+When using a statistics program, it is recommended that the outcome and exposure variables are coded by assigning 'absent' as 0 and 'present' as 1, for example 'No' = 0 and 'Yes' = 1. This coding ensures that measures of association, such as the odds ratio or relative risk, are computed correctly. While R does not strictly require this coding to be followed, it is good practice nonetheless.
 
 ## A brief summary of epidemiological study types
 
@@ -236,7 +232,7 @@ More information about the problems of interpreting odds-ratios as relative risk
 
 ### Worked Example 6.4
 
-A randomised controlled trial was conducted among a group of patients to estimate the side effects of a drug. Fifty patients were randomly allocated to receive the active drug and 50 patients were allocated to receive a placebo drug. The outcome measured was the experience of nausea. The data is given in the files `mod06_nausea.dta` and `mod06_nausea.rds`.
+A randomised controlled trial was conducted among a group of patients to estimate the side effects of a drug. Fifty patients were randomly allocated to receive the active drug and 50 patients were allocated to receive a placebo drug. The outcome measured was the experience of nausea. The data is given in the file `mod06_nausea.rds`.
 
 A summary table can be constructed as in @tbl-rr-example.
 
@@ -252,7 +248,7 @@ tibble::tribble(
   flextable()
 ```
 
-We can use Stata or R to calculate the relative risk (RR=3.75) and its 95% confidence interval (1.34 to 10.51). This tells us that nausea is 3.75 times more likely to occur in the active drug group compared with the placebo group. Because this is a randomised controlled trial, the relative risk would be an appropriate measure of association.
+We can use jamovi or R to calculate the relative risk (RR=3.75) and its 95% confidence interval (1.34 to 10.51). This tells us that nausea is 3.75 times more likely to occur in the active drug group compared with the placebo group. Because this is a randomised controlled trial, the relative risk would be an appropriate measure of association.
 
 We can confirm the estimated relative risk:
 
@@ -292,9 +288,7 @@ $$
 \end{aligned}
 $$
 
-We can use Stata or R to estimate the odds ratio and its 95% confidence interval. We should use the Cornfield option in Stata to provide a better estimate of the 95% confidence interval. It appears that the `jmv` package in R does not use the Cornfield approximation to estimate the 95% confidence interval, but uses the Woolf method.
-
-The odds ratio is estimated as 17.6, and its 95% confidence interval is estimated 9.0 to 34.3 (Cornfield, using Stata) or 9.0 to 34.5 (Woolf, using R).
+We can use jamovi or R to estimate the odds ratio and its 95% confidence interval. The odds ratio is estimated as 17.6, and its 95% confidence interval is estimated as 9.0 to 34.5.
 
 The interpretation of the confidence intervals for both the relative risk and the odds ratio is the same as for the confidence intervals around other summary measures in that it shows the region in which we are 95% confident that the true population estimate lies.
 

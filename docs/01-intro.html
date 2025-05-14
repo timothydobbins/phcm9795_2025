@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.7.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Summarising and presenting data – PHCM9795: Foundations of Biostatistics</title>
+<title>1&nbsp; Introduction to biostatistics and data fundamentals – PHCM9795: Foundations of Biostatistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37e38b627515668d8a78bbca23c297a0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-eec57d228108029869aff2aaa2fb6ef4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-9a71a2450f5674972ff858c43d8deec0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -137,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summarising and presenting data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to biostatistics and data fundamentals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,7 +150,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summarising and presenting data</span></h1>
+      <h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to biostatistics and data fundamentals</span></h1>
                       </div>
   </div>
     
@@ -187,19 +187,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Summarising and presenting data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to biostatistics and data fundamentals</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability and probability distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Categorical data, presentation guidelines and probability distributions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-precision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Precision, standard errors and confidence intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Continuous probability distributions, sampling and precision</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -298,8 +298,7 @@ window.Quarto = {
 <ul>
 <li>Understand the difference between descriptive and inferential statistics</li>
 <li>Distinguish between different types of variables</li>
-<li>Present and report data numerically</li>
-<li>Present and interpret graphical summaries of data using a variety of graphs</li>
+<li>Present and report continuous data numerically and graphically</li>
 <li>Compute summary statistics to describe the centre and spread of data</li>
 </ul>
 </section>
@@ -307,9 +306,6 @@ window.Quarto = {
 <h2 class="unnumbered anchored" data-anchor-id="optional-readings">Optional readings</h2>
 <p><span class="citation" data-cites="kirkwood_sterne01">Kirkwood and Sterne (<a href="references.html#ref-kirkwood_sterne01" role="doc-biblioref">2001</a>)</span>; Chapters 2 and 3. <a href="http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728">[UNSW Library Link]</a></p>
 <p><span class="citation" data-cites="bland15">Bland (<a href="references.html#ref-bland15" role="doc-biblioref">2015</a>)</span>; Chapter 4. <a href="http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730">[UNSW Library Link]</a></p>
-<p><span class="citation" data-cites="acock10">Acock (<a href="references.html#ref-acock10" role="doc-biblioref">2010</a>)</span>; Chapter 5.</p>
-<p>Graphics and statistics for cardiology: designing effective tables for presentation and publication, <span class="citation" data-cites="boers18">Boers (<a href="references.html#ref-boers18" role="doc-biblioref">2018</a>, <a href="https://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=http://dx.doi.org/10.1136/heartjnl-2017-311581">UNSW Library Link</a>)</span></p>
-<p>Guidelines for Reporting of Figures and Tables for Clinical Research in Urology, <span class="citation" data-cites="vickers_etal20">Vickers et al. (<a href="references.html#ref-vickers_etal20" role="doc-biblioref">2020</a>, <a href="https://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=http://dx.doi.org/10.1016/j.eururo.2020.04.048">UNSW Library Link</a>)</span></p>
 </section>
 <section id="an-introduction-to-statistics" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="an-introduction-to-statistics"><span class="header-section-number">1.1</span> An introduction to statistics</h2>
@@ -452,7 +448,7 @@ Figure&nbsp;1.1: Leading causes of death, age-standardised death rates, 2014-202
 <section id="interquartile-range" class="level4" data-number="1.4.1.7">
 <h4 data-number="1.4.1.7" class="anchored" data-anchor-id="interquartile-range"><span class="header-section-number">1.4.1.7</span> Interquartile range</h4>
 <p>The inter-quartile range (IQR) describes the range of measurements in the central 50% of values lie. This is estimated by calculating the values that cut the data at the bottom 25% and top 25%. The IQR is the preferred measure of spread when the median has been used to describe central tendency.</p>
-<p>In the age example, the IQR is estimated as 43 to 59 years. Note that R and Stata use slightly different methods to calculate the interquartile range (Stata IQR: 43 to 59 years; R IQR: 43 to 58 years). This difference is not practically important, and either range would be considered correct.</p>
+<p>In the age example, the IQR is estimated as 43 to 58 years.</p>
 </section>
 <section id="population-values-mean-variance-and-standard-deviation" class="level4" data-number="1.4.1.8">
 <h4 data-number="1.4.1.8" class="anchored" data-anchor-id="population-values-mean-variance-and-standard-deviation"><span class="header-section-number">1.4.1.8</span> Population values: mean, variance and standard deviation</h4>
@@ -484,7 +480,7 @@ Figure&nbsp;1.1: Leading causes of death, age-standardised death rates, 2014-202
 <img src="img/mod01/hist-symmetric-skewed.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Histogram of age (left) and serum bilirubin (right) from a sample of data
+Figure&nbsp;1.2: Density plots of age (left) and serum bilirubin (right) from PBC data
 </figcaption>
 </figure>
 </div>
@@ -577,20 +573,11 @@ Figure&nbsp;1.4: Box plot of age (left) and serum bilirubin (right) from PBC stu
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-acock10" class="csl-entry" role="listitem">
-Acock, Alan C. 2010. <em>A <span>Gentle Introduction</span> to <span>Stata</span></em>. 3rd ed. College Station, Tex: Stata Press.
-</div>
 <div id="ref-bland15" class="csl-entry" role="listitem">
 Bland, Martin. 2015. <em>An <span>Introduction</span> to <span>Medical Statistics</span></em>. 4th Edition. Oxford, New York: Oxford University Press.
 </div>
-<div id="ref-boers18" class="csl-entry" role="listitem">
-Boers, Maarten. 2018. <span>“Graphics and Statistics for Cardiology: Designing Effective Tables for Presentation and Publication.”</span> <em>Heart</em> 104 (3): 192–200. <a href="https://doi.org/10.1136/heartjnl-2017-311581">https://doi.org/10.1136/heartjnl-2017-311581</a>.
-</div>
 <div id="ref-kirkwood_sterne01" class="csl-entry" role="listitem">
 Kirkwood, Betty, and Jonathan Sterne. 2001. <em>Essentials of <span>Medical Statistics</span></em>. 2nd edition. Malden, Mass: Wiley-Blackwell.
-</div>
-<div id="ref-vickers_etal20" class="csl-entry" role="listitem">
-Vickers, Andrew J., Melissa J. Assel, Daniel D. Sjoberg, Rui Qin, Zhiguo Zhao, Tatsuki Koyama, Albert Botchway, et al. 2020. <span>“Guidelines for <span>Reporting</span> of <span>Figures</span> and <span>Tables</span> for <span>Clinical Research</span> in <span>Urology</span>.”</span> <em>European Urology</em>, May. <a href="https://doi.org/10.1016/j.eururo.2020.04.048">https://doi.org/10.1016/j.eururo.2020.04.048</a>.
 </div>
 </div>
 </section>
@@ -1009,8 +996,8 @@ Vickers, Andrew J., Melissa J. Assel, Daniel D. Sjoberg, Rui Qin, Zhiguo Zhao, T
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-probability.html" class="pagination-link" aria-label="Probability and probability distributions">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability and probability distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-probability.html" class="pagination-link" aria-label="Categorical data, presentation guidelines and probability distributions">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Categorical data, presentation guidelines and probability distributions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

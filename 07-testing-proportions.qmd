@@ -1,19 +1,18 @@
 # Hypothesis testing for categorical data
 
-## Learning objectives {-}
+## Learning objectives {.unnumbered}
+
 By the end of this module you will be able to:
 
-- Use and interpret the appropriate test for testing associations between categorical data;
-- Conduct and interpret an appropriate test for independent proportions;
-- Conduct and interpret a test for paired proportions;
+-   Use and interpret the appropriate test for testing associations between categorical data;
+-   Conduct and interpret an appropriate test for independent proportions;
+-   Conduct and interpret a test for paired proportions;
 
-## Optional readings {-}
+## Optional readings {.unnumbered}
 
-@kirkwood_sterne01; Chapter 17. [[UNSW Library Link]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728)
+@kirkwood_sterne01; Chapter 17. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728)
 
-@bland15; Chapter 13. [[UNSW Library Link]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
-
-@acock10; Section 7.6.
+@bland15; Chapter 13. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
 
 ## Introduction
 
@@ -29,11 +28,11 @@ We are using the randomised controlled trial as given in Worked Example 6.4 on t
 
 The research question is whether the active drug resulted in a different rate of nausea than the placebo drug. This is equivalent to testing whether there is an association between nausea and type of drug received (active or placebo). Thus, we will test the null hypothesis that the experience of nausea and the treatment are not related to one another. The null hypothesis is:
 
-- H~0~: The proportion with nausea in the active drug group is the same as the proportion with nausea in the placebo drug group.
+-   H~0~: The proportion with nausea in the active drug group is the same as the proportion with nausea in the placebo drug group.
 
 The alternative hypothesis can be stated as:
 
-- H~a~: The proportion with nausea in the active drug group is different to the proportion with nausea in the placebo drug group.
+-   H~a~: The proportion with nausea in the active drug group is different to the proportion with nausea in the placebo drug group.
 
 ## Chi-squared test for independent proportions
 
@@ -41,13 +40,13 @@ A chi-squared test is used to test the null hypothesis that of no association be
 
 Expected count = (Row count × Column count) / Total count
 
-Statistical software will do this for us, as described in the Stata or R sections in this Module.
+Statistical software will do this for us, as described in the jamovi or R sections in this Module.
 
 A chi-squared value is then calculated to compare the expected counts (E) in each cell with the observed (actual) cell counts (O). The calculation is as follows:
 
-  $\chi ^ 2 = \sum \frac{(O - E)}{E} ^2$
+$\chi ^ 2 = \sum \frac{(O - E)}{E} ^2$
 
-with [Number of rows $-$ 1] $\times$ [Number of columns $-$ 1] degrees of freedom.
+with \[Number of rows $-$ 1\] $\times$ \[Number of columns $-$ 1\] degrees of freedom.
 
 As for many statistics, the deviations between the observed and expected values are squared to prevent the negative and positive values balancing one another out.
 
@@ -57,10 +56,10 @@ If the expected counts are close to the observed counts, the chi-squared statist
 
 The assumptions that must be met when using Pearson's chi-squared test are that:
 
-- each observation must be independent;
-- each participant is represented in the table once only;
-- at least 80% of the expected cell counts should exceed a value of five;
-- all expected cell counts should exceed a value of one.
+-   each observation must be independent;
+-   each participant is represented in the table once only;
+-   at least 80% of the expected cell counts should exceed a value of five;
+-   all expected cell counts should exceed a value of one.
 
 The first two assumptions are dictated by the study design. The last two assumptions relate to the numbers in the cells and should be explored when running the test. There should not be too many cells with low expected counts.
 
@@ -68,27 +67,27 @@ The first two assumptions are dictated by the study design. The last two assumpt
 
 We will revisit Worked Example 6.4, investigating the relationship between nausea and drug exposure:
 
-|         |    Nausea | No nausea|      Total |
-|---------|----------:|---------:|-----------:|
-| Active  |  15 (30%) | 35 (70%) |  50 (100%) |
-| Placebo |    4 (8%) | 46 (92%) |  50 (100%) |
-| Total   |  19 (19%) | 81 (81%) | 100 (100%) |
+|         |   Nausea | No nausea |      Total |
+|---------|---------:|----------:|-----------:|
+| Active  | 15 (30%) |  35 (70%) |  50 (100%) |
+| Placebo |   4 (8%) |  46 (92%) |  50 (100%) |
+| Total   | 19 (19%) |  81 (81%) | 100 (100%) |
 
 : Nausea status by drug exposure {#tbl-rr-observed}
 
 We can see from the row percentages that 8% of patients in the placebo group experienced nausea compared to 30% of patients in the active group. If no association existed, we would expect to find approximately the same percent of patients with nausea in each group. Statistical software can calculate the values we would expect if there was no association between nausea and drug exposure (i.e. the expected counts):
 
-|         |    Nausea |No nausea |      Total |
-|---------|----------:|---------:|-----------:|
-| Active  |       9.5 |     40.5 |        50  |
-| Placebo |       9.5 |     40.5 |        50  |
-| Total   |        19 |       81 |       100  |
+|         | Nausea | No nausea | Total |
+|---------|-------:|----------:|------:|
+| Active  |    9.5 |      40.5 |    50 |
+| Placebo |    9.5 |      40.5 |    50 |
+| Total   |     19 |        81 |   100 |
 
 : Expected counts of nausea status by drug exposure {#tbl-rr-exp}
 
 For the data being considered from Worked Example 7.1 all cells have an expected count greater than 5 and that the minimum cell count is 9.5. Therefore, it is appropriate to use the Pearson's Chi-Squared test. Note that the 'Expected' counts are higher for the groups with 'No nausea' because 'No nausea' is more prevalent in the sample than 'Nausea'.
 
-The chi-squared statistic is calculated as 7.86 with 1 df, giving a P-value of 0.005. Combining these results with the estimated relative risk (from Module 6), we can state: 
+The chi-squared statistic is calculated as 7.86 with 1 df, giving a P-value of 0.005. Combining these results with the estimated relative risk (from Module 6), we can state:
 
 The proportion with nausea in those who received the active drug is 30%, compared to 8% in those who received the placebo drug. Nausea was more frequent in those who received the active drug (Relative Risk = 3.75, 95% CI: 1.34 to 10.51). There is strong evidence that the proportion with nausea differs between the two groups ($\chi ^2$ = 7.86 with 1 df, P=0.005).
 
@@ -116,21 +115,20 @@ Chi-squared tests can also be used for tables larger than a 2-by-2 dimension. Wh
 
 The files `mod07_allergy.dta` and `mod07_allergy.rds` contain information about the severity of allergic reaction, coded as absent, slight, moderate or severe. We can test the hypothesis that the severity of allergy is not different between males and females. To do this we can use a two-way tabulation to obtain @tbl-allergy which shows the counts, expected counts and the percent of females and males who fall into each severity group for allergy. The table shows that the percentage of males is higher in each of the categories of severity (slight, moderate, severe) than the percentage of females.
 
-::: {#tbl-allergy layout-nrow=2}
-
-| Sex    | Non-allergenic | Slight allergy | Moderate allergy | Severe allergy |        Total |
-|--------|---------------:|---------------:|-----------------:|---------------:|-------------:|
-| Female |    150 (62.0%) |     50 (20.7%) |       27 (11.2%) |      15 (6.2%) |   242 (100%) |
-| Male   |    137 (53.1%) |     70 (27.1%) |       32 (12.4%) |      19 (7.4%) |   258 (100%) |
-| Total  |    287 (57.4%) |    120 (24.0%) |       59 (11.8%) |      34 (6.8%) | 500 (100.0%) |
+::: {#tbl-allergy layout-nrow="2"}
+| Sex | Non-allergenic | Slight allergy | Moderate allergy | Severe allergy | Total |
+|------------|-----------:|-----------:|-----------:|-----------:|-----------:|
+| Female | 150 (62.0%) | 50 (20.7%) | 27 (11.2%) | 15 (6.2%) | 242 (100%) |
+| Male | 137 (53.1%) | 70 (27.1%) | 32 (12.4%) | 19 (7.4%) | 258 (100%) |
+| Total | 287 (57.4%) | 120 (24.0%) | 59 (11.8%) | 34 (6.8%) | 500 (100.0%) |
 
 : Observed counts
 
-| Sex    | Non-allergenic | Slight allergy | Moderate allergy | Severe allergy | Total |
-|--------|---------------:|---------------:|-----------------:|---------------:|------:|
-| Female |          138.9 |           58.1 |             28.6 |           16.5 | 242.0 |
-| Male   |          148.1 |           61.9 |             30.4 |           17.5 | 258.0 |
-| Total  |          287.0 |          120.0 |             59.0 |           34.0 | 500.0 |
+| Sex | Non-allergenic | Slight allergy | Moderate allergy | Severe allergy | Total |
+|------------|-----------:|-----------:|-----------:|-----------:|-----------:|
+| Female | 138.9 | 58.1 | 28.6 | 16.5 | 242.0 |
+| Male | 148.1 | 61.9 | 30.4 | 17.5 | 258.0 |
+| Total | 287.0 | 120.0 | 59.0 | 34.0 | 500.0 |
 
 : Expected counts
 
@@ -162,19 +160,20 @@ flextable(tab7_1)
 ```
 
 ### Worked Example 7.3
-Two drugs labelled A and B have been administered to patients in random order so that each patient acts as their own control. The datasets `mod07_drug_response.dta` and `mod07_drug_response.rds` are available on Moodle. The null hypothesis is as follows:
 
-- H~0~: The proportion of patients who do better on drug A is the same as the proportion of patients who do better on drug B
+Two drugs labelled A and B have been administered to patients in random order so that each patient acts as their own control. The dataset `mod07_drug_response.rds` is available on Moodle. The null hypothesis is as follows:
+
+-   H~0~: The proportion of patients who do better on drug A is the same as the proportion of patients who do better on drug B
 
 Counts and overall percentages are presented in . From the "Total" row in the table, we can see that the number of patients who respond to drug A is 41 (68%) and from the "Total" column the number who respond to drug B is less at 35 (58%), that is there is a difference of 10%.
 
 |                       | Response to Drug B | No response to Drug B | Total     |
-|:---------------------:|:------------------:|:---------------------:|-----------|
-|   Response to Drug A  |      21 (35%)      |        20 (33%)       | 41 (68%)  |
-| No response to Drug A |      14 (23%)      |         5 (8%)        | 19 (32%)  |
-|         Total         |      35 (58%)      |        25 (42%)       | 60 (100%) |
+|:------------------:|:---------------:|:------------------:|----------------|
+|  Response to Drug A   |      21 (35%)      |       20 (33%)        | 41 (68%)  |
+| No response to Drug A |      14 (23%)      |        5 (8%)         | 19 (32%)  |
+|         Total         |      35 (58%)      |       25 (42%)        | 60 (100%) |
 
-: Paired data
+: Worked Example 7.3: Paired data
 
 The difference in the paired proportions is calculated using the simple equation:
 

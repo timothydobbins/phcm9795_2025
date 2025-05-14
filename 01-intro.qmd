@@ -1,11 +1,4 @@
-# Summarising and presenting data
-
-```{r message=FALSE, warning=FALSE, include=FALSE}
-library(huxtable)
-library(gtsummary)
-library(tidyverse)
-library(jmv)
-```
+# Introduction to biostatistics and data fundamentals
 
 ## Learning objectives {.unnumbered}
 
@@ -13,8 +6,7 @@ By the end of this module, you will be able to:
 
 -   Understand the difference between descriptive and inferential statistics
 -   Distinguish between different types of variables
--   Present and report data numerically
--   Present and interpret graphical summaries of data using a variety of graphs
+-   Present and report continuous data numerically and graphically
 -   Compute summary statistics to describe the centre and spread of data
 
 ## Optional readings {.unnumbered}
@@ -22,12 +14,6 @@ By the end of this module, you will be able to:
 @kirkwood_sterne01; Chapters 2 and 3. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728)
 
 @bland15; Chapter 4. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
-
-@acock10; Chapter 5.
-
-Graphics and statistics for cardiology: designing effective tables for presentation and publication, @boers18 [[UNSW Library Link](https://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=http://dx.doi.org/10.1136/heartjnl-2017-311581)]
-
-Guidelines for Reporting of Figures and Tables for Clinical Research in Urology, @vickers_etal20 [[UNSW Library Link](https://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=http://dx.doi.org/10.1016/j.eururo.2020.04.048)]
 
 ## An introduction to statistics
 
@@ -199,7 +185,7 @@ Characteristics of the standard deviation:
 
 The inter-quartile range (IQR) describes the range of measurements in the central 50% of values lie. This is estimated by calculating the values that cut the data at the bottom 25% and top 25%. The IQR is the preferred measure of spread when the median has been used to describe central tendency.
 
-In the age example, the IQR is estimated as 43 to 59 years. Note that R and Stata use slightly different methods to calculate the interquartile range (Stata IQR: 43 to 59 years; R IQR: 43 to 58 years). This difference is not practically important, and either range would be considered correct.
+In the age example, the IQR is estimated as 43 to 58 years.
 
 #### Population values: mean, variance and standard deviation
 
@@ -230,7 +216,7 @@ As well as calculating measures of central tendency and spread to describe the c
 
 A frequency histogram is a plot of the number of observations that fall within defined ranges of non-overlapping intervals (called bins). Examples of frequency histograms are given in @fig-hist-1.
 
-```{r fig-hist-1, echo=FALSE, out.width = "100%", fig.cap="Histogram of age (left) and serum bilirubin (right) from a sample of data"}
+```{r fig-hist-1, echo=FALSE, out.width = "100%", fig.cap="Density plots of age (left) and serum bilirubin (right) from PBC data"}
 knitr::include_graphics(here::here("img", "mod01", "hist-symmetric-skewed.png"))
 ```
 

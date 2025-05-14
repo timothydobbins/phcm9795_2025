@@ -24,8 +24,6 @@ By the end of this module you will be able to:
 
 @bland15; Chapter 12. [[UNSW Library Link]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
 
-@acock10; Section 7.11.
-
 ## Introduction
 
 In general, parametric statistics are preferred for reporting data because the summary statistics (mean, standard deviation, standard error of the mean etc) and the tests used (t-tests, correlation, regression etc) are familiar and the results are easy to communicate. However, non-parametric tests can be used if data are not normally distributed. Non-parametric tests make fewer assumptions about the distribution of the data.
@@ -34,18 +32,18 @@ In general, parametric statistics are preferred for reporting data because the s
 When a variable has a skewed distribution, one possibility is to transform the data to a new variable to try and obtain a normal or near normal distribution. Methods to transform non-normally distributed data include logarithmic transformation of each data point, or using the square root or the square or the inverse (i.e. 1/x) etc. 
 
 ### Worked Example
-We have data from 132 patients who had a hospital stay following admission to ICU available on Moodle (`mod09_infection.dta` and `mod09_infection.rds`). The distribution of the length of stay for these patients is shown in the histogram in @fig-mod09-los. As is common with variables that record time, the data are skewed with many patients having relatively short stays and a few patients having very long hospital stays. Clearly, it would be inappropriate to use parametric statistical methods for these data.
+We have data from 132 patients who had a hospital stay following admission to ICU available on Moodle (`mod09_infection.dta` and `mod09_infection.rds`). The distribution of the length of stay for these patients is shown in the density plot in @fig-mod09-los. As is common with variables that record time, the data are skewed with many patients having relatively short stays and a few patients having very long hospital stays. Clearly, it would be inappropriate to use parametric statistical methods for these data.
 
 ```{r fig-mod09-los, echo=FALSE, out.width = "66%", fig.cap="Length of hospital stay for 132 patients"}
-knitr::include_graphics(here::here("img", "mod09", "mod09-los.png"))
+knitr::include_graphics(here::here("img", "mod09", "mod09-los-dist.png"))
 ```
 
 When data are positively skewed, as shown in @fig-mod09-los, a logarithmic transformation can often make the data closer to being normally distributed. This is the most common transformation used. You should note, however, that the logarithmic function cannot handle 0 or negative values. One way to deal with zeros in a set of data is to add 1 to each value before taking the logarithm.
 
-We would generate a new variable, as shown in the Stata or R notes. As the minimum length of stay in these sample data was 0, we have added 1 to each length of stay before taking the logarithm. The distribution of the logarithm of (length of stay + 1) is shown in @fig-mod09-lnlos.
+We would generate a new variable, as shown in the jamovi or R notes. As the minimum length of stay in these sample data was 0, we have added 1 to each length of stay before taking the logarithm. The distribution of the logarithm of (length of stay + 1) is shown in @fig-mod09-lnlos.
 
 ```{r fig-mod09-lnlos, echo=FALSE, out.width = "66%", fig.cap="Distribution of log transformed (length of stay + 1)"}
-knitr::include_graphics(here::here("img", "mod09", "mod09-lnlos.png"))
+knitr::include_graphics(here::here("img", "mod09", "mod09-lnlos-dist.png"))
 ```
 
 The distribution now appears much more bell shaped. @tbl-los-desc shows the descriptive statistics for length of stay before and after logarithmic transformation. Before transformation, the SD is almost as large as the mean value which indicates that the data are skewed and that these statistics are not an accurate description of the centre and spread of the data.
@@ -92,29 +90,29 @@ It is often not possible or sensible to transform a non-normal distribution, for
 #| tbl-cap: Transforming data to ranks (first 21 participants)
 
 df <- tibble::tribble(
-   ~ID, ~Infection, ~`Length of stay`, ~Rank, ~`Infection=no`, ~`Infection=Yes`,
-   32L,       "No",              0L,     1,               1,               NA,
-   33L,       "No",              1L,     2,               2,               NA,
-   12L,       "No",              9L,     3,               3,               NA,
-   22L,       "No",             11L,   4.5,             4.5,               NA,
-   16L,       "No",             11L,   4.5,             4.5,               NA,
-   28L,      "Yes",             12L,     6,              NA,                6,
-   27L,       "No",             13L,   7.5,             7.5,               NA,
-   20L,       "No",             13L,   7.5,             7.5,               NA,
-   24L,       "No",             14L,    11,              11,               NA,
-   11L,       "No",             14L,    11,              11,               NA,
-  130L,       "No",             14L,    11,              11,               NA,
-   10L,       "No",             14L,    11,              11,               NA,
-   25L,       "No",             14L,    11,              11,               NA,
-   19L,       "No",             15L,  15.5,            15.5,               NA,
-   30L,       "No",             15L,  15.5,            15.5,               NA,
-   23L,       "No",             15L,  15.5,            15.5,               NA,
-   14L,       "No",             15L,  15.5,            15.5,               NA,
-   15L,       "No",             17L,  20.5,            20.5,               NA,
-   13L,       "No",             17L,  20.5,            20.5,               NA,
-   21L,      "Yes",             17L,  20.5,              NA,             20.5,
-   17L,       "No",             17L,  20.5,            20.5,               NA
-  )
+    ~ID, ~Infection, ~`Length of stay`, ~Rank, ~`Infection=no`, ~`Infection=Yes`,
+    32L, "No", 0L, 1, 1, NA,
+    33L, "No", 1L, 2, 2, NA,
+    12L, "No", 9L, 3, 3, NA,
+    22L, "No", 11L, 4.5, 4.5, NA,
+    16L, "No", 11L, 4.5, 4.5, NA,
+    28L, "Yes", 12L, 6, NA, 6,
+    27L, "No", 13L, 7.5, 7.5, NA,
+    20L, "No", 13L, 7.5, 7.5, NA,
+    24L, "No", 14L, 11, 11, NA,
+    11L, "No", 14L, 11, 11, NA,
+    130L, "No", 14L, 11, 11, NA,
+    10L, "No", 14L, 11, 11, NA,
+    25L, "No", 14L, 11, 11, NA,
+    19L, "No", 15L, 15.5, 15.5, NA,
+    30L, "No", 15L, 15.5, 15.5, NA,
+    23L, "No", 15L, 15.5, 15.5, NA,
+    14L, "No", 15L, 15.5, 15.5, NA,
+    15L, "No", 17L, 20.5, 20.5, NA,
+    13L, "No", 17L, 20.5, 20.5, NA,
+    21L, "Yes", 17L, 20.5, NA, 20.5,
+    17L, "No", 17L, 20.5, 20.5, NA
+)
 
 flextable(df)
 ```
@@ -123,7 +121,7 @@ By assigning ranks to individuals, we lose information about their actual values
 
 ## Non-parametric test for two independent samples (Wilcoxon ranked sum test)
 
-The non-parametric equivalent to an independent samples t-test (Module 5) is the Wilcoxon ranked sum test, also known as the Mann-Whitney U test. This can be obtained using the `ranksum` command in Stata, and the `wilcox.test` in R. 
+The non-parametric equivalent to an independent samples t-test (Module 5) is the Wilcoxon ranked sum test, also known as the Mann-Whitney U test. This can be obtained using the `Mann-Whitney U` option in jamovi, and the `wilcox.test` in R. 
 
 The assumption for this test is that the distributions of the two populations have the same general shape. If this assumption is met, then this test evaluates the null hypothesis that the medians of the two populations are equal. This test does not assume that the populations are normally distributed, nor that their variances are equal.
 
@@ -141,43 +139,41 @@ In this test, the absolute differences between the paired scores are ranked and 
 
 ### Worked Example
 
-A crossover trial is done to compare symptom scores for two drugs in 11 people with arthritis (higher scores indicate more severe symptoms). The data are contained in datafile file mod09_arthritis.csv. The data are shown in @tbl-9-2.
+A crossover trial is done to compare symptom scores for two drugs in 11 people with arthritis (higher scores indicate more severe symptoms). The data are contained in datafile file `mod09_arthritis.csv`. The data are shown in @tbl-9-2.
 
 ```{r tbl-9-2, echo=FALSE}
 #| tbl-cap: Arthritis symptom scores for 11 patients after administering two drugs
 
 df <- tibble::tribble(
-          ~`Patient ID`, ~`Score: Drug 1`, ~`Score: Drug 2`,
-                   1L,               3L,               4L,  
-                   2L,               2L,               7L,  
-                   3L,               3L,               4L,  
-                   4L,               8L,              10L,  
-                   5L,               6L,               8L,  
-                   6L,               6L,               1L,  
-                   7L,               2L,               6L,  
-                   8L,               3L,               7L,  
-                   9L,               5L,               8L,  
-                  10L,               9L,              10L,  
-                  11L,               7L,               8L  
-          ) |> 
-  dplyr::mutate(`Difference (Drug 2 - Drug 1)` = `Score: Drug 2` - `Score: Drug 1`)
-  
+    ~`Patient ID`, ~`Score: Drug 1`, ~`Score: Drug 2`,
+    1L, 3L, 4L,
+    2L, 2L, 7L,
+    3L, 3L, 4L,
+    4L, 8L, 10L,
+    5L, 6L, 8L,
+    6L, 6L, 1L,
+    7L, 2L, 6L,
+    8L, 3L, 7L,
+    9L, 5L, 8L,
+    10L, 9L, 10L,
+    11L, 7L, 8L
+) |>
+    dplyr::mutate(`Difference (Drug 2 - Drug 1)` = `Score: Drug 2` - `Score: Drug 1`)
+
 flextable(df)
 ```
 
 The data shows that there is 1 person who has a negative difference, where the symptom score on drug 2 that is smaller than that for drug 1 (i.e., drug 2 is better than drug 1); and 10 people who have a positive difference. No one has the same score for both drugs.
 
-Before doing the analysis let us examine the distribution of the difference of symptom scores between the two drugs. As in Module 5, we first need to compute the difference between the symptom scores. To examine the distribution, we plot a histogram as shown in @fig-mod09-diff-hist.
+Before doing the analysis let us examine the distribution of the difference of symptom scores between the two drugs. As in Module 5, we first need to compute the difference between the symptom scores. To examine the distribution, we construct a distribution plot as shown in @fig-mod09-diff-hist.
 
 ```{r fig-mod09-diff-hist, echo=FALSE, out.width = "66%", fig.cap="Distribution of difference in symptom scores between Drug 1 and Drug 2"}
-knitr::include_graphics(here::here("img", "mod09", "mod09-diff-hist.png"))
+knitr::include_graphics(here::here("img", "mod09", "mod09-diff-dist.png"))
 ```
 
-The histogram shows that the differences are not normally distributed. The data looks negatively skewed with a gap in the histogram between the values of -5 and 0. Therefore, it would not be appropriate to conduct a paired t-test. Hence, we conduct a non-parametric paired test (Wilcoxon matched-pairs signed-rank test).
+The plot shows that the differences are not normally distributed. The data looks weirdly negatively skewed with a gap in values around -2.5. Therefore, it would not be appropriate to conduct a paired t-test. Hence, we conduct a non-parametric paired test (Wilcoxon matched-pairs signed-rank test).
 
-A non-parametric paired test can be obtained in Stata using the `signrank` command, or in R using the `wilcox.test` (specifying `paired=TRUE`).
-
-The P-value obtained from Stata is 0.044, and the P-value obtained from R is 0.049. The reason these two P-values differ is that R uses a so-called "continuity correction" which makes the test more conservative (i.e. makes the test less likely to reject the null-hypothesis when the null-hypothesis is true). In both cases, there is evidence of a difference in symptom scores between the two drugs.
+The P-value obtained from this test is 0.049. Thus, there is evidence of a difference in symptom scores between the two drugs.
 
 ## Non-parametric estimates of correlation
 

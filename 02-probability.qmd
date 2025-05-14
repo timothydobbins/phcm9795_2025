@@ -1,15 +1,13 @@
-# Probability and probability distributions
+# Categorical data, presentation guidelines and probability distributions
 
 ## Learning objectives {.unnumbered}
 
 By the end of this module you will be able to:
 
--   Describe the concept of probability;
--   Describe the characteristics of a binomial distribution and a Normal distribution;
--   Compute probabilities from a binomial distribution using statistical software;
--   Compute probabilities from a Normal distribution using statistical software;
--   Decide when to use parametric or non-parametric statistical methods;
--   Briefly outline other types of distributions.
+-   Present and report categorical data numerically and graphically
+-   Describe the concept of probability
+-   Describe the characteristics of a binomial distribution
+-   Compute probabilities from a binomial distribution using statistical software
 
 ## Optional readings {.unnumbered}
 
@@ -17,9 +15,13 @@ By the end of this module you will be able to:
 
 @bland15; Chapters 6 and 7. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
 
+Graphics and statistics for cardiology: designing effective tables for presentation and publication, @boers18 [[UNSW Library Link](https://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=http://dx.doi.org/10.1136/heartjnl-2017-311581)]
+
+Guidelines for Reporting of Figures and Tables for Clinical Research in Urology, @vickers_etal20 [[UNSW Library Link](https://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=http://dx.doi.org/10.1016/j.eururo.2020.04.048)]
+
 ## Introduction
 
-In Module 1, we looked at how to summarise data numerically and graphically. In this module, we will introduce the concept of probability which underpins the theoretical basis of statistics, and then introduce the concept of probability distributions. We will look at the binomial distribution, and then look at the most important distribution in statistics: the Normal distribution. Finally, we introduce some other probability distributions commonly used in biostatistics.
+In Module 1, we looked at how to summarise continuous data numerically and graphically. In this module, we will introduce how to summarise categorical data numerically and graphically. We will also introduce the concept of probability which underpins the theoretical basis of statistics, and then introduce the concept of probability distributions. We will present the binomial distribution, which calculates the probability of observing a certain number of events from multiple observations.
 
 ### Summarising a single categorical variable numerically
 
@@ -74,7 +76,7 @@ tab_stage_out <- as.data.frame(tab_stage$frequencies[[1]]) |>
          `Cumulative relative frequency (%)` = 100*`Cumulative relative frequency (%)`)
 
 flextable(select(tab_stage_out, 1:4), , cwidth = c(1, 1, 1.5, 1.5)) |> 
-  colformat_double(j = 3, digits = 1) |> 
+  colformat_double(j = c(3,4), digits = 1) |> 
   add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
@@ -106,58 +108,46 @@ Using our PBC data, we can summarise the two categorical variables: sex and stag
 ```{r tbl-1-sex-stage-freq, echo=FALSE, message=FALSE}
 #| tbl-cap: Frequency of participants by sex and stage of disease*
 
-pbc |> 
-  filter(!is.na(stage)) |> 
-  rename(Sex=sex, `Stage of disease *`=stage) |> 
-  proc_freq("Sex", "Stage of disease *",
-            include.row_percent = FALSE,
-            include.column_percent = FALSE,
-            include.table_percent = FALSE) |> 
+t_cross <- tbl_cross(pbc, sex, stage, missing="no",
+                  label = list(sex ="Sex", stage="Stage"))
+
+as_flex_table(t_cross) |> 
   add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
 We can add percentages to two-way tables as either *column* or *row* percents. Using @tbl-1-sex-stage-freq as an example, column percents represent the relative frequencies of sex within each stage (@tbl-1-sex-stage-col).
 
-<!-- TKTK - fix missing "100%" cells -->
-
 ```{r tbl-1-sex-stage-col, echo=FALSE, message=FALSE}
 #| tbl-cap: Frequency of participants by sex and stage of disease*, including column percents
 
-pbc |> 
-  filter(!is.na(stage)) |> 
-  rename(Sex=sex, `Stage of disease *`=stage) |> 
-  proc_freq("Sex", "Stage of disease *",
-            include.row_percent = FALSE,
-            include.column_percent = TRUE,
-            include.table_percent = FALSE) |> 
-  labelizor(part="all", j=2,
-            labels = c(`Col. pct` = "Column %")) |> 
+t_col <- tbl_cross(pbc, sex, stage, missing="no",
+                     percent = "column",
+                  label = list(sex ="Sex", stage="Stage"),
+                  digits = 0)
+
+as_flex_table(t_col) |> 
   add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
 Conversely, row percents represent the relative frequencies of stage within each sex (@tbl-1-sex-stage-row).
 
-<!-- TKTK - fix missing "100%" cells -->
-
 ```{r tbl-1-sex-stage-row, echo=FALSE, message=FALSE}
 #| tbl-cap: Frequency of participants by sex and stage of disease, including row percents
 
-pbc |> 
-  filter(!is.na(stage)) |> 
-  rename(Sex=sex, `Stage of disease *`=stage) |> 
-  proc_freq("Sex", "Stage of disease *",
-            include.row_percent = TRUE,
-            include.column_percent = FALSE,
-            include.table_percent = FALSE) |> 
-  labelizor(part="all", j=2,
-            labels = c(`Col. pct` = "Row %")) |> 
-  add_footer_lines("*Stage was missing for 6 participants")
+t_rwo <- tbl_cross(pbc, sex, stage, missing="no",
+                     percent = "row",
+                  label = list(sex ="Sex", stage="Stage"),
+                  digits = 0)
+
+as_flex_table(t_rwo) |> 
+  add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
 #### Tables containing more than two variables
 
 It is possible to construct multi-way tables that summarise more than two categorical variables in a single table. However, tables can become complex when more than two variables are incorporated, and you may need to present the information as two tables or incorporate additional rows and columns.
 
+<!-- TKTK - Find a better example -->
 In @fig-1-2, characteristics of the sample of prisoners from the NPHDC were presented. This table contains information about sex, age group and Indigenous status from different groups of prisoners; prison entrants, discharges, and prisoners in custody. This type of condensed information is often found in reports and journal articles giving demographic information, by different groups considered in the study.
 
 We might also consider a table containing further pieces of information. The table presented in @fig-prison-education (from the health of Australia’s prisoners 2015 report) compares prison entrants and the general community by three variables: age group, Indigenous status, and highest level of completed education.
@@ -181,19 +171,19 @@ Some issues in this table:
 Information from more than one variable can be presented as clustered or multiple bar chart (bars side-by-side) (@fig-bar-2). This type of graph is useful when examining changes in the categories separately, but also comparing the grouping variable between the main bar variable. Here we can see that Stage 3 and Stage 4 disease is the most common for both males and females, but there are many more females within each stage of disease.
 
 ```{r fig-bar-2, echo=FALSE, out.width = "75%", fig.cap="Bar graph of stage of disease by sex from PBC study", fig.pos="H"}
-knitr::include_graphics(here::here("img", "mod01", "pbc-bar-stage-sex.png"))
+knitr::include_graphics(here::here("img", "mod02", "pbc-bar-stage-sex.png"))
 ```
 
 An alternative bar graph is a stacked or composite bar graph, which retains the overall height for each category, but differentiates the bars by another variable (@fig-bar-3).
 
 ```{r fig-bar-3, echo=FALSE, out.width = "75%", fig.cap="Stacked bar graph of stage of disease by sex from PBC study", fig.pos="H"}
-knitr::include_graphics(here::here("img", "mod01", "pbc-bar-stage-sex-stacked.png"))
+knitr::include_graphics(here::here("img", "mod02", "pbc-bar-stage-sex-stacked.png"))
 ```
 
 Finally, a stacked relative bar chart (@fig-bar-4) displays the proportion of grouping variable for each bar, where each overall bar represents 100%. These graphs allow the reader to compare the proportions between categories. We can easily see from @fig-bar-4 that the distribution of sex is similar across each stage of disease.
 
 ```{r fig-bar-4, echo=FALSE, out.width = "75%", fig.cap="Relative frequency of sex within stage of disease from PBC study", fig.pos="H"}
-knitr::include_graphics(here::here("img", "mod01", "pbc-bar-stage-sex-stacked-relative.jpg"))
+knitr::include_graphics(here::here("img", "mod02", "pbc-bar-stage-sex-stacked-relative.png"))
 ```
 
 ## Presentation guidelines
@@ -228,7 +218,7 @@ tab1_pres <- tibble::tribble(
 "Regression coefficient", "Use one more significant figure than the underlying data   (adapted from Cole)"
      )
    
-flextable(tab1_pres)
+flextable(tab1_pres, cwidth = c(1.5, 5.5))
 ```
 
 ### Table presentation guidelines
@@ -361,7 +351,11 @@ Similarly, the probability distribution for a single roll of a die is straightfo
 
 ```{r tbl-die, echo=FALSE}
 #| tbl-cap: Probability distributions for a single roll of a die
-
+library(flextable)
+set_flextable_defaults(
+  font.family = "Roboto",
+  font.size = 10)
+  
 tab2_die <- tibble::tribble(
             ~`Face of a die`, ~Probability,
                    1L,      "1/6",
@@ -372,8 +366,9 @@ tab2_die <- tibble::tribble(
                    6L,      "1/6"
             )
 
-flextable(tab2_die)
-
+flextable(tab2_die, cwidth = c(1.25, 1))
+# |> 
+#  align(align = "center", part="all")
 ```
 
 Things become more complicated when we consider multiple coin-tosses, or rolls of a die. These series of events can be summarised by considering the number of times a certain outcome is observed. For example, the probability of obtaining three heads from five coin tosses.
@@ -403,17 +398,20 @@ The possible combinations for three coin tosses are as follows:
 tab2_3toss <- tibble::tribble(
             ~`Pattern`, ~`Number of heads`,
             "Tail, Tail, Tail", 0,
-            "Head, Tail, Tail", NA,
+            "Head, Tail, Tail", 1,
             "Tail, Head, Tail", 1,
-            "Tail, Tail, Head", NA,
-            "Head, Head, Tail", NA,
+            "Tail, Tail, Head", 1,
+            "Head, Head, Tail", 2,
             "Head, Tail, Head", 2,
-            "Tail, Head, Head", NA,
+            "Tail, Head, Head", 2,
             "Head, Head, Head", 3
             )
 
 
-flextable(tab2_3toss)
+flextable(tab2_3toss) |> 
+  autofit() |> 
+  merge_v(j="Number of heads") |> 
+  hline(i=c(1, 4, 7))
 
 ```
 
@@ -435,7 +433,10 @@ tab2_4 <- tibble::tribble(
             )
 
 
-flextable(tab2_4)
+flextable(tab2_4) |> 
+  autofit()
+# |> 
+#  align(j=1, align="center", part="all")
 
 ```
 
@@ -462,7 +463,10 @@ tab2_5 <- tibble::tribble(
               "Not A",   "Not A",   "Not A", "0.62 × 0.62 × 0.62 = 0.2383"
             )
 
-flextable(tab2_5)
+flextable(tab2_5) |> 
+  autofit() |> 
+  hline(i=c(1, 4, 7))
+
 ```
 
 @tbl-2-6 gives the probability of each of the blood type combinations we could observe in three people. The probability of observing a certain number of people (say, k) with Type A blood from a sample of three people can be calculated by summing the combinations:
@@ -478,7 +482,10 @@ tab2_6 <- tibble::tribble(
                                          0L,                            "0.2383"
         )
 
-flextable(tab2_6)
+flextable(tab2_6) |> 
+  autofit()
+# |> 
+#  align(j=1, align="center", part="all")
 
 ```
 
@@ -509,7 +516,7 @@ $$ P(X=k) = \frac{n!}{k! (n-k)!} \times p^k \times (1-p)^{n-k} $$
 
 where $n! = n \times (n-1) \times (n-2) \times \dots \times 2 \times 1$.
 
-**Note that this formula is almost never calculated by hand.** Instructions for calculating binomial probabilities are given in the Stata and R notes at the end of this Module.
+**Note that this formula is almost never calculated by hand.** Instructions for calculating binomial probabilities are given in the jamovi and R notes at the end of this Module.
 
 ### Mean and variance of a binomial variable
 
@@ -531,9 +538,7 @@ c)  What is the probability that at most, 2 will be smokers?
 
 a)  Calculating this single binomial probability is best done using software.
 
-In Stata, we used the `binomialp` function with n=6, k=3, and p=0.198. This gives an answer of 0.08 (see @sec-binom-stata for details).
-
-In R, we used the `dbinom` function with x=3, size=6, and prob=0.198. This gives an answer of 0.08 (see @sec-binom-r for details).
+Here, we used the `dbinom` function with x=3, size=6, and prob=0.198. This gives an answer of 0.08 (see @sec-binom-r for details).
 
 b)  In common language, getting “at least 4” smokers means getting 4, 5 or 6 smokers. Since these are mutually exclusive events, we can apply the additive law to find the probability of getting at least 4 smokers:
 
@@ -545,9 +550,7 @@ $$ P(X \ge 4) = P(X=4) + P(X=5) + P(X=6) $$ Using the same binomial probability 
 
 Answer: $P(X \ge 4) = 0.0148 + 0.00146 + 0.0000603 = 0.016$
 
-Alternatively, in Stata we can use the `binomialtail` function (which gives “the probability of observing k or more successes in n trials when the probability of a success on one trial is p”). Again, see @sec-binom-stata for details.
-
-In R we can use the `pbinom` function with the `lower.tail=FALSE` option (@sec-binom-r).
+We can use the `pbinom` function with the `lower.tail=FALSE` option (@sec-binom-r).
 
 c)  Observing at most two means observing 0, 1 or 2 smokers. Therefore, the probability of observing at most 2 smokers is:
 
@@ -558,7 +561,7 @@ c)  Observing at most two means observing 0, 1 or 2 smokers. Therefore, the prob
 
 Answer: P(X $\le$ 2) = 0.266+0.394+0.243=0.903
 
-This can also be done by using the `binomial` function in Stata (which gives “the probability of observing k or fewer successes in n trials when the probability of a success on one trial is p”) or the `pbinom` function in R.
+Here we canuse the `pbinom` function.
 
 <!-- {{< pagebreak >}} -->
 

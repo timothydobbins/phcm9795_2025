@@ -21,8 +21,6 @@ By the end of this module you will be able to:
 
 @bland15; Chapter 11. [[UNSW Library Link]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
 
-@acock10; Chapter 8.
-
 ## Introduction
 
 In Module 5, we saw how to test whether the means from two groups are equal - in other words, whether a continuous variable is related to a categorical variable. Sometimes we are interested in how closely two continuous variables are related. For example, we may want to know how closely blood cholesterol levels are related to dietary fat intake in adult men. To measure the strength of association between two continuously distributed variables, a correlation coefficient is used.
@@ -51,6 +49,7 @@ The file `mod08_lung_function.csv` has information about height and lung functio
 #| echo: false
 #| label: fig-scatter-plot
 #| fig-cap: "Association between height and lung function in 120 adults"
+#| out-width: 50%
 
 knitr::include_graphics(here::here("img", "mod08", "scatterpng.png"))
 ```
@@ -249,7 +248,7 @@ The distribution of the residuals should always be checked. Large residuals can 
 
 The distribution of the residuals from the model is shown in @fig-residual-dist. The residuals are approximately normally distributed, with no outlying values.
 
-```{r fig-residual-dist, echo=FALSE, out.width = "66%", fig.cap="Distribution of regression residuals"}
+```{r fig-residual-dist, echo=FALSE, out.width = "50%", fig.cap="Distribution of regression residuals"}
 knitr::include_graphics(here::here("img", "mod08", "regression-residual-dist.png"))
 ```
 

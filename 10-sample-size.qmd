@@ -66,7 +66,10 @@ tab10_1 <- tibble::tribble(
          `10%` = ceiling(ifelse(P > 0.10, 1.96^2 * P * (1-P)/(0.10^2), NA)),
          `15%` = ceiling(ifelse(P > 0.15, 1.96^2 * P * (1-P)/(0.15^2), NA)))
 
-flextable(select(tab10_1, -P))
+flextable(select(tab10_1, -P)) |> 
+  add_header_row(values="Required confidence interval width", colwidths = 11, top=TRUE) |> 
+  align(i=1, j=NULL, align="center", part="header")
+
 ```
 
 ### Worked Example {#wex10-1}
@@ -98,7 +101,6 @@ In addition to deciding the level of power and probability that will be used, th
 
 ### Power and significance level
 
-::: {.content-visible when-format="html"}
 The power of a study, which was discussed in Module 4, is the chance of finding a statistically significant difference when one exists, i.e. the probability of correctly rejecting the null hypothesis. The relationship between the power of a study and statistical significance is shown in @tbl-truth-vs-study-html.
 
 ```{r tbl-truth-vs-study-html, echo=FALSE}
@@ -112,23 +114,6 @@ df <- tibble::tribble(
 
 flextable(df)
 ```
-:::
-
-::: {.content-visible when-format="pdf"}
-The power of a study, which was discussed in Module 4, is the chance of finding a statistically significant difference when one exists, i.e. the probability of correctly rejecting the null hypothesis. The relationship between the power of a study and statistical significance is shown in @tbl-truth-vs-study-pdf.
-
-```{r tbl-truth-vs-study-pdf, echo=FALSE}
-#| tbl-cap: Comparison of study result with the truth
-
-df <- tibble::tribble(
-  ~` `, ~Effect, ~`No effect`,
-  "Evidence", "Correct", "ɑ",
-  "No evidence", "β", "Correct"
-)
-
-flextable(df)
-```
-:::
 
 The power of a study is expressed as 1-- β where β is the probability of a false negative (that is, the probability of a Type II error - incorrectly not rejecting the null hypothesis. In most research, power is generally set to 80% (a Type II error rate of 20%). However, in some studies, especially in some clinical trials where rigorous results are required, power is set to 90% (a Type II error rate of 10%).
 
@@ -144,38 +129,7 @@ The test that is used to show that two mean values are significantly different f
 
 There is a hypothesis that the use of the oral contraceptive (OC) pill in premenopausal women can increase systolic blood pressure. A study was planned to test this hypothesis using a two sided t-test. The investigators are interested in detecting an increase of at least 5 mm Hg systolic blood pressure in the women using OC compared to the non-OC users with 90% power at a 5% significance level. A pilot study shows that the SD of systolic blood pressure in the target group is 25 mm Hg and the mean systolic blood pressure of non-OC user women is 110 mm Hg. What is the minimum number of women in each group that need to be recruited for the study to detect this difference?
 
-**Solution** The effect size of interest is 5 mm Hg and the associated standard deviation is 25 mm Hg. For power of 90% and alpha of 5%, the sample size calculation using the Stata can be calculated using the `power twomeans` command:
-
-#### Output 10.1: Two independent samples t-test sample size calculation {.unnumbered}
-
-```{r, echo=TRUE, eval=FALSE, highlight=FALSE}
-#| label: lst-stata
-#| lst-cap: "Some stuff"
-
-. power twomeans 110 115, sd(25) power(0.9)
-
-Performing iteration ...
-
-Estimated sample sizes for a two-sample means test
-t test assuming sd1 = sd2 = sd
-Ho: m2 = m1 versus  Ha: m2 != m1
-
-Study parameters:
-
-        alpha =    0.0500
-        power =    0.9000
-        delta =    5.0000
-           m1 =  110.0000
-           m2 =  115.0000
-           sd =   25.0000
-
-Estimated sample sizes:
-
-            N =     1,054
-  N per group =       527
-```
-
-We can use the `epi.sscompc` function within the `epiR` package in R to calculate the sample size:
+**Solution** The effect size of interest is 5 mm Hg and the associated standard deviation is 25 mm Hg. For power of 90% and alpha of 5%, the sample size calculation using the `epi.sscompc` function within the `epiR` package in R to calculate the sample size:
 
 ```{r, message=FALSE}
 library(epiR)
@@ -184,38 +138,9 @@ library(pwr)
 epi.sscompc(treat=110, control=115, n=NA, sigma=25, power=0.9)
 ```
 
-Note that Stata and R provide slightly different estimated sample sizes. This difference is immaterial from a practical point of view, and highlights the importance of referencing which software package has been used when writing up results.
-
-From the output, we can see that with 90% power we will need 526 or 527 participants in each group, i.e., 1052 or 1054 participants in total.
+From the output, we can see that with 90% power we will need 526 participants in each group, i.e., 1052 participants in total.
 
 If the above were carried out by taking baseline measures of systolic blood pressure, and then again when the women were taking the OC pills, it would be a matched-pair study. Computing sample sizes for paired studies requires an estimate of the correlation between the paired obervations. If we do not have any estimates for this correlation, we can assume a value of 0. If the correlation is positive, a zero for correlation would give a more conservative estimate of sample size required (i.e. estimate a sample size larger than necessary). While a negative correlation would require a bigger sample size than a zero correlation, it is relatively uncommon to encounter negative correlations between pairs. Any discussions on the effect of correlation on sample size is beyond the scope of this course. Thus, we will always assume a correlation of zero between paired measurements in this course.
-
-We can compute the required sample size in Stata using the `power pairedmeans` command:
-
-#### Output 10.2: Paired samples t-test sample size using Worked Example 10.2 {.unnumbered}
-
-```{r, echo=TRUE, eval=FALSE, highlight=FALSE}
-. power pairedmeans 110 115, corr(0) power(0.9) sd(25)
-
-Performing iteration ...
-
-Estimated sample size for a two-sample paired-means test
-Paired t test assuming sd1 = sd2 = sd
-Ho: d = d0  versus  Ha: d != d0
-
-Study parameters:
-
-        alpha =    0.0500          ma1 =  110.0000
-        power =    0.9000          ma2 =  115.0000
-        delta =    0.1414           sd =   25.0000
-           d0 =    0.0000         corr =    0.0000
-           da =    5.0000
-         sd_d =   35.3553
-
-Estimated sample size:
-
-            N =       528
-```
 
 As discussed in the R notes, calculating the sample size required for a paired t-test is a little more cumbersome in R. Here, only the output of the process is provided - refer to the R notes for detail on the code.
 
@@ -250,23 +175,8 @@ If we expect that the prevalence of smoking in two comparison groups (e.g. males
 
 #### Output 10.3: Sample size calculation for two independent proportions {.unnumbered}
 
-```{r, echo=TRUE, eval=FALSE, highlight=FALSE}
-Estimated sample sizes for a two-sample proportions test
-Pearson's chi-squared test 
-Ho: p2 = p1  versus  Ha: p2 != p1
-
-Study parameters:
-
-        alpha =    0.0500
-        power =    0.8000
-        delta =   -0.1500  (difference)
-           p1 =    0.3500
-           p2 =    0.2000
-
-Estimated sample sizes:
-
-            N =       276
-  N per group =       138
+```{r}
+epi.sscohortc(irexp1=0.35, irexp0=0.2, n=NA, power=0.8) 
 ```
 
 From Output 10.3, we see that we would need 138 males and 138 females (i.e. a total sample size of 276 participants).
@@ -274,14 +184,6 @@ From Output 10.3, we see that we would need 138 males and 138 females (i.e. a to
 What sample size would be required if the prevalence of smoking among men was 30%?
 
 Answer = 294 men and 294 women would be needed.
-
-\[Command: `power twoproportions .3 .2, test(chi2)`\]
-
-To do the same problem using R, we use the `epi.sscohortc` function. We need to specify the risk of the the outcome each group (labelled group 0 and 1) and the desired power:
-
-```{r}
-epi.sscohortc(irexp1=0.35, irexp0=0.2, n=NA, power=0.8) 
-```
 
 ## Detecting an association using a relative risk
 
@@ -293,31 +195,7 @@ In general, a RR of 2.0 or greater is considered to be of public health importan
 
 A study is planned to investigate the effect of an environmental exposure on the incidence of a certain common disease. In the general (unexposed) population the incidence rate of the disease is 50% and it is assumed that the incidence rate would be 75% in the exposed population. Thus the relative risk of interest would be 1.5 (i.e. 0.75 / 0.50). We want to detect this effect with 90% power at a 5% level of significance.
 
-We can use the Stata command `power twoproportions` as below:
-
 #### Output 10.4: Sample size calculation for relative risk
-
-```{r, echo=TRUE, eval=FALSE, highlight=FALSE}
-Estimated sample sizes for a two-sample proportions test
-Pearson's chi-squared test 
-Ho: p2 = p1  versus  Ha: p2 != p1
-
-Study parameters:
-
-        alpha =    0.0500
-        power =    0.9000
-        delta =    1.5000  (relative risk)
-           p1 =    0.5000
-           p2 =    0.7500
-        rrisk =    1.5000
-
-Estimated sample sizes:
-
-            N =       154
-  N per group =        77
-```
-
-From Output 10.4, we can see that for a control proportion of 0.5 and RR of 1.5, we need a total sample size of 154, that is 77 people would be needed in each of the exposure groups.
 
 The `epiR` package does not have a function to estimate sample size and power directly for a relative risk, but we can use the `epi.sscohortc` function. To do this, we recognise that the assumed rate in the exposed group will equal the rate in the unexposed group multiplied by the relative risk.
 
@@ -326,6 +204,8 @@ Here we define the risk in the unexposed group as 0.5 and the desired relative r
 ```{r}
 epi.sscohortc(irexp1=1.5*0.5, irexp0=0.5, n=NA, power=0.9)
 ```
+
+From Output 10.4, we can see that for a control proportion of 0.5 and RR of 1.5, we need a total sample size of 154, that is 77 people would be needed in each of the exposure groups.
 
 ## Detecting an association using an odds ratio
 
@@ -340,27 +220,6 @@ If we are designing a case-control study, the appropriate measure of effect is a
 
 A case-control study is designed to examine an association between an exposure and outcome factor. Existing literature shows that 30% of the controls are expected to be exposed. We want to detect a minimum OR of 2.0 with 90% power and 5% level of significance.
 
-```{r, echo=TRUE, eval=FALSE, highlight=FALSE}
-. power twoproportions .3, test(chi2) oratio(2) power(0.9)
-Estimated sample sizes for a two-sample proportions test
-Pearson's chi-squared test 
-Ho: p2 = p1  versus  Ha: p2 != p1
-
-Study parameters:
-
-        alpha =    0.0500
-        power =    0.9000
-        delta =    2.0000  (odds ratio)
-           p1 =    0.3000
-           p2 =    0.4615
-   odds ratio =    2.0000
-
-Estimated sample sizes:
-
-            N =       376
-  N per group =       188
-```
-
 We can use the `epi.sscc` function in R to calculate a sample size based on an odds ratio in a case-control study:
 
 ```{r}
@@ -369,7 +228,7 @@ epi.sscc(OR=2, p0=0.3, n=NA, power=0.9)
 
 We find that 188 controls and 188 cases are required i.e. a total of 376 participants.
 
-This sample size would be smaller if we increased the effect size (OR) or reduced the study power to 80%. You could try this in either Stata or R (answer: 141 per group if power is reduced to 80%).
+This sample size would be smaller if we increased the effect size (OR) or reduced the study power to 80%. You could try this yourself (answer: 141 per group if power is reduced to 80%).
 
 ## Factors that influence power
 
@@ -393,21 +252,21 @@ In case-control studies, the number of potential case participants available may
 
 However, there is a trade-off between increasing the ratio of group size and the total number that needs to be enrolled. Consider Worked Example \@ref(wex10-5): selecting an equal number of controls and cases would require 188 cases and 188 controls, a total of 376 participants.
 
-We may want to reduce the number of cases required, by selecting 2 controls for every case. Selecting 2 controls (N1) per case (N2) (corresponding to a ratio of N2/N1 of 0.5) would require 140 cases and 280 controls, a total of 420 participants. We can extend this example and investigate the impact of changing the ratio of controls per case.
+We may want to reduce the number of cases required, by selecting 2 controls for every case. Selecting 2 controls (N1) per case (N2) would require 142 cases and 283 controls, a total of 425 participants. We can extend this example and investigate the impact of changing the ratio of controls per case.
 
 ```{r tab-unequal-controls, echo=FALSE}
 tab <- tibble::tribble(
-  ~`Controls per case`, ~`Allocation ratio (N2/N1)`, ~`Number of cases required`, ~`Number of controls required`, ~`Total participants required`,
-    1L,      1,   188L,    188,    376,
-    2L,    0.5,   140L,    280,    420,
-    3L, 0.3333,   124L,    371,    495,
-    4L,   0.25,   116L,    462,    578,
-    5L,    0.2,   111L,    553,    664,
-    6L, 0.1666,   108L,    644,    752,
-    7L, 0.1429,   105L,    734,    839,
-    8L,  0.125,   104L,    825,    929,
-    9L, 0.1111,   102L,    916,   1018,
-   10L,    0.1,   101L,   1006,   1107
+  ~`Controls per case`, ~`Number of cases required`, ~`Number of controls required`, ~`Total participants required`,
+    1L,   188L,    188,    376,
+    2L,   142L,    283,    425,
+    3L,   126L,    378,    504,
+    4L,   118L,    472,    590,
+    5L,   114L,    566,    680,
+    6L,   110L,    660,    770,
+    7L,   108L,    753,    861,
+    8L,   106L,    847,    953,
+    9L,   105L,    941,   1046,
+   10L,   104L,   1035,   1139
   )
 
 flextable(tab)
@@ -417,17 +276,17 @@ This can be visualised graphically, as in @fig-unequal-controls.
 
 ```{r fig-unequal-controls, echo=FALSE, fig.cap="Increasing the number of controls per case", out.width="66%"}
 tab <- tibble::tribble(
-  ~`Controls per case`, ~`Allocation ratio (N2/N1)`, ~`Number of cases required`, ~`Number of controls required`, ~`Total participants required`,
-    1L,      1,   188L,    188,    376,
-    2L,    0.5,   140L,    280,    420,
-    3L, 0.3333,   124L,    371,    495,
-    4L,   0.25,   116L,    462,    578,
-    5L,    0.2,   111L,    553,    664,
-    6L, 0.1666,   108L,    644,    752,
-    7L, 0.1429,   105L,    734,    839,
-    8L,  0.125,   104L,    825,    929,
-    9L, 0.1111,   102L,    916,   1018,
-   10L,    0.1,   101L,   1006,   1107
+  ~`Controls per case`, ~`Number of cases required`, ~`Number of controls required`, ~`Total participants required`,
+    1L,   188L,    188,    376,
+    2L,   142L,    283,    425,
+    3L,   126L,    378,    504,
+    4L,   118L,    472,    590,
+    5L,   114L,    566,    680,
+    6L,   110L,    660,    770,
+    7L,   108L,    753,    861,
+    8L,   106L,    847,    953,
+    9L,   105L,    941,   1046,
+   10L,   104L,   1035,   1139
   )
 
 ggplot(tab, aes(x=`Controls per case`, y=`Number of cases required`)) +
@@ -439,14 +298,14 @@ ggplot(tab, aes(x=`Controls per case`, y=`Number of cases required`)) +
 
 We can see that the number of cases required drops off if we go from 1 to 2 controls per case, and again from 2 to 3 controls per case. Once we go from 3 to 4 controls per case, we only reduce the number of cases by 8 (124 vs 116 cases), but at an increase of 91 (371 vs 462) controls. Clearly, this reduction in cases is not offset by the extra controls required.
 
-In Stata, the allocation ratio is the number in the experimental group / the number in the control group. There is some inconsistency in R, which as of May 2023, leads to inconsistent results between Stata and R for case-control studies with unequal group sizes.
+Note that there is some inconsistency in the allocation ratio in R, which as of May 2023, as summarised below.
 
-|                           |             Stata              |                R                |
-|---------------------------|:------------------------------:|:-------------------------------:|
-| Difference in means       | ratio = n-exposed / n-controls | ratio = n-exposed / n-unexposed |
-| Difference in proportions | ratio = n-exposed / n-controls | ratio = n-exposed / n-unexposed |
-| Relative risk             | ratio = n-exposed / n-controls | ratio = n-exposed / n-unexposed |
-| Odds ratio                |  ratio = n-cases / n-controls  |  ratio = n-controls / n-cases   |
+|                           |                R                |
+|---------------------------|:-------------------------------:|
+| Difference in means       | ratio = n-exposed / n-unexposed |
+| Difference in proportions | ratio = n-exposed / n-unexposed |
+| Relative risk             | ratio = n-exposed / n-unexposed |
+| Odds ratio                |  ratio = n-controls / n-cases   |
 
 ## Limitations in sample size estimations
 
