@@ -1,0 +1,17 @@
+## One sample t-test
+
+We will use data from `mod04_blood_pressure.csv` to demonstrate how a one-sample t-test is conducted in Jamovi. To perform the test, go to **Analyses \> T-Tests \> One Sample T-Test**.
+
+Select `dbp` as the **Dependent Variable**. Enter the hypothesised mean as the **Test value** (`71` in this example) as shown below.
+
+```{r mod4-ttest, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(here::here("img", "mod04", "jamovi", "mod4-ttest.png"))
+```
+
+The test statistic (i.e. t and its degrees of freedom) are provided. By default, Jamovi will calculate a P-value for the two-sided test (H~a~: mean $\neq$ 71), which appropriate for this example.
+
+Note that the one-sample t-test output does not include the mean or the 95% confidence interval of the mean of your variable of interest. This should be obtained using **Exploration \> Descriptives**:
+
+```{r mod4-ttest-desc, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(here::here("img", "mod04", "jamovi", "mod4-ttest-desc.png"))
+```

@@ -109,9 +109,9 @@ Statistical software will calculate both the t and P values. If the t-value is l
 
 @tbl-ind-t summarises the results of an independent samples t-test using `mod05_birthweight.dta` or `mod05_birthweight.rds`. The process of conducting the t-test is summarised for jamovi and R in the following sections.
 
-```{r, echo=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-ind-t
-#| tbl-cap: "Birthweight (kg) by sex"
+#| tbl-cap: Birthweight (kg) by sex
 
 df <- tibble::tribble(
                 ~Sex,  ~n,   ~`Mean (SE)`, ~`95% Confidence Interval`,
@@ -186,20 +186,20 @@ flextable(df, cwidth=c(1.5, 0.5, 1, 1.5))
 
 The t-value is calculated as −0.96 with 106 degrees of freedom, providing a two-sided P-value of 0.34. Thus these data provide no evidence of a difference in systolic blood pressure between the two sites.
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Jamovi notes {.unnumbered} -->
+# Jamovi notes {.unnumbered}
 
-<!-- {{< include 05.1-comparing-two-means-jamovi.qmd >}} -->
+{{< include 05.1-comparing-two-means-jamovi.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # R notes {.unnumbered} -->
+# R notes {.unnumbered}
 
-<!-- {{< include 05.2-comparing-two-means-R.qmd >}} -->
+{{< include 05.2-comparing-two-means-R.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Activities {.unnumbered} -->
+# Activities {.unnumbered}
 
-<!-- {{< include 05.3-comparing-two-means-activities.qmd >}} -->
+{{< include 05.3-comparing-two-means-activities.qmd >}}

@@ -1,0 +1,61 @@
+## Checking data for the independent samples t-test
+
+### Examining variable distributions by a second variable
+
+We can use **Analyses > Exploration > Descriptives** to obtain the distribution plots in @fig-mod05-bwt-gender. Choose `birthweight` to appear in the **Variables** box, and `gender` as the **Split by** variable. Choose **Density** in the **Plots** section:
+
+Jamovi also produces summary statistics for each level of the **Split by** variable, and we can select the statistics of interest in the **Statistics** section as necessary.
+
+```{r hist-by-1, echo=FALSE, out.width = "66%"}
+knitr::include_graphics(here::here("img", "mod05", "jamovi", "dist-by-1.png"))
+```
+
+## Independent samples t-test
+
+To carry out an independent sample t-test, go to **Analyses > T-Tests > Independent Samples T-Test**. Move `birthweight` into **Dependent variables** and `gender` as the **Grouping Variable**. Because we don't assume equal variances of `birthweight` for males and females, we tick the **Welch's** box.
+
+In order to obtain an estimate of the difference in means, with its 95% Confidence Interval, tick the relevant boxes in **Additional Statistics**:
+
+```{r ttest-1, echo=FALSE, out.width = "66%",}
+knitr::include_graphics(here::here("img", "mod05", "jamovi", "ttest-1-unequal.png"))
+```
+
+## Checking the assumptions for a Paired t-test
+
+Before performing a paired t-test, you must check that the assumptions for the test have been met. Using the dataset `mod05_ankle_bp.xls` to show that the difference between the pair of measurements between the sites is normally distributed, we first need to compute a new variable of the differences.
+
+To create a new column at the end of your dataset, click a cell in the first empty column, then choose **Data > Compute**. We want to compute `difference` as `sbp_dp − sbp_tp`, so we enter this in the formula box as below:
+
+1. Specify the name of the variable to be created: here `difference`
+2. Click the *f ~x~* button to display a list of variable names in your dataset
+3. Double-click the variable `sbp_dp` to bring it into the formula box
+4. Type `-` to represent "minus"
+5. Double-click the variable `sbp_tp` to bring it into the formula box (do not worry if your formula is underlined in red, this is simply a spell-check)
+6. Click the up arrow to close the **Compute** dialog box
+
+(Note that steps 3 to 5 could also be completed by typing the formula.)
+
+You will see a new column called `difference` which represents the difference between the two blood pressures.
+
+```{r ttest-2, echo=FALSE, out.width = "100%",}
+knitr::include_graphics(here::here("img", "mod05", "jamovi", "ttest-paired-1.png"))
+```
+
+A density plot of the differences can be constructed in the usual way.
+
+## Paired t-Test
+
+Using the same blood pressure data as previously, choose **Analyses > T-Tests > Paired Samples T-Test**. Select `sbp_dp` and  `sbp_tp` as the **Paired Variables**.
+
+To obtain more informative output, select **Mean difference** and **Confidence interval** as additional statistics. The dialog box will look like:
+
+```{r ttest-3, echo=FALSE, out.width = "66%",}
+knitr::include_graphics(here::here("img", "mod05", "jamovi", "ttest-paired-2.png"))
+```
+
+With the following output:
+
+
+```{r ttest-4, echo=FALSE, out.width = "66%",}
+knitr::include_graphics(here::here("img", "mod05", "jamovi", "ttest-paired-3.png"))
+```

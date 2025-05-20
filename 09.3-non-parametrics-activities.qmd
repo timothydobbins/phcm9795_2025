@@ -1,0 +1,61 @@
+### Activity 9.1 {-}
+
+There is a hypothesis that university students who live and dine in the university hall consume less vitamin C than the students who live and dine at home. To test the hypothesis, 30 students were randomly selected and their urinary ascorbic acid level was measured in mg over 3 hours. Urinary excretion of ascorbic acid is a measure of vitamin C nutrition in humans. The data is given in the following table and a copy of the data set, `Activity_9.1.csv` is also available on Moodle.
+
+```{r act-9-1, echo=FALSE}
+#| tab-cap: Urinary level of ascorbic acid (mg per 3 hours) of university students
+library(flextable)
+
+tab9_1 <- tibble::tribble(
+  ~`Living and dining in Hall (n.=.17)`, ~`Living and dining at Home (n = 13)`,
+                                    34L,                                  163L,
+                                    62L,                                  205L,
+                                    37L,                                   83L,
+                                    27L,                                  372L,
+                                    38L,                                   50L,
+                                    20L,                                   22L,
+                                     7L,                                   47L,
+                                    53L,                                  255L,
+                                    22L,                                   30L,
+                                    37L,                                   89L,
+                                    14L,                                   96L,
+                                    28L,                                   48L,
+                                    28L,                                   25L,
+                                    70L,                                  163L,
+                                    16L,                                    NA,
+                                     9L,                                    NA,
+                                   121L,                                    NA
+  )
+
+flextable(tab9_1) |>
+  align(align="centre", part="all")
+```
+
+a) Examine the distribution of the data using a box-plot and histogram, and obtain descriptive statistics. How would you describe the distribution of ascorbic acid?
+b) Which statistical test would be appropriate to test the hypothesis mentioned in the question and why?
+c) State the hypotheses appropriate to the analytical method you mentioned in (b).
+d) Carry out the statistical test you have mentioned in (b) and write your conclusion.
+
+### Activity 9.2 {-}
+A drug was tested for its effect in lowering blood pressure. Fifteen women with hypertension were enrolled and had their systolic blood pressure measured before and after taking the drug. The data are available in the file `Activity_9.2.csv` on Moodle.
+
+a) State the research question and the null hypothesis.
+b) Obtain suitable summary statistics and test the null hypothesis. Describe the reason for choosing the test. 
+c) Write a brief conclusion.
+d) What are the main limitations of this study? Consider both epidemiological and statistical aspects.
+
+### Activity 9.3 {-}
+
+It is often necessary to take blood from newborn babies, which causes them pain. A group of researchers wanted to test whether a pacifier (dummy) would provide some pain relief. Newborn babies undergoing venepuncture were randomised to one of two treatment groups. In the placebo group, babies had blood taken as per the usual protocol. In the pacifier group, babies were allowed to suck on a pacifier while having their blood taken. Each venepuncture was observed by an assessor, who rated the baby’s pain on the DAN scale which ranges from 0 (no pain) to 10. The DAN is based on observation of the baby’s facial expression, limb movement, and vocal expression. The data are provided in the file `Activity_9.3.csv`.
+
+Analyse these data to answer the research question. Write a brief report summarising your results and state your conclusion.
+
+### Supplementary Activity 9.4 {-}
+A study was conducted among 201 people who had recently quit smoking. The dataset Activity_9.4_smoke.csv contains the following variables:
+
+- ID: participant ID number
+- age: participant age (years)
+- gender: participant gender (1=Male, 2=Female)
+- day_abs: number of days abstinent (i.e., number of days since last cigarette)
+
+Analyse these data to assess whether there is a difference in the number of days abstinent between males and females. Write a brief report summarising your results and state your conclusion.

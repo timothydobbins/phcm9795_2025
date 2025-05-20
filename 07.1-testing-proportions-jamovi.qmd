@@ -1,0 +1,40 @@
+## Pearson’s chi-squared test for individual-level data
+
+Conducting a Pearson's chi-squared test is done automatically when producing a 2-by-2 table in jamovi. All that we need to do is check that the assumptions of the Pearson's chi-squared test are met, by examining the Expected counts in each cell.
+
+Worked Example 7.1 is completed as in Module 6, but we first examine the Expected counts (remember that we need to change the order of the levels for the exposure and outcome variables):
+
+![](img/mod07/jamovi/mod07-expected-counts.png)
+
+After confirming that there are no cells with small expected frequencies, we can interpret the chi-square test. The last section reports the chi-squared test statistic which has a value of 7.86 with 1 degree of freedom and a P-value of 0.005.
+
+If there are small values of expected frequencies, Fisher's exact test can be requested in the **Statistics** section:
+
+![](img/mod07/jamovi/mod07-expected-counts.png){width="50%"}
+
+## Pearson’s chi-squared test for summarised data
+
+When you only have the summarised date (for example, the cross-tabulated data), you need to enter the summarised data manually as we did in Module 6. After defining the **Count variable**, the Pearson chi-squared test is calculated automatically.
+
+## Chi-squared test for tables larger than 2-by-2
+Use the data in `mod07_allergy.rds`. We use similar steps as described above for a 2-by-2 table:
+
+![](img/mod07/jamovi/mod07-large-table-expected.png)
+
+![](img/mod07/jamovi/mod07-large-table.png)
+
+## McNemar’s test for paired proportions
+
+To perform this test in jamovi, we will use the dataset `mod07_drug_response.rds`. As with all 2-by-2 tables, we should check that the variables are set up with the first level of the variable being the outcome of interest using **Data > Setup**:
+
+![](img/mod07/jamovi/mod07-paired01.png){width="50%"}
+
+Both variables, `druga` and `drugb` are set up with "No" being the first level. We need to change the order and define "Yes" as the first level (See Module 6 jamovi notes on how to do this):
+
+![](img/mod07/jamovi/mod07-paired02.png){width="50%"}
+
+The McNemar's test of paired proportions can be conducted at **Analyses > Frequencies > Contingency Tables > Paired Samples > McNemar test**:
+
+![](img/mod07/jamovi/mod07-paired03.png){width="50%"}
+
+Note that jamovi does not currently provide an estimate of the difference in paired proportions, or a confidence interval for the difference.

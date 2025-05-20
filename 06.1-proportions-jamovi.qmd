@@ -1,0 +1,101 @@
+## 95% confidence intervals for proportions
+
+To analyse proportions in jamovi, we use **Frequencies \> One Sample Proportion Tests \> 2 Outcomes \| Binomial Test**. The procedure is slightly different if we are using individual level vs summary data. Here, the procedure will be illustrated as if we have summary data.
+
+In Worked Example 6.1, 47 children were found to have scabies and 168 (i.e. 215 - 47) were found not to have scabies. We need to enter two columns of data into jamovi: the first indicating whether a count is for scabies or no scabies, and the second representing the number in each category.
+
+Our data are entered as follows:
+
+![](img/mod06/jamovi/mod06-prop-data.png)
+
+Note that there is no need to name the columns here; using `A` and `B` is fine.
+
+Before we analyse these data, we need to tell jamovi that column `B` represents the count of each category. We do this by using **Data \> Weights** and defining `B` as the weight variable. This essentially says that the first row represents 47 observations, and the second row represents 168 observations:
+
+![](img/mod06/jamovi/mod06-prop-weight.png){width="80%"}
+
+To estimate the proportion with scabies, we use **Frequencies \> One Sample Proportion Tests \> 2 Outcomes \| Binomial Test**, defining Column `A` as the analysis variable and requesting confidence intervals**:**
+
+![](img/mod06/jamovi/mod06-prop-results.png)
+
+Note that the jamovi provides the proportion with scabies as well as the proportion without scabies.
+
+### Binomial test for testing one sample proportion
+
+A binomial test can be performed using a similar approach. Here we consider Worked example 6.3, testing whether a sample is consistent with a true smoking proportion of 20%. `mod06_smoking_status.csv` contains individual level data, so we do not need to use weighting.
+
+After opening the data, click **Analyses \> Frequencies \> One Sample Proportion Tests \> 2 Outcomes \| Binomial Test**. Set the **Test value** as 0.2, and tick the **Confidence intervals** box:
+
+![](img/mod06/jamovi/mod06-prop-test.png){width="75%"}
+
+The P-value for testing whether the true proportion of smokers is 20% is provided as P=0.43:
+
+![](img/mod06/jamovi/mod06-prop-test-result.png){width="50%"}
+
+## Computing a relative risk and its 95% confidence interval
+
+To calculate relative risks, odds ratios and risk differences correctly, **we must define the positive exposure and positive outcome to be the first level of a factor**. When defining an exposure for example, we should define the active treatment or the positive exposure as the first category. When defining an outcome, we should define the category of interest (e.g. disease, or side effect) as the first category.
+
+We will use Worked Example 6.4 to demonstrate calculating a relative risk and its 95% CI, by opening `mod06_nausea.rds`.
+
+Before analysing these data, we should check that the exposure (`group`) and outcome (`side_effect`) variables have been set up correctly, with the correct level chosen to be of interest. In this example, we will define `Active` as the first level in the `group` factor, and `Nausea` to be the first level of the `side_effect` factor. Let's consider the exposure variable first. Click **Data \> Setup** - this will open the following window:
+
+![](img/mod06/jamovi/refactor-1.png)
+
+Notice the **Levels** section, highlighted in red. This means that that the `group` variable has been entered in jamovi with *Placebo* as the first category, and *Active* as the second. This ordering means that jamovi will incorrectly consider *Placebo* as "Exposed", and *Active* as "Unexposed". We need to change the ordering, so that *Active* is the first level, and *Placebo* is second.
+
+To re-order the levels:
+
+1.  click the *Placebo* cell in the **Levels** box, then
+
+2.  click the down arrow to move *Placebo* to be the second level:
+
+![](img/mod06/jamovi/refactor-2.png){width="50%"}
+
+The **Levels** section should appear as below:
+
+![](img/mod06/jamovi/refactor-3.png){width="50%"}
+
+Click the `side_effect` column to investigate the ordering of the outcome variable. Repeat the process to set *Nausea* as the first level, and *No nausea* as the second variable.
+
+To construct the 2-by-2 table and calculate a relative risk, we use **Analyses \> Frequencies \> Independent samples**. Define **Rows** as the exposure variable (`group`), and **Columns** as the outcome (`side_effect`). We can request the row-percents by ticking **Row** in the **Cells** section, and request the relative risk and confidence interval by ticking **Relative risk** in the **Statistics** section:
+
+![](img/mod06/jamovi/rr.png)
+
+## Computing other measures of effect
+
+An **Odds ratio** or **Difference in proportions** can be requested in the **Statistics** section.
+
+## Working with summarised data
+
+If you only have the cross-tabulated data (i.e. the summarised or aggregated data), you will need to enter your data into a new spreadsheet. For example, to recreate the above analyses, we could re-write the 2-by-2 table as follows:
+
+|  Group  | Side effect | Count |
+|:-------:|:-----------:|:-----:|
+| Active  |   Nausea    |  15   |
+| Active  |  No nausea  |  35   |
+| Placebo |   Nausea    |   4   |
+| Placebo |  No nausea  |  46   |
+
+We can enter these data in a new spreadsheet, entering the exposure and outcome using the values of 0 or 1. By convention, we use 1 to represent the exposed category, and 0 to represent the unexposed category. Similarly, we use 1 to represent the outcome category of interest, and 0 to represent the outcome category not of interest. Our entered data would look as follows:
+
+![](img/mod06/jamovi/aggregate-1.png){width="50%"}
+
+The variable names can be changed in the variables tab in the usual way. It is good practice to label the **levels** of the exposure and outcome variables - this can be done in **Data \> Setup**. Click the variable to be defined, and type the labels of each level in the **Levels** section.
+
+Here, the variable **group** is defined as:
+
+-   1 represents Active
+-   0 represents Placebo
+
+The **Setup** screen is completed as follows:
+
+![](img/mod06/jamovi/aggregate-2.png)
+
+The `side_effect` variable should be set up using a similar approach, with the final spreadsheet looking like:
+
+![](img/mod06/jamovi/aggregate-3.png){width="50%"}
+
+The analysis is conducted in the same way as for individual data, but we must now specify the **Counts** field:
+
+![](img/mod06/jamovi/aggregate-4.png)

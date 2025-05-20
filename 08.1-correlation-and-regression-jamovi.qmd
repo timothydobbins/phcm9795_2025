@@ -1,0 +1,62 @@
+## Creating a scatter plot
+
+We will demonstrate using Jamovi for correlation and simple linear regression using the dataset `mod08_lung_function.csv`.
+
+To create a scatter plot to explore the association between height and FVC, we use **Scatterplot** within the **Exploration** menu:
+
+```{r twoway-1, echo=FALSE, out.width = "80%",}
+knitr::include_graphics(here::here("img", "mod08", "jamovi", "twoway-1.png"))
+```
+
+Choose  **Height** for the **X-Axis**, and **FVC** for the **Y-Axis**, and the scatter-plot appears in the Output window:
+
+```{r twoway-2, echo=FALSE, out.width = "80%",}
+knitr::include_graphics(here::here("img", "mod08", "jamovi", "twoway-2.png"))
+```
+
+To add a fitted line, click the **Linear** option in the **Regression Line** section:
+
+```{r twoway-3, echo=FALSE, out.width = "80%",}
+knitr::include_graphics(here::here("img", "mod08", "jamovi", "twoway-3.png"))
+```
+
+To save your graph, right-click the graph and choose **Image > Export**, and be sure to save your file as a PNG file:
+
+```{r twoway-7, echo=FALSE, out.width = "80%",}
+knitr::include_graphics(here::here("img", "mod08", "jamovi", "twoway-7.png"))
+```
+
+## Calculating a correlation coefficient
+
+To calculate the Pearson's correlation using the dataset `mod08_lung_function.csv` choose: **Correlation Matrix** within the **Regression** menu.
+
+Select the two variables, **FVC** and **Height** in the **Variables** box, and a correlation matrix will be constructed, similar to @tbl-corrmatrix. 
+
+
+## Fitting a simple linear regression model
+
+To fit a simple linear regression model, choose **Regression > Linear Regression**
+
+Select `FVC` as the **Dependent variable**, and `Height` as a **Covariate** (Jamovi refers to continuous explanatory variables as *covariates*). To obtain the 95% confidence interval for the regression coefficients, scroll down to the **Model Coefficients** section and click the **Confidence interval** option for Estimate.
+
+```{r regr-1, echo=FALSE, out.width = "80%",}
+knitr::include_graphics(here::here("img", "mod08", "jamovi", "regr-1.png"))
+```
+
+You will notice that the Jamovi output does not provide the degrees of freedom for the regression coefficient t-statistic. This is equivalent to the degrees of freedom in the preceding correlation matrix: in this case, 118 df.
+
+## Plotting residuals from a simple linear regression
+
+To plot the residuals, we first need to save them using the **Save** option within the **Linear Regression** command box:
+
+```{r postest-1, echo=FALSE, out.width = "80%",}
+knitr::include_graphics(here::here("img", "mod08", "jamovi", "resid-1.png"))
+```
+
+This creates a new column of *Residuals* within our dataset:
+
+```{r postest-2, echo=FALSE, out.width = "80%",}
+knitr::include_graphics(here::here("img", "mod08", "jamovi", "resid-2.png"))
+```
+
+You can now check the assumption that the residuals are normally distributed by creating a density plot of the residuals using **Exploration > Descriptives**, as shown in @fig-residual-dist.

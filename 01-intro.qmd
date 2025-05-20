@@ -281,20 +281,20 @@ The mean is not a good measure of central tendency for skewed distributions, as 
 
 If the data exhibits a symmetric distribution, we use the standard deviation as the measure of spread. Otherwise, the interquartile range is preferred.
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # An introduction to Stata {.unnumbered} -->
+# An introduction to jamovi {.unnumbered}
 
-<!-- {{< include 01.1-intro-jamovi.qmd >}} -->
+{{< include 01.1-intro-jamovi.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # An introduction to R and RStudio {.unnumbered} -->
+# An introduction to R and RStudio {.unnumbered}
 
-<!-- {{< include 01.2-intro-R.qmd >}} -->
+{{< include 01.2-intro-R.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Activities {.unnumbered} -->
+# Activities {.unnumbered}
 
-<!-- {{< include 01.3-intro-activities.qmd >}} -->
+{{< include 01.3-intro-activities.qmd >}}

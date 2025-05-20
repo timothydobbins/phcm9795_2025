@@ -85,7 +85,7 @@ $$ z = \frac{90 - 77.9}{11} = 1.1 $$ Thus, a blood pressure of 90 mmHg correspon
 knitr::include_graphics(here::here("img", "mod02", "z-dist-shaded.png"))
 ```
 
-Using software, we find the probability that a person has a diastolic blood pressure of 90 mmHg or more as P(Z ≥ 1.1) = 0.136 (see @sec-normal-stata and @sec-normal-r for details).
+Using software, we find the probability that a person has a diastolic blood pressure of 90 mmHg or more as P(Z ≥ 1.1) = 0.136.
 
 Apart from calculating probabilities, z-scores are most useful for comparing measurements taken from a sample to a known population distribution. It allows measurements to be compared to one another despite being on different scales or having different predicted values.
 
@@ -123,7 +123,7 @@ In practice, most parametric summary statistics are quite robust to minor deviat
 
 When the data are markedly skewed, density plots are not all bell-shaped. For example, serum bilirubin measured from participants in the PBC study are presented in @fig-bili-pbc.
 
-```{r fig-bili-pbc, echo=FALSE, out.width = "50%", fig.cap="Density plot of serum bilirubin from PBC study data"}
+```{r fig-bili-pbc, echo=FALSE, message=FALSE, warning=FALSE, out.width = "50%", fig.cap="Density plot of serum bilirubin from PBC study data"}
 pbc <- pbc |> 
   rename(`Serum bilirubin` = bili)
 
@@ -277,24 +277,24 @@ We can interpret this confidence interval as: we are 95% confident that the true
 
 The publication of a study using a sample of 242 participants reported a sample mean systolic blood pressure of 128.4 mmHg and a sample standard deviation of 19.56 mmHg. Find the 95% confidence interval for the mean systolic blood pressure.
 
-Using Jamovi or R, we obtain a 95% confidence interval from 125.9232 to 130.8768.
+Using jamovi or R, we obtain a 95% confidence interval from 125.9232 to 130.8768.
 
 We are 95% confident that the true mean systolic blood pressure of the population from which the sample was drawn lies between 125.9 kg and 130.9 mmHg.
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Jamovi notes {.unnumbered} -->
+# Jamovi notes {.unnumbered}
 
-<!-- {{< include 03.1-precision-jamovi.qmd >}} -->
+{{< include 03.1-precision-jamovi.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # R notes {.unnumbered} -->
+# R notes {.unnumbered}
 
-<!-- {{< include 03.2-precision-R.qmd >}} -->
+{{< include 03.2-precision-R.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Activities {.unnumbered} -->
+# Activities {.unnumbered}
 
-<!-- {{< include 03.3-precision-activities.qmd >}} -->
+{{< include 03.3-precision-activities.qmd >}}

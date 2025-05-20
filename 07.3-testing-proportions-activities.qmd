@@ -1,0 +1,31 @@
+### Activity 7.1 {-}
+
+Use the files `Activity_S7.1.dta` or `Activity_S7.1.rds` to further investigate whether there is a gender difference in asthma in a random sample of 514 upper primary school children:
+
+a) Use a contingency table (cross-tabulation) to determine the observed and expected frequencies. Which cell has the lowest expected cell count?
+b) Use a chi-squared test to evaluate the hypothesis and interpret the result. Are the assumptions for a chi-squared test met? Calculate the 95% CI of the difference in proportions.
+
+### Activity 7.2 {-}
+The files `Activity_S7.2.dta` and `Activity_S7.2.rds` summarise 5-year mortality (the outcome) for 89 people who did or did not have a heart attack (the exposure).
+
+a) State the null hypothesis.
+b) Using Stata or R, carry out the appropriate significance test to evaluate the hypothesis. Do the data fulfil the assumptions of the statistical test you have used?
+c) Estimate the appropriate risk estimate for mortality. Are the confidence intervals of the risk estimates consistent with the P value?
+d) Summarise your results and state your conclusion.
+
+### Activity 7.3 {-}
+The effect of two penicillin allergens B and G was tested in a random sample of 500 people. All people were tested with both allergens. For each person, data were recorded for whether or not there was an allergic reaction to the allergen.
+
+Use `Activity_S7.3.dta` or `Activity_S7.3.rds` to test the null hypothesis that the proportion of participants who react to allergen G is the same as the proportion who react to allergen B. Are the 95% CI around the difference consistent with the P value?
+
+### Activity 7.4 {-}
+A study was conducted to assess whether the rate of premature births differed by region. We examined a survey of 200 live births in an urban region in which 2 babies were born prematurely. We also surveyed 80 live births in a rural region and found that 5 babies were born prematurely.
+
+Analyse these data to answer the research question. Write a brief report summarising your results and state your conclusion.
+
+### Supplementary Activity 7.5 {-}
+The betel nut, the seed of the areca palm, is grown in the tropical Pacific and Asia and is a commonly use psycho-active substance. Betel nut is often chewed, wrapped inside betel leaves or in combination with tobacco. Chewing betel nut has been linked with a range of health issues.
+
+A case-control study was conducted to assess the association between chewing betel nut and obstructive coronary artery disease. 293 men with obstructive coronary artery disease were recruited, and 88 reported having chewed betel nut. Of the 720 healthy control men recruited, 57 reported having chewed betel nut.
+
+Analyse these data to answer the research question. Write a brief report summarising your results and state your conclusion.

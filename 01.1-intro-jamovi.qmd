@@ -1,0 +1,230 @@
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(huxtable)
+```
+
+## Learning outcomes {.unnumbered}
+
+By the end of these notes, you will be able to:
+
+-   navigate the jamovi interface
+-   input and import data into jamovi
+-   use jamovi menus to summarise data
+-   perform basic data transformations
+-   assign variable and value labels
+-   understand the difference between saving data and saving jamovi output
+-   copy jamovi output to a standard word processing package
+
+## Introduction
+
+From the [jamovi website](https://www.jamovi.org/):
+
+> jamovi is a new "3rd generation" statistical spreadsheet. Designed from the ground up to be easy to use, jamovi is a compelling alternative to costly statistical products such as SPSS and SAS.
+
+> jamovi is built on top of the R statistical language, giving you access to the best the statistics community has to offer. Would you like the R code for your analyses? jamovi can provide that too.
+
+> jamovi will always be free and open - that's one of our core values - because jamovi is made by the scientific community, for the scientific community.
+
+The notes provided in this course will cover the basics of using jamovi: there is much more to jamovi than we will cover in this course.
+
+## Part 1: An introduction to jamovi
+
+In this very brief section, we will introduce jamovi by calculating the average of six ages. Open the jamovi package in the usual way (note that while jamovi is available for Windows, MacOS and linux, most of the screenshots in these notes will be based on the macOS version.)
+
+## Installing jamovi
+
+jamovi can be downloaded for no cost at https://www.jamovi.org/download.html for Windows, macOS and linux. At the time of writing, Version 2.6.26 solid is the appropriate version to use. Download and install jamovi in the usual way.
+
+## A simple jamovi analysis
+
+When you first open jamovi, it will look something like the following.
+
+![](img/mod01/jamovi/simple-01.png)
+On the left-hand side of the window is the spreadsheet view, and the right is where results of statistical analyses will appear. The **spreadsheet** is where data can be entered or changed.
+
+::: {.callout-note icon="false"}
+## TASK
+
+Enter the following six ages into jamovi, starting at the top-left cell, by typing each number and then hitting Enter:
+
+`20 25  23  29  21  27`
+
+If you make a mistake, simply click the incorrect cell, and enter the correct value.
+:::
+
+Your screen should look like this:
+
+![](img/mod01/jamovi/simple-02.png)
+
+There are two things to note here:
+
+1.  Data in jamovi are entered down a column: columns represent variables, and rows represent observations. So our six observations of age are entered in one column.
+2.  jamovi has given the name of `A` to our column of ages.
+
+Let's rename our variable from `A` to `age`. There are a number of ways of doing this: here we will click the **Data** tab which allows us to change aspects of our dataset, and then click **Setup**. By default, the first column is selected - you can choose any column simply by clicking it.
+
+![](img/mod01/jamovi/variables-01.png)
+
+In this window, you can change many variable properties, such as variable names and variable types. To change the variable name, click the name of the variable, currently `A`, at the top of the window. Replace `A` with `Age (years)`:
+
+![](img/mod01/jamovi/variables-02.png)
+
+Note that jamovi has assumed these data are *Nominal* data; this can be changed to *Continuous* by choosing the appropriate item in the **Measure type** drop-down menu:
+
+![](img/mod01/jamovi/variables-03.png)
+
+Once you have finished naming all your variables, you can click the **Up** arrow to close the Setup tab to view the spreadsheet again.
+
+jamovi is *very* flexible with its naming convention, and allows variable names that many other statistical packages would not allow. Often, the only way to get publication quality graphs or tables is to name your variables as completely as you can. However, I would recommend the following conventions when choosing variable names in jamovi:
+
+-   try to keep your variable names relatively short;
+-   variable names should start with a letter;
+-   variable names are case-sensitive (so age, Age and AGE could represent three different variables)
+
+::: {.callout-note icon="false"}
+## TASK
+
+Rename the variable `A` with the name `Age (years)`, and define age as a *Continuous* variable.
+:::
+
+Now that we have entered our six ages, let's calculate the mean age. Choose **Analyses \> Exploration \> Descriptives**. The **Descriptives** dialog box will appear. Move the variable `Age` into the **Variables** box by clicking `Age (years)` and then clicking the right-arrow icon. The window should appear as:
+
+![](img/mod01/jamovi/simple-03.png)
+
+You can see the results of the analysis in the right-hand pane.
+
+::: {.callout-note icon="false"}
+## TASK
+
+Calculate summary statisitics for `Age (years)` and confirm: there are 6 observations, with a mean age of 24.2 years, a standard deviation of 3.49 years, a minimum of 20 and a maximum of 29 years.
+:::
+
+### The jamovi environment
+
+Now that we have seen a simple example of how to use jamovi, let's describe the jamovi environment. There are two main views in jamovi: the **Spreadsheet** view, available by clicking the **Data** tab, and the **Analysis** view, available by clicking the **Analyses** tab. We will tend to use these two tabs through the course.
+
+The unique thing about jamovi is that *all analyses are updated whenever the data are changed in the spreadsheet*. While this can be convient, *care must be taken not to make any unintended changes to your data while in the spreadsheet view.*
+
+jamovi also has a way of opening and saving data, using the three lines in the upper-left corner: ![](img/mod01/jamovi/three-lines.png).
+
+**MORE HERE ON THE FILE COMMANDS**
+
+## Part 2: Obtaining summary statistics for continuous data
+
+In this exercise (spanning Modules 1 and 2), we will analyse data to complete a descriptive table from a research study. The data come from a study in primary biliary cirrhosis, a condition of the liver, from @therneau_grambsch10, Modeling Survival Data: Extending the Cox Model. By the end of this exercise, we will have completed the following table.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#| tbl-cap: Summary of 418 participants from the PBC study (Therneau and Grambsch, 2000)
+library(flextable)
+tab <- tibble::tribble(
+                     ~Characteristic,                   ~` `,                    ~Summary,
+                       "Age (years)",                     NA, "Mean (SD) or Median [IQR]",
+                               "Sex",                 "Male",                     "n (%)",
+                                  NA,               "Female",                     "n (%)",
+                       "AST* (U/ml)",                     NA, "Mean (SD) or Median [IQR]",
+                   "Serum bilirubin",                     NA, "Mean (SD) or Median [IQR]",
+                             "Stage",                    "I",                     "n (%)",
+                                  NA,                   "II",                     "n (%)",
+                                  NA,                  "III",                     "n (%)",
+                                  NA,                 "IIIV",                     "n (%)",
+         "Vital status at study end", "Alive: no transplant",                     "n (%)",
+                                  NA,    "Alive: transplant",                     "n (%)",
+                                  NA,             "Deceased",                     "n (%)"
+         )
+
+flextable(tab) |>
+  autofit() |> 
+  add_footer_lines("* asparate aminotransferase")
+```
+
+::: {.callout-note icon="false"}
+## TASK
+
+Download the table shell, saved on Moodle as `PBC Table1.docx`, and the information file called `mod01_pbc_info.txt`.
+:::
+
+### Opening a data file
+
+Typing data directly into jamovi is not common; we usually open data that have been saved as a file. jamovi can open many types of files, including text (txt), comma separated (csv), Microsoft Excel (xlsx), R (rds), Stata (dta) and more. Here, we will open a dataset that has been stored as an R data file (which has the `.rds` suffix).
+
+::: {.callout-note icon="false"}
+## TASK
+
+Load the sample data set called `mod01_pbc.rds` into jamovi using the following steps:
+
+1.  Locate the data set called `mod01_pbc.rds` on Moodle or the [PHCM9795 home-page](https://unsw.sharepoint.com/sites/CLS-PHCM9795_T2_5256_Combined/SitePages/Home.aspx). Click the file to download it, and then save it in a folder you will be able to locate later - for example, your OneDrive folder.
+
+2.  In jamovi, click the three-bar icon, then choose **Open**. jamovi usually searches in the most recently used folder, so most times you will need to **click Browse**. Browse to where you stored the dataset and click **Open**.
+
+Confirm that there are 418 rows by examining the **Row count** at the bottom of the screen.
+
+Examine the `pbc_info.txt` file for a description of each variable.
+:::
+
+### Assigning meaningful variable names
+
+As we saw earlier, jamovi has can allow quite useful variable names, which will appear when creating output. For example, the variable entered as bili could be named `Serum bilirubin (mg/dl)`.
+
+::: {.callout-note icon="false"}
+## TASK
+
+Assign meaningful variable names to the variables used in Table 1. You should to refer to the file `pbc_info.txt` to determine what each variable represents.
+:::
+
+### Summarising continuous variables
+
+As we saw in Part 1, continuous variables can be summarised using **Analyses \> Exploration**. There are three continuous variables that we would like to summarise: age, AST and serum bilirubin. Each of these can be listed in the **Exploration** dialog box, as shown below. The summaries are calculated automatically:
+
+![](img/mod01/jamovi/summ-01.png)
+
+By default, the exploration command presents the number of observations, the number of missing observations, the mean, median, standard deviation, minimum and maximum. We may be interested in obtaining the interquartile range as well, so we select the **Statistics** arrow, and choose **Percentiles**:
+
+![](img/mod01/jamovi/summ-02.png)
+
+For each of our three continuous variables, we need to decide whether to present the mean and standard deviation, or the median and interquartile range. This decision can be made after examining a density plot (and perhaps a boxplot) for each variable.
+
+### Producing a density plot
+
+To produce a density plot, click the arrow next to **Plots** and choose **Density**. Plots will be produced for each variable listed in the **Variables** box. The density plots will be produced one after another, but they have been presented horizontally here:
+
+![](img/mod01/jamovi/densplot-all.png)
+
+### Producing a boxplot
+
+Producing boxplots is done by ticking the **Box plot** box. By default, jamovi labels each of the points that it considers to be an outlier with its row number; this can be turned off if desired.
+
+::: {.callout-note icon="false"}
+## TASK
+
+Obtain density plots and boxplots for age, AST and bilirubin.
+
+Based on these plots, decide whether the mean or the median is the appropriate summary to use for each variable.
+:::
+
+### Saving your work from jamovi
+
+Now that you have made some changes to the pbc data and conducted some analyses, it is good practice to save your work. jamovi uses its own file format to save **both data and output**, using files with .omv suffix. All changes to your data will be saved, as well as all existing output. However, work saved by jamovi will only be able to be opened by jamovi - you will not easily be able to share your data or your output with colleagues who do not have jamovi. To save a jamovi session, choose **Save** in the three-lines tab.
+
+If you want to share work with colleagues who do not have jamovi, you can use **Export** to save your data in another file format (recognising that variable and value labels will not be exported), or save your output as a `pdf` or `html` file.
+
+### Copying output from jamovi
+
+An easy way to share output between your colleagues is to copy the output into a word processor package (e.g. Microsoft Word). To copy output from jamovi, you can **right-click**[^01.1-intro-jamovi-1] the output with your mouse, and choose **Export**. This will copy the output as plain text for pasting into a Word document. If you select a single table for copying, you can also **Copy table** or **Copy table as HTML**. Whichever way you copy output into Word, you will need to make sure your output conforms with all style guides required for your final publication.
+
+[^01.1-intro-jamovi-1]:
+    **Windows**
+    
+    - Click the right mouse button to open a context menu
+    - Shows options relevant to what you clicked on (copy, export, add note)
+
+    **Mac**
+    
+    - Two-button mouse: Press right button
+    - One-button mouse/trackpad: Hold Control (Ctrl) while clicking
+    - Functions the same as Windows - shows context-specific options
+
+::: {.callout-note icon="false"}
+## TASK
+
+Complete Table 1 for continuous variables using the output generated in this exercise. You should decide on whether to present continuous variables by their means or medians, and present the most appropriate measure of spread. Include footnotes to indicate if any variables contain missing observations.
+
+:::

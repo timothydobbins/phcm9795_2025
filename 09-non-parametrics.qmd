@@ -4,34 +4,35 @@ library(jmv)
 library(flextable)
 ```
 
-
 # Analysing non-normal data
 
-## Learning objectives {-}
+## Learning objectives {.unnumbered}
 
 By the end of this module you will be able to:
 
-- Transform non-normally distributed variables;
-- Explain the purpose of non-parametric statistics and key principles for their use;
-- Calculate ranks for variables;
-- Conduct and interpret a non-parametric independent samples significance test;
-- Conduct and interpret a non-parametric paired samples significance test;
-- Calculate and interpret the Spearman rank correlation coefficient.
+-   Transform non-normally distributed variables;
+-   Explain the purpose of non-parametric statistics and key principles for their use;
+-   Calculate ranks for variables;
+-   Conduct and interpret a non-parametric independent samples significance test;
+-   Conduct and interpret a non-parametric paired samples significance test;
+-   Calculate and interpret the Spearman rank correlation coefficient.
 
-## Optional readings {-}
+## Optional readings {.unnumbered}
 
-@kirkwood_sterne01; Chapter 13. [[UNSW Library Link]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728)
+@kirkwood_sterne01; Chapter 13. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728)
 
-@bland15; Chapter 12. [[UNSW Library Link]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
+@bland15; Chapter 12. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
 
 ## Introduction
 
 In general, parametric statistics are preferred for reporting data because the summary statistics (mean, standard deviation, standard error of the mean etc) and the tests used (t-tests, correlation, regression etc) are familiar and the results are easy to communicate. However, non-parametric tests can be used if data are not normally distributed. Non-parametric tests make fewer assumptions about the distribution of the data.
 
 ## Transforming non-normally distributed variables
-When a variable has a skewed distribution, one possibility is to transform the data to a new variable to try and obtain a normal or near normal distribution. Methods to transform non-normally distributed data include logarithmic transformation of each data point, or using the square root or the square or the inverse (i.e. 1/x) etc. 
+
+When a variable has a skewed distribution, one possibility is to transform the data to a new variable to try and obtain a normal or near normal distribution. Methods to transform non-normally distributed data include logarithmic transformation of each data point, or using the square root or the square or the inverse (i.e. 1/x) etc.
 
 ### Worked Example
+
 We have data from 132 patients who had a hospital stay following admission to ICU available on Moodle (`mod09_infection.dta` and `mod09_infection.rds`). The distribution of the length of stay for these patients is shown in the density plot in @fig-mod09-los. As is common with variables that record time, the data are skewed with many patients having relatively short stays and a few patients having very long hospital stays. Clearly, it would be inappropriate to use parametric statistical methods for these data.
 
 ```{r fig-mod09-los, echo=FALSE, out.width = "66%", fig.cap="Length of hospital stay for 132 patients"}
@@ -48,12 +49,12 @@ knitr::include_graphics(here::here("img", "mod09", "mod09-lnlos-dist.png"))
 
 The distribution now appears much more bell shaped. @tbl-los-desc shows the descriptive statistics for length of stay before and after logarithmic transformation. Before transformation, the SD is almost as large as the mean value which indicates that the data are skewed and that these statistics are not an accurate description of the centre and spread of the data.
 
-|                               | Length of stay | log(Length of stay + 1) |
-|-------------------------------|----------------|-------------------------|
-| Mean (Standard deviation)     | 38.1 (35.78)   | 3.41 (0.715)            |
-| Mean: 95% confidence interval | 31.9 to 44.2   | 3.29 to 3.53            |
-| Median [Interquartile range]  | 27 [21 to 42]  | 3.3 [3.1 to 3.8]        |
-| Range                         | 0 to 244       | 0 to 5.5                |
+|                                | Length of stay  | log(Length of stay + 1) |
+|--------------------------------|-----------------|-------------------------|
+| Mean (Standard deviation)      | 38.1 (35.78)    | 3.41 (0.715)            |
+| Mean: 95% confidence interval  | 31.9 to 44.2    | 3.29 to 3.53            |
+| Median \[Interquartile range\] | 27 \[21 to 42\] | 3.3 \[3.1 to 3.8\]      |
+| Range                          | 0 to 244        | 0 to 5.5                |
 
 : Summary statistics for untransformed and transformed length of stay {#tbl-los-desc}
 
@@ -67,23 +68,25 @@ If we were testing the hypothesis that there was a difference in length of stay 
 
 | Nosocomial infection  | n   | Mean (SE)    | 95% Confidence interval |
 |-----------------------|-----|--------------|:-----------------------:|
-| No                    | 106 | 3.33 (0.068) |       3.19 to 3.46      |
-| Yes                   | 26  | 3.73 (0.136) |       3.45 to 4.01      |
-| Difference (Yes - No) |     | 0.39 (0.153) |       0.09 to 0.70      |
+| No                    | 106 | 3.33 (0.068) |      3.19 to 3.46       |
+| Yes                   | 26  | 3.73 (0.136) |      3.45 to 4.01       |
+| Difference (Yes - No) |     | 0.39 (0.153) |      0.09 to 0.70       |
 
 : Summary statistics for transformed length of stay {#tbl-los-ttest}
 
-Here, a two-sample t-test gives a test statistic of 2.59 with 130 degrees of freedom, and a P-value of 0.01. 
+Here, a two-sample t-test gives a test statistic of 2.59 with 130 degrees of freedom, and a P-value of 0.01.
 
 As explained above, the estimated statistics would need to be converted back to the units in which the variable was measured. From @tbl-los-ttest, we can take the exponential of the corresponding log-transformed values:
 
-- the geometric mean of the infected group is approximately 41.5 days with a 95% confidence interval from 31.4 to 55.0 days.
-- the geometric mean of the uninfected group is approximately 27.9 days with a 95% confidence interval from 24.4 to 31.9 days.
+-   the geometric mean of the infected group is approximately 41.5 days with a 95% confidence interval from 31.4 to 55.0 days.
+-   the geometric mean of the uninfected group is approximately 27.9 days with a 95% confidence interval from 24.4 to 31.9 days.
 
 ## Non-parametric significance tests
+
 It is often not possible or sensible to transform a non-normal distribution, for example if there are too many zero values or when we simply want to compare groups using the unit in which the measurement was taken (e.g. length of stay). For this, non-parametric significance tests can be used but the general idea behind these tests is that the data values are replaced by ranks. This also protects against outliers having too much influence.
 
 ### Ranking variables
+
 @tbl-9-1 shows how ranks are calculated for the first 21 patients in the length-of-stay data. First the data are sorted in order of their magnitude (from the lowest value to the highest) ignoring the group variable. Each data point is then assigned a rank. Data points that are equal are assigned the mean of their ranks. Thus, the two lengths of stay of 11 days share the ranks 4 and 5, and have a mean rank of 4.5. Similarly, there are 5 people with a length of stay of 14 days and these share the ranks 9 to 13, the mean of which is 11. Once ranks are computed they are assigned to each of the two groups and summed within each group.
 
 ```{r tbl-9-1, echo=FALSE}
@@ -121,7 +124,7 @@ By assigning ranks to individuals, we lose information about their actual values
 
 ## Non-parametric test for two independent samples (Wilcoxon ranked sum test)
 
-The non-parametric equivalent to an independent samples t-test (Module 5) is the Wilcoxon ranked sum test, also known as the Mann-Whitney U test. This can be obtained using the `Mann-Whitney U` option in jamovi, and the `wilcox.test` in R. 
+The non-parametric equivalent to an independent samples t-test (Module 5) is the Wilcoxon ranked sum test, also known as the Mann-Whitney U test. This can be obtained using the `Mann-Whitney U` option in jamovi, and the `wilcox.test` in R.
 
 The assumption for this test is that the distributions of the two populations have the same general shape. If this assumption is met, then this test evaluates the null hypothesis that the medians of the two populations are equal. This test does not assume that the populations are normally distributed, nor that their variances are equal.
 
@@ -190,23 +193,23 @@ We will illustrate estimating rank correlation using the data `mod08_lung_functi
 The Spearman rank correlation coefficient is estimated as 0.75, demonstrating a positive association between height and FVC. The Kendall rank correlation coefficient is estimated as 0.56, again demonstrating a positive association between height and FVC.
 
 ## Summary
+
 In this module, we have presented methods to conduct a hypothesis test with data that are not normally distributed. Non-parametric methods do not assume any distribution for the data and use significance tests based on ranks or sign (or both). A non-parametric test is always less powerful than its equivalent parametric test if the data are normally distributed and so whenever possible parametric significance tests should be used. In some cases when data are not normally distributed with a reasonably large sample size, the data can be transformed (most commonly by log transformation) to make the distribution normal. A parametric significance test should then be used with the transformed data to test the hypothesis.
 
+{{< pagebreak >}}
 
-<!-- {{< pagebreak >}} -->
+# jamovi notes {-}
 
-<!-- # Stata notes {-} -->
+{{< include 09.1-non-parametrics-jamovi.qmd >}}
 
-<!-- {{< include 09.1-non-parametrics-stata.qmd >}} -->
+{{< pagebreak >}}
 
-<!-- {{< pagebreak >}} -->
+# R notes {-}
 
-<!-- # R notes {-} -->
+{{< include 09.2-non-parametrics-R.qmd >}}
 
-<!-- {{< include 09.2-non-parametrics-R.qmd >}} -->
+{{< pagebreak >}}
 
-<!-- {{< pagebreak >}} -->
+# Activities {-}
 
-<!-- # Activities {-} -->
-
-<!-- {{< include 09.3-non-parametrics-activities.qmd >}} -->
+{{< include 09.3-non-parametrics-activities.qmd >}}

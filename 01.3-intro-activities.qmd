@@ -1,0 +1,55 @@
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(flextable)
+```
+
+### Activity 1.1 {-}
+
+25 participants were enrolled in a 3-week weight loss program. The following data present the weight loss (in grams) of the participants.
+
+```{r act-1-1, echo=FALSE}
+#| tbl-cap: Weight loss (g) for 25 participants
+
+tab1_1 <- tibble::tribble(
+    ~v1, ~v2, ~v3, ~v4, ~v5,
+    255L, 198L, 283L, 312L, 283L,
+    57L, 85L, 312L, 142L, 113L,
+    227L, 283L, 255L, 340L, 142L,
+    113L, 312L, 227L, 85L, 170L,
+    255L, 198L, 113L, 227L, 255L
+)
+
+flextable(tab1_1) |>
+    delete_part(part = "header") |>
+    theme_booktabs()
+```
+
+a) These data have been saved as `Activity_S1.1.rds`. Read the data into your software package.
+b) What type of data are these?
+c) Construct an appropriate graph to display the distribution of participants' weight loss. Provide appropriate labels for the axes and give the graph an appropriate title.
+
+### Activity 1.2 {-}
+Which of the following statements are true? The more dispersed, or spread out, a set of observations are:
+
+a) The smaller the mean value
+b) The larger the standard deviation
+c) The smaller the variance
+
+
+### Activity 1.3 {-}
+Estimate the mean, median, standard deviation, range and interquartile range for the data  `Activity_S1.3.rds`, available on Moodle.
+
+### Activity 1.4 {-}
+Data of diastolic blood pressure (BP) of a sample of study participants are provided in the datasets `Activity_S1.4.rds`. Compute the mean, median, range and SD of diastolic BP.
+
+### Activity 1.5 {-}
+The ages of 100 study participants have been saved as `Activity_S1.5.dta` and `Activity_S1.5.rds`. Estimate the:
+
+a. mean and median;
+b. standard deviation and interquartile range;
+c. range.
+
+Plot the data using a histogram and boxpolot. Is there anything unusual about the ages? What do you think is a possible explanation for this?
+
+A clean version of the data have been saved as Activity_S1.5_clean.dta` and `Activity_S1.5_clean.rds`. Recalculate the summary statistics and recreate the plots using the clean data.
+
+Based on this exercise, what is your advice on coding unusual or missing values in data?

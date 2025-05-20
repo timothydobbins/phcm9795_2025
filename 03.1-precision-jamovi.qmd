@@ -1,0 +1,52 @@
+## Computing probabilities from a Normal distribution {#sec-normal-r}
+
+jamovi does not have a point-and-click method for computing probabilities from a Normal distribution. Here, instructions are provided for using a third-party applet. This Normal Distribution Applet has been posted at https://homepage.stat.uiowa.edu/~mbognar/applets/normal.html, and provides a simple and intuitive way to compute probabilities from a Normal distribution. The applet requires three pieces of information:
+
+- $\mu$: the mean of the Normal distribution being considered
+- $\sigma$: the standard deviation of the Normal distribution being considered
+- $x$: the value being considered
+
+We also need to consider whether we are interested in the probability being greater than x, or less than x.
+
+For example, to obtain the probability of obtaining 0.5 or greater from a standard normal (i.e. $/mu$=0, $/sigma$=1) distribution:
+
+![](img/mod03/jamovi/mod03-norm01.png)
+
+The Normal curve of interest is shaded, and the probability is provided as 0.30854.
+
+To calculate the worked example: Assume that the mean diastolic blood pressure for men is 77.9 mmHg, with a standard deviation of 11. What is the probability that a man selected at random will have high blood pressure (i.e. diastolic blood pressure greater than or equal to 90)?
+
+![](img/mod03/jamovi/mod03-norm02.png)
+
+## Calculating a 95% confidence interval of a mean: Individual data {#sec-cimean-jamovi-ind}
+
+To demonstrate the computation of the 95% confidence interval of a mean, we can use the data from `mod03_blood_pressure.csv`. We can use **Exploration > Descriptives** to calculate the mean, its standard error and the 95% confidence interval for the mean. Choose **dbp** as the analysis variable, and select **Std. error of Mean** and **Confidence interval for Mean** in the **Statistics** section:
+
+![](img/mod03/jamovi/mod3-desc-ci1.png)
+
+The descriptives output appears:
+
+![](img/mod03/jamovi/mod3-desc-ci2.png)
+
+## Calculating a 95% confidence interval of a mean: Summarised data {#sec-cimean-jamovi-summ}
+
+For Worked Example 3.2 where we are given the sample mean, sample standard deviation and sample size, we need to install a new Jamovi module, called **esci**. To install a new module, click the large **+ Modules** button on the right-hand side of the Jamovi window, and then choose **jamovi library**:
+
+![](img/mod03/jamovi/mod3-inst-module1.png)
+
+To install a new module:
+
+1 - Ensure that the middle tab, **Available** is selected;
+2 - Type **esci** in the search bar. The **esci** module will appear;
+3 - Click **INSTALL** to install the module
+4 - Click the up-arrow to exit from the Install Module window
+
+![](img/mod03/jamovi/mod3-inst-module2.png)
+
+To calculate the 95% confidence interval, choose **esci > Means and Medians > Single Group**. Select the **Analyze summary data** tab, and enter the known information: here `128.4` as the **Mean**, `19.56` as the **Standard deviation** and `242` as the **Sample size**. Choose **Extra details** to obtain the Standard Error of the mean:
+
+![](img/mod03/jamovi/mod3-cii1.png)
+
+The 95% confidence interval is listed as the lower limit (LL) and the upper limit (UL):
+
+![](img/mod03/jamovi/mod3-cii2.png)

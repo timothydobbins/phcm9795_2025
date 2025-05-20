@@ -1,0 +1,16 @@
+## One sample t-test
+
+We will use data from `mod04_blood_pressure.csv` to demonstrate how a one-sample t-test is conducted in R. To test whether the mean diastolic blood pressure of the population from which the sample was drawn is equal to 71, we can use the t.test command:
+
+```{r}
+pima <- read.csv("data/examples/mod04_blood_pressure.csv")
+t.test(pima$dbp, mu=71)
+```
+
+The output provides:
+
+- a test statistic (t=3.07);
+- degrees of freedom for the test statistic (df = 732);
+- a P-value from the two-sided test (P=0.002);
+- the mean of the sample (72.4);
+- and the 95% confidence interval of the mean (71.5 to 73.3).

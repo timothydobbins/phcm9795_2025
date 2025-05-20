@@ -21,9 +21,9 @@ Guidelines for Reporting of Figures and Tables for Clinical Research in Urology,
 
 ## Introduction
 
-In Module 1, we looked at how to summarise continuous data numerically and graphically. In this module, we will introduce how to summarise categorical data numerically and graphically. We will also introduce the concept of probability which underpins the theoretical basis of statistics, and then introduce the concept of probability distributions. We will present the binomial distribution, which calculates the probability of observing a certain number of events from multiple observations.
+In Module 1, we saw how to summarise continuous data numerically and graphically. In this module, we will discuss summarising categorical data numerically and graphically. We will also introduce the concept of probability which underpins the theoretical basis of statistics, and then introduce the concept of probability distributions. We will present the binomial distribution, which calculates the probability of observing a certain number of events from multiple observations.
 
-### Summarising a single categorical variable numerically
+## Summarising a single categorical variable numerically
 
 Categorical data are best summarised using a frequency table, where each category is summarised by its frequency: the count of the number of individuals in each category. The **relative frequency** (the frequency expressed as a proportion or percentage of the total frequency) is usually included give further insight.
 
@@ -82,7 +82,7 @@ flextable(select(tab_stage_out, 1:4), , cwidth = c(1, 1, 1.5, 1.5)) |>
 
 From @tbl-1-stage, we can see that 65.0% of participants had Stage 3 disease or lower.
 
-### Summarising a single categorical variable graphically
+## Summarising a single categorical variable graphically
 
 A categorical variable is best summarised graphically using a **bar chart**. For example, we can present the distribution of Stage of Disease graphically using a bar graph (@fig-bar-1). Bar graphs, which are suitable for plotting discrete or categorical variables, are defined by the fact that the bars do not touch.
 
@@ -99,7 +99,7 @@ Pie charts can be an alternative way to summarise a categorical variable graphic
 
 Pie charts will not be discussed further in this course.
 
-### Summarising two categorical variables numerically
+## Summarising two categorical variables numerically
 
 So far, we have discussed one-way frequency tables, that is, tables that summarise one variable. We can summarise more than two categorical variables in a table – called a cross tabulation, or a two-way (summarising two variables) table.
 
@@ -143,12 +143,13 @@ as_flex_table(t_rwo) |>
   add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
-#### Tables containing more than two variables
+### Tables containing more than two variables
 
 It is possible to construct multi-way tables that summarise more than two categorical variables in a single table. However, tables can become complex when more than two variables are incorporated, and you may need to present the information as two tables or incorporate additional rows and columns.
 
-<!-- TKTK - Find a better example -->
 In @fig-1-2, characteristics of the sample of prisoners from the NPHDC were presented. This table contains information about sex, age group and Indigenous status from different groups of prisoners; prison entrants, discharges, and prisoners in custody. This type of condensed information is often found in reports and journal articles giving demographic information, by different groups considered in the study.
+
+![](img/mod01/prisoner-health.png){#fig-1-2}
 
 We might also consider a table containing further pieces of information. The table presented in @fig-prison-education (from the health of Australia’s prisoners 2015 report) compares prison entrants and the general community by three variables: age group, Indigenous status, and highest level of completed education.
 
@@ -166,7 +167,7 @@ Some issues in this table:
 -   It is unclear how the percentages were calculated (which groupings added to 100%);
 -   The ages are not labelled as such, thus without reading the text in report it is unclear that these are age groupings.
 
-### Summarising two categorical variables graphically
+## Summarising two categorical variables graphically
 
 Information from more than one variable can be presented as clustered or multiple bar chart (bars side-by-side) (@fig-bar-2). This type of graph is useful when examining changes in the categories separately, but also comparing the grouping variable between the main bar variable. Here we can see that Stage 3 and Stage 4 disease is the most common for both males and females, but there are many more females within each stage of disease.
 
@@ -518,14 +519,6 @@ where $n! = n \times (n-1) \times (n-2) \times \dots \times 2 \times 1$.
 
 **Note that this formula is almost never calculated by hand.** Instructions for calculating binomial probabilities are given in the jamovi and R notes at the end of this Module.
 
-### Mean and variance of a binomial variable
-
-The properties of the binomial distribution are useful in the statistical modelling of prevalence data. If *X* has a binomial distribution, then the mean of *X* is:
-
-$$ E(X) = n \times p$$ and the variance is:
-
-$$ var(X) = n \times p \times (1-p) $$ where *n* = the number of trials, and *p* = the probability of the event occurring (or success).
-
 #### Worked example {.unnumbered}
 
 A population-based survey conducted by the AIHW (2008) of a random sample of the Australian population estimated that in 2007, 19.8% of the Australian population were current smokers.
@@ -538,7 +531,7 @@ c)  What is the probability that at most, 2 will be smokers?
 
 a)  Calculating this single binomial probability is best done using software.
 
-Here, we used the `dbinom` function with x=3, size=6, and prob=0.198. This gives an answer of 0.08 (see @sec-binom-r for details).
+We can use the [applet](https://homepage.stat.uiowa.edu/~mbognar/applets/bin.html) to calculate this, or use the `dbinom` function in R with x=3, size=6, and prob=0.198. This gives an answer of 0.08.
 
 b)  In common language, getting “at least 4” smokers means getting 4, 5 or 6 smokers. Since these are mutually exclusive events, we can apply the additive law to find the probability of getting at least 4 smokers:
 
@@ -550,7 +543,7 @@ $$ P(X \ge 4) = P(X=4) + P(X=5) + P(X=6) $$ Using the same binomial probability 
 
 Answer: $P(X \ge 4) = 0.0148 + 0.00146 + 0.0000603 = 0.016$
 
-We can use the `pbinom` function with the `lower.tail=FALSE` option (@sec-binom-r).
+We can use the [applet](https://homepage.stat.uiowa.edu/~mbognar/applets/bin.html) to calculate this, or in R we can use the `pbinom` function with the `lower.tail=FALSE` option.
 
 c)  Observing at most two means observing 0, 1 or 2 smokers. Therefore, the probability of observing at most 2 smokers is:
 
@@ -561,22 +554,22 @@ c)  Observing at most two means observing 0, 1 or 2 smokers. Therefore, the prob
 
 Answer: P(X $\le$ 2) = 0.266+0.394+0.243=0.903
 
-Here we canuse the `pbinom` function.
+Again, we can use the [applet](https://homepage.stat.uiowa.edu/~mbognar/applets/bin.html) to calculate this, or use the `pbinom` function in R.
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Stata notes {.unnumbered} -->
+# jamovi notes {.unnumbered}
 
-<!-- {{< include 02.1-probability-stata.qmd >}} -->
+{{< include 02.1-probability-jamovi.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # R notes {.unnumbered} -->
+# R notes {.unnumbered}
 
-<!-- {{< include 02.2-probability-R.qmd >}} -->
+{{< include 02.2-probability-R.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Activities {.unnumbered} -->
+# Activities {.unnumbered}
 
-<!-- {{< include 02.3-probability-activities.qmd >}} -->
+{{< include 02.3-probability-activities.qmd >}}

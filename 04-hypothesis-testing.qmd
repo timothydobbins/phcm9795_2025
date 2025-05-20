@@ -267,21 +267,21 @@ In the following modules in this course, several formal statistical tests will b
 
 Selecting the correct test to use in each situation depends on the study design and the nature of the variables collected. Figure 1 in the Appendix shows a decision tree which enables you to decide the type of test to select based on the nature of the data.
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Jamovi notes {-} -->
+# Jamovi notes {-}
 
-<!-- {{< include 04.1-hypothesis-testing-jamovi.qmd >}} -->
+{{< include 04.1-hypothesis-testing-jamovi.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # R notes {-} -->
+# R notes {-}
 
-<!-- {{< include 04.2-hypothesis-testing-R.qmd >}} -->
+{{< include 04.2-hypothesis-testing-R.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Activities {-} -->
+# Activities {-}
 
-<!-- {{< include 04.3-hypothesis-testing-activities.qmd >}} -->
+{{< include 04.3-hypothesis-testing-activities.qmd >}}
 

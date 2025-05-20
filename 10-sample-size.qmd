@@ -68,7 +68,10 @@ tab10_1 <- tibble::tribble(
 
 flextable(select(tab10_1, -P)) |> 
   add_header_row(values="Required confidence interval width", colwidths = 11, top=TRUE) |> 
-  align(i=1, j=NULL, align="center", part="header")
+  align(i=1, j=NULL, align="center", part="header") |> 
+  font(fontname="Roboto Condensed", part="all") |> 
+  fontsize(size=10, part="all") |> 
+  autofit()
 
 ```
 

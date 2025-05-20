@@ -293,20 +293,20 @@ We can use jamovi or R to estimate the odds ratio and its 95% confidence interva
 The interpretation of the confidence intervals for both the relative risk and the odds ratio is the same as for the confidence intervals around other summary measures in that it shows the region in which we are 95% confident that the true population estimate lies.
 
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Stata notes {-} -->
+# jamovi notes {-}
 
-<!-- {{< include 06.1-proportions-stata.qmd >}} -->
+{{< include 06.1-proportions-jamovi.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # R notes {-} -->
+# R notes {-}
 
-<!-- {{< include 06.2-proportions-R.qmd >}} -->
+{{< include 06.2-proportions-R.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Activities {-} -->
+# Activities {-}
 
-<!-- {{< include 06.3-proportions-activities.qmd >}} -->
+{{< include 06.3-proportions-activities.qmd >}}
