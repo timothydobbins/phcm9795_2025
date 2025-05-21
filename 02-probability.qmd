@@ -99,6 +99,10 @@ Pie charts can be an alternative way to summarise a categorical variable graphic
 
 Pie charts will not be discussed further in this course.
 
+## Exploratory data analysis for categorical data {#sec-eda-cat}
+
+As with continuous data, it is good practice to undertake exploratory data analysis before formally analysing categorical data. You should take a moment and examine a frequency table for categorical variables, to ensure all recorded values are within scope.
+
 ## Summarising two categorical variables numerically
 
 So far, we have discussed one-way frequency tables, that is, tables that summarise one variable. We can summarise more than two categorical variables in a table – called a cross tabulation, or a two-way (summarising two variables) table.

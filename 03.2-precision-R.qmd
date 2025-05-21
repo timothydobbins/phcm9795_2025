@@ -1,3 +1,148 @@
+## Importing Excel data into R
+
+Another common type of file that data are stored in is a Microsoft Excel file (.xls or .xlsx). In this demonstration, we will import a selection of records from a large health survey, stored in the file `mod02_health_survey.xlsx`.
+
+The health survey data contains 1140 records, comprising:
+
+-   sex: 1 = respondent identifies as male; 2 = respondent identifies as female
+-   height: height in meters
+-   weight: weight in kilograms
+
+To import data from Microsoft Excel, we can use the `read_excel()` function in the `readxl` package.
+
+```{r}
+library(readxl)
+
+survey <- read_excel("data/examples/mod02_health_survey.xlsx")
+summary(survey)
+```
+
+We can see that sex has been entered as a numeric variable. We should transform it into a factor so that we can assign labels to each category:
+
+```{r}
+survey$sex <- factor(survey$sex, level=c(1,2), labels=c("Male", "Female"))
+
+summary(survey$sex)
+```
+
+We also note that height looks like it has been entered as meters, and weight as kilograms.
+
+## Generating new variables
+
+Our health survey data contains information on height and weight. We often summarise body size using BMI: body mass index which is calculated as: $\frac{\text{weight (kg)}}{(\text{height (m)})^2}$
+
+We can create a new column in our data frame in many ways, such as using the following approach:
+
+`dataframe$new_column <- <formula>`
+
+For example:
+
+```{r}
+survey$bmi <- survey$weight / (survey$height^2)
+```
+
+We should check the construction of the new variable by examining some records. The `head()` and `tail()` functions list the first and last 6 records in any dataset.
+
+```{r}
+head(survey)
+tail(survey)
+```
+
+We should also check the construction of any new variable buy examining a density plot and/or a boxplot:
+
+```{}
+descriptives(data=survey, vars=bmi, dens=TRUE, box=TRUE)
+```
+
+::: {layout-ncol=2}
+![](img/mod03/jamovi/mod03-newvar-dens.png)
+
+![](img/mod03/jamovi/mod03-newvar-boxp.png)
+
+:::
+
+
+In the general population, BMI ranges between about 15 to 30. It appears that BMI has been correctly generated in this example. We should investigate the very low and some of the very high values of BMI, but this will be left for another time.
+
+
+## Summarising data by another variable
+
+We will often want to calculate the same summary statistics by another variable. For example, we might want to calculate summary statistics for BMI for males and females separately. We can do this in in the `descriptives` function by defining sex as a `splitBy` variable:
+
+```{r}
+library(jmv)
+descriptives(data=survey, vars=bmi, splitBy = sex, dens=TRUE, box=TRUE)
+```
+
+## Summarising a single column of data
+
+In Module 1, we started with a very simple analysis: reading in six ages, and them using `summary()` to calculate descriptive statistics. We then went on to use the `decriptives()` function in the `jmv` package as more flexible way of calculating descriptive statistics. Let's revisit this analysis:
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+detach(package:jmv, unload=TRUE)
+```
+
+
+```{r, error=TRUE}
+# Author: Timothy Dobbins
+# Date: 5 April 2022
+# Purpose: My first R script
+library(jmv)
+
+age <- c(20, 25, 23, 29, 21, 27)
+
+# Use "summary" to obtain descriptive statistics
+summary(age)
+
+# Use the "descriptives" function from jmv to obtain descriptive statistics
+descriptives(age)
+```
+
+The `summary()` function has worked correctly, but the `descriptives()` function has given an error: `Error: Argument 'data' must be a data frame`. What on earth is going on here?
+
+The error gives us a clue here - the `descriptives()` function requires a data frame for analysis. We have provided the object `age`: a **vector**. As we saw in @sec-data-structures, a vector is a single column of data, while a data frame is a collection of columns.
+
+In order to summarise a vector using the `descriptives()` function, we must first convert the vector into a data frame using `as.data.frame()`. For example:
+
+```{r}
+# Author: Timothy Dobbins
+# Date: 5 April 2024
+# Purpose: My first R script
+library(jmv)
+
+age <- c(20, 25, 23, 29, 21, 27)
+
+# Use "summary" to obtain descriptive statistics
+summary(age)
+
+# Create a new data frame from the vector age:
+
+age_df <- as.data.frame(age)
+
+# Use "descriptives" to obtain descriptive statistics for age_df
+descriptives(age_df)
+```
+
+## Computing probabilities from a Normal distribution {#sec-normal-r}
+
+We can use the `pnorm` function to calculate probabilities from a Normal distribution:
+
+-   `pnorm(q, mean, sd)` calculates the probability of observing a value of `q` or less, from a Normal distribution with a mean of `mean` and a standard deviation of `sd`. Note that if `mean` and `sd` are not entered, they are assumed to be 0 and 1 respectively (i.e. a standard normal distribution.)
+-   `pnorm(q, mean, sd, lower.tail=FALSE)` calculates the probability of observing a value of more than `q`, from a Normal distribution with a mean of `mean` and a standard deviation of `sd`.
+
+To obtain the probability of obtaining 0.5 or greater from a standard normal distribution:
+
+```{r}
+pnorm(0.5, lower.tail = FALSE)
+```
+
+To calculate the worked example: Assume that the mean diastolic blood pressure for men is 77.9 mmHg, with a standard deviation of 11. What is the probability that a man selected at random will have high blood pressure (i.e. diastolic blood pressure greater than or equal to 90)?
+
+```{r}
+pnorm(90, mean = 77.9, sd = 11, lower.tail = FALSE)
+```
+
+
 ## Calculating a 95% confidence interval of a mean: individual data {#sec-cimean-r-ind}
 
 To demonstrate the computation of the 95% confidence interval of a mean, we can use the data from `mod03_blood_pressure.csv`:

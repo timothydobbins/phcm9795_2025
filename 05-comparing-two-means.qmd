@@ -81,15 +81,19 @@ library(gtsummary)
 
 ex5_1 <- readRDS("data/examples/mod05_birthweight.rds")
 
-tbl_summary(ex5_1, by=gender,
-            type = all_continuous() ~ "continuous2",
-            statistic = all_continuous() ~ c("{N_nonmiss}",
-                                             "{mean} ({sd})",
-                                     "{median} ({p25}, {p75})", 
-                                     "{min} to {max}")) |>
-  modify_header(all_stat_cols() ~ "**{level}**") |>
-  add_stat_label(label = birthweight ~ c("Number", "Mean (SD)", "Median (Q1, Q3)", "Range")) |> 
-  as_flex_table()
+tbl_summary(ex5_1,
+    by = gender,
+    type = all_continuous() ~ "continuous2",
+    statistic = all_continuous() ~ c(
+        "{N_nonmiss}",
+        "{mean} ({sd})",
+        "{median} ({p25}, {p75})",
+        "{min} to {max}"
+    )
+) |>
+    modify_header(all_stat_cols() ~ "**{level}**") |>
+    add_stat_label(label = birthweight ~ c("Number", "Mean (SD)", "Median (Q1, Q3)", "Range")) |>
+    as_flex_table()
 
 ```
 
@@ -114,13 +118,13 @@ Statistical software will calculate both the t and P values. If the t-value is l
 #| tbl-cap: Birthweight (kg) by sex
 
 df <- tibble::tribble(
-                ~Sex,  ~n,   ~`Mean (SE)`, ~`95% Confidence Interval`,
-            "Female",  56, "3.59 (0.049)",             "3.49 to 3.68",
-              "Male",  44, "3.42 (0.053)",             "3.31 to 3.53",
-        "Difference",  NA, "0.17 (0.072)",             "0.02 to 0.31"
-        )
+    ~Sex, ~n, ~`Mean (SE)`, ~`95% Confidence Interval`,
+    "Female", 56, "3.59 (0.049)", "3.49 to 3.68",
+    "Male", 44, "3.42 (0.053)", "3.31 to 3.53",
+    "Difference", NA, "0.17 (0.072)", "0.02 to 0.31"
+)
 
-flextable(df, cwidth=c(1, 0.5, 1.5, 1.5))
+flextable(df, cwidth = c(1, 0.5, 1.5, 1.5))
 ```
 
 Here we see that girls are heavier than boys, and the mean difference in weights between the genders is 0.17 kg (95% CI 0.02, 0.31). We are 95% confident that the true mean difference of weight between girls and boys lies between 0.02 and 0.31 kg. Note that this interval does not contain the null value of 0.
@@ -175,13 +179,13 @@ The paired t-test can be performed using statistical software, with a summary of
 #| tbl-cap: "Systolic blood pressure (mmHg) measured at two sites on the ankle"
 
 df <- tibble::tribble(
-                       ~Site,   ~n,   ~`Mean (SE)`, ~`95% Confidence Interval`,
-            "Dorsalis pedis", 107L, "116.7 (3.46)",         "(109.9 to 123.6)",
-        "Tibialis posterior", 107L, "118.0 (3.43)",         "(111.2 to 124.8)",
-                "Difference", 107L,  "-1.3 (1.31)",            "(-3.9 to 1.3)"
-        )
+    ~Site, ~n, ~`Mean (SE)`, ~`95% Confidence Interval`,
+    "Dorsalis pedis", 107L, "116.7 (3.46)", "(109.9 to 123.6)",
+    "Tibialis posterior", 107L, "118.0 (3.43)", "(111.2 to 124.8)",
+    "Difference", 107L, "-1.3 (1.31)", "(-3.9 to 1.3)"
+)
 
-flextable(df, cwidth=c(1.5, 0.5, 1, 1.5))
+flextable(df, cwidth = c(1.5, 0.5, 1, 1.5))
 ```
 
 The t-value is calculated as −0.96 with 106 degrees of freedom, providing a two-sided P-value of 0.34. Thus these data provide no evidence of a difference in systolic blood pressure between the two sites.

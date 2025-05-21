@@ -1,7 +1,6 @@
 ## To do
 
--   Label subheadings consistently between HTML and PDF (e.g. 3 levels deep, like 1.1.1)
--   Remove all references to Acock
+-   [ ] Label subheadings consistently between HTML and PDF (e.g. 3 levels deep, like 1.1.1)
 
 | Module | Revise main notes | Write jamovi notes | Review R notes | Revise activities | Revise solutions | Review entire module |
 |-----------|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
@@ -15,13 +14,3 @@
 | 8 | Done | Done | Done | Done |  | ready |
 | 9 | Done | Done | Done | Done |  | ready |
 | 10 | !!! | !!! | !!! | !!! |  |  |
-
-```         
-####################
-# Where to put checking for outliers and deleting a record???
-# Was in Module 5, move earlier
-#
-# Still need to add recoding
-# Clustered and stacked barcharts
-####################
-```

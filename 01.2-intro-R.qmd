@@ -599,3 +599,72 @@ Unfortunately, by default, R is not ideal for creating publication quality table
 Complete Table 1 for continuous variables using the output generated in this exercise. You should decide on whether to present continuous variables by their means or medians, and present the most appropriate measure of spread. Include footnotes to indicate if any variables contain missing observations.
 
 :::
+
+## Setting a value to missing
+
+As we saw in @sec-eda-cts, it is important to explore our data to identify any unusual observations. If an error is found, the best method for correcting the error is to go back to the original data e.g. the hard copy questionnaire, to obtain the original value, entering the correct value into R. If the original data is not available or the original data is also incorrect, the erroneous value is often excluded from the dataset.
+
+Consider a sample dataset: `mod01_weight_1000.rds`, which contains the weights of 1000 people. A density plot and a boxplot should be examined before we start analysing these data:
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+sample <- readRDS("data/examples/mod01_weight_1000.rds")
+
+par(mfrow=c(1,2))
+plot(density(sample$weight), xlab="Weight (kg)", main="Density plot of 1000 weights")
+boxplot(sample$weight, xlab="Weight (kg)", main="Boxplot of 1000 weights")
+par(mfrow=c(1,1))
+```
+
+There is a clear outlying point shown in the boxplot. Although not obvious, the same point is shown in the density plot as a small blip around 700kg. Obviously this point is unusual, and we should investigate.
+
+We can view any outlying observations in the dataset using the `subset` function. You will need to decide if these values are a data entry error or are biologically plausible. If an extreme value or "outlier", is biologically plausible, it should be included in all analyses.
+
+For example, to list any observations from the `sample` dataset with a weight larger than 200:
+
+```{r}
+subset(sample, weight>200)
+```
+
+We see that there is a very high value of 700.2kg. A value as high as 700kg is likely to be a data entry error (e.g. error in entering an extra zero) and is not a plausible weight value. Here, **you should check your original data**.
+
+If you do not have access to the original data, it would be safest to set this value as missing. You do change this in R by using an `ifelse` statement to recode the incorrect weight of 700.2kg into a missing value. **A missing value in R is represented by NA**.
+
+The form of the `ifelse` statement is as follows: `ifelse(test, value_if_true, value_if_false)`
+
+We will write code to:
+
+- create a new column (called `weight_clean`) in the `sample` dataframe (i.e. `sample$weight_clean`)
+- test whether `weight` is equal to 700.2
+  - if this is true, we will assign `weight_clean` to be NA
+  - otherwise `weight_clean` will equal the value of `weight`
+
+Putting it all together:
+
+```{r}
+sample$weight_clean = ifelse(sample$weight==700.2, NA, sample$weight)
+```
+
+**Note:** if an extreme value lies within the range of biological possibility it should not be set to missing.
+
+The same syntax could be used to replace the incorrect value with the correct value. For example, if you do source the original medical records, you might find that the original weight was recorded in medical records as 70.2kg. We could use the same syntax to replace 700.2 by 70.2: `sample$weight_clean = ifelse(sample$weight==700.2, NA, sample$weight)`
+
+Once you have checked your data for errors, you are ready to start analysing your data.
+
+### What on earth: == ?
+
+In R, the test of equality is denoted by two equal signs: `==`. So we would use `==` to test whether an observation is equal to a certain value. Let's see an example:
+
+```{r}
+# Test whether 6 is equal to 6
+6 == 6
+
+# Test whether 6 is equal to 42
+6 == 42
+```
+
+You can read the `==` as "is equal to". So the code `sample$weight == 700.2` is read as: "is the value of weight from the data frame sample equal to 700.2?". In our `ifelse` statement above, if this condition is true, we replace `weight` by 70.2; if it is false, we leave weight as is.
+

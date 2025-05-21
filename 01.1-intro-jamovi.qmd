@@ -228,3 +228,38 @@ An easy way to share output between your colleagues is to copy the output into a
 Complete Table 1 for continuous variables using the output generated in this exercise. You should decide on whether to present continuous variables by their means or medians, and present the most appropriate measure of spread. Include footnotes to indicate if any variables contain missing observations.
 
 :::
+
+## Setting a value to missing
+
+As we saw in @sec-eda-cts, it is important to explore our data to identify any unusual observations. If an error is found, the best method for correcting the error is to go back to the original data e.g. the hard copy questionnaire, to obtain the original value, entering the correct value into jamovi. If the original data is not available or the original data is also incorrect, the erroneous value is often excluded from the dataset.
+
+Consider a sample dataset: `mod01_weight_1000.rds`, which contains the weights of 1000 people. A density plot and a boxplot should be examined before we start analysing these data:
+
+::: {layout-ncol=2}
+![](img/mod01/jamovi/densplot-weight.png)
+
+![](img/mod01/jamovi/boxplot-weight.png)
+:::
+
+There is a clear outlying point shown in the boxplot. Although not obvious, the same point is shown in the density plot as a small blip around 700kg. Obviously this point is unusual, and we should investigate. You will need to decide if any usual values are a data entry error or are biologically plausible. If an extreme value or "outlier", is biologically plausible, it should be included in all analyses.
+
+
+Notice the boxed number in the boxplot: this is the record number in jamovi's spreadsheet. Click **Data** to view the spreadsheet, and scroll to record number 58:
+
+![](img/mod01/jamovi/outlier.png){width="40%}
+
+We see that there is a very high value of 700.2kg. A value as high as 700kg is likely to be a data entry error (e.g. error in entering an extra zero) and is not a plausible weight value. Here, **you should check your original data**.
+
+If you do not have access to the original data, it would be safest to set this value as missing. You do change this in jamovi by clicking the datapoint and pressing **Delete** or **Backspace**. This has set this weight to missing.
+
+**Note:** if an extreme value lies within the range of biological possibility it should not be set to missing.
+
+The same process could be used to replace the incorrect value with the correct value. For example, if you do source the original medical records, you might find that the original weight was recorded in medical records as 70.2kg. We could use the same process to replace 700.2 by 70.2 by entering the correct value in the cell.
+
+Once you have checked your data for errors, you are ready to start analysing your data.
+
+::: {.callout-important}
+## Important
+
+Whenever you start changing data in jamovi, you should **always keep an original, unedited copy of your data.** You can do this using **Save As** to save your edited work, leaving the original data unchanged.
+:::

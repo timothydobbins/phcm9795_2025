@@ -101,7 +101,10 @@ It may be useful to examine a boxplot of a variable in conjunction with a densit
 
 We can construct a density plot for `age` in the `pbc` data introduced in Module 1. We can see that the density plot is approximately approximately bell-shaped and roughly symmetrical. The mean (50.7 years) and median (51 years) are similar, as would be expected for a Normal distribution. Thus, it would be reasonable to assume that age is Normally distributed in this set of data.
 
-```{r fig-age-pbc, echo=FALSE, out.width = "50%", fig.cap="Density plot of participant age from PBC study data"}
+```{r fig-age-pbc, echo=FALSE, fig.cap="Density plot of participant age from PBC study data", out.width="50%"}
+#| message: false
+#| warning: false
+
 library(dplyr)
 library(jmv)
 library(flextable)
@@ -132,8 +135,6 @@ desc$plots
 ```
 
 In the plot of @fig-bili-pbc, there is a tail of values to the right, so we would conclude that the distribution is skewed to the right. The mean (3.2 mg/dL) is much larger than the median (1.4 mg/dL), as expected from a skewed distribution.
-
-When inspecting distribution plots, you may detect some points as being unusual, or outliers. Outliers can be problematic and the decision to include them or omit them from further analyses can be difficult. After detecting any outliers or extreme values, you should not automatically exclude them from the analysis, particularly if the sample was selected randomly from a population. First, it is important to check the original data collection form or questionnaire to rule out the possibility of a data entry error. If the outlier is not a data entry error, it is then important to decide whether the observation is biologically plausible and, if it is, it should be included in the analysis.
 
 ## Parametric and non-parametric statistical methods
 

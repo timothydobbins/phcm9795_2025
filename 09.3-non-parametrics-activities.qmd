@@ -28,7 +28,7 @@ tab9_1 <- tibble::tribble(
   )
 
 flextable(tab9_1) |>
-  align(align="centre", part="all")
+  align(align="center", part="all")
 ```
 
 a) Examine the distribution of the data using a box-plot and histogram, and obtain descriptive statistics. How would you describe the distribution of ascorbic acid?
