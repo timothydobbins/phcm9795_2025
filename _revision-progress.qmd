@@ -1,6 +1,8 @@
 ## To do
 
 -   [ ] Label subheadings consistently between HTML and PDF (e.g. 3 levels deep, like 1.1.1)
+-   [ ] Title page for PDF
+-   [ ] Add references around data sovereignty
 
 | Module | Revise main notes | Write jamovi notes | Review R notes | Revise activities | Revise solutions | Review entire module |
 |-----------|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
