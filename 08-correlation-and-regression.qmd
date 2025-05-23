@@ -86,7 +86,7 @@ There are two types of correlation coefficients-- the correct one to use is dete
 df <- tibble::tribble(
     ~`Correlation coefficient`, ~Application,
     "Pearson’s correlation coefficient: $r$", "Both variables are continuous and a bivariate normal distribution can be assumed",
-    "Spearman’s rank correlation: $rho$", "Bivariate normality cannot be assumed. Also useful when at least one of the variables is ordinal"
+    "Spearman’s rank correlation: $\\rho$", "Bivariate normality cannot be assumed. Also useful when at least one of the variables is ordinal"
 )
 
 flextable(df, cwidth = c(2, 4)) |> 

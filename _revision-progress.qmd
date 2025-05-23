@@ -5,7 +5,7 @@
 -   [ ] Add references around data sovereignty
 
 | Module | Revise main notes | Write jamovi notes | Review R notes | Revise activities | Revise solutions | Review entire module |
-|-----------|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+|----|:--:|:--:|:--:|:--:|:--:|:--:|
 | 1 | Done | Done | Done | Done |  | ready |
 | 2 | Done |  |  |  |  |  |
 | 3 | Done | Done | Done | Done |  | ready |

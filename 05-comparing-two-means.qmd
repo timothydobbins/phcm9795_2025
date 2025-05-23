@@ -111,7 +111,7 @@ Looking at the formula for the t-statistic, we can see that the $t$ is an estima
 
 Statistical software will calculate both the t and P values. If the t-value is large, the P value will be small, providing evidence against the null hypothesis of no difference between the groups.
 
-@tbl-ind-t summarises the results of an independent samples t-test using `mod05_birthweight.dta` or `mod05_birthweight.rds`. The process of conducting the t-test is summarised for jamovi and R in the following sections.
+@tbl-ind-t summarises the results of an independent samples t-test using `mod05_birthweight.rds`. The process of conducting the t-test is summarised for jamovi and R in the following sections.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-ind-t
@@ -166,7 +166,7 @@ Because the standard error becomes smaller as the sample size becomes larger, th
 
 A total of 107 people were recruited into a study to assess whether ankle blood pressure measured in two different sites would be the same. For each person, systolic blood pressure (SBP) was measured in two sites: dorsalis pedis and tibialis posterior.
 
-The dataset mod05_ankle_bp.xls is available on Moodle. First, we need to compute the pairwise difference between SBP measured in the two sites. The distribution of the difference between SBP measured in dorsalis pedis and tibialis posterior is shown in @fig-mod05-sbpdiff. The differences approximate a normal distribution and therefore a paired t-test can be used.
+The dataset `mod05_ankle_bp.xlsx` is available on Moodle. First, we need to compute the pairwise difference between SBP measured in the two sites. The distribution of the difference between SBP measured in dorsalis pedis and tibialis posterior is shown in @fig-mod05-sbpdiff. The differences approximate a normal distribution and therefore a paired t-test can be used.
 
 ```{r fig-mod05-sbpdiff, echo=FALSE, out.width = "50%", fig.cap="Distribution of differences in ankle SBP between two sites of 107 participants"}
 knitr::include_graphics(here::here("img", "mod05", "mod05-sbpdiff.png"))

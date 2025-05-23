@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,7 +93,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-29fdfc89ac7fc112ecf2c1fbf9d5ebfc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-eec57d228108029869aff2aaa2fb6ef4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-9a71a2450f5674972ff858c43d8deec0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -505,11 +505,11 @@ Table&nbsp;7.2: Expected counts of nausea status by drug exposure
 <p>Chi-squared tests can also be used for tables larger than a 2-by-2 dimension. When a contingency table larger than 2-by-2 is used, say a 4-by-2 table if there were 4 exposure groups, the Pearson’s chi-squared can still be used.</p>
 <section id="worked-example-7.2" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="worked-example-7.2"><span class="header-section-number">7.3.1</span> Worked Example 7.2</h3>
-<p>The files <code>mod07_allergy.dta</code> and <code>mod07_allergy.rds</code> contain information about the severity of allergic reaction, coded as absent, slight, moderate or severe. We can test the hypothesis that the severity of allergy is not different between males and females. To do this we can use a two-way tabulation to obtain <a href="#tbl-allergy" class="quarto-xref">Table&nbsp;<span>7.3</span></a> which shows the counts, expected counts and the percent of females and males who fall into each severity group for allergy. The table shows that the percentage of males is higher in each of the categories of severity (slight, moderate, severe) than the percentage of females.</p>
+<p>The file <code>mod07_allergy.rds</code> contain information about the severity of allergic reaction, coded as absent, slight, moderate or severe. We can test the hypothesis that the severity of allergy is not different between males and females. To do this we can use a two-way tabulation to obtain <a href="#tbl-allergy" class="quarto-xref">Table&nbsp;<span>7.3</span></a> which shows the counts, expected counts and the percent of females and males who fall into each severity group for allergy. The table shows that the percentage of males is higher in each of the categories of severity (slight, moderate, severe) than the percentage of females.</p>
 <div id="tbl-allergy" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-allergy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;7.3: Allergy data
+Table&nbsp;7.3: Association between sex and allergy severity
 </figcaption>
 <div aria-describedby="tbl-allergy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
@@ -625,6 +625,7 @@ Table&nbsp;7.3: Allergy data
 <p>If a binary categorical outcome is measured in a paired study design, McNemar’s statistic is used. This statistic is a form of chi-square applied to a paired situation. A Pearson’s chi-squared test cannot be used because the measurements are not independent. However, McNemar’s test can be used to assess whether there is a significant change in proportions between two time points or between two conditions, or whether there is a significant difference in proportions between matched cases and controls.</p>
 <p>For McNemar’s test, the data are displayed as shown in <a href="#tbl-7-1" class="quarto-xref">Table&nbsp;<span>7.4</span></a>. Cells ‘a’ and ‘d’ called concordant cells because the response was the same at both baseline and follow-up or between matched cases and controls. Cells ‘b’ and ‘c’ are called discordant cells because the responses between the pairs were different. For a follow-up study, the participants in cell ‘c’ had a positive response at baseline and a negative response at follow-up. Conversely, the participants in cell ‘b’ had a negative response at baseline and a positive response at follow-up.</p>
 <p>For other types of paired data such as twins or matched cases and controls, the data are similarly displayed with the responses of one of the pairs in the columns and the responses for the other of the pairs in the rows. For paired data, the grand total ‘N’ is always the number of pairs and not the total number of participants.</p>
+<div style="page-break-after: always;"></div>
 <div class="cell">
 <div id="tbl-7-1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -633,7 +634,7 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 </figcaption>
 <div aria-describedby="tbl-7-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-6c8d3390{}.cl-6c89e1c2{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6c8b34e6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-6c8b40f8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6c8b4102{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6c8b4103{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-6c8d3390"><thead><tr style="overflow-wrap:break-word;"><th class="cl-6c8b40f8"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2"> </span></p></th><th class="cl-6c8b40f8"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">Negative at follow-up</span></p></th><th class="cl-6c8b40f8"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">Positive at follow-up</span></p></th><th class="cl-6c8b40f8"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-6c8b4102"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">Negative at baseline</span></p></td><td class="cl-6c8b4102"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">a</span></p></td><td class="cl-6c8b4102"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">b</span></p></td><td class="cl-6c8b4102"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">a + b</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6c8b4102"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">Positive at baseline</span></p></td><td class="cl-6c8b4102"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">c</span></p></td><td class="cl-6c8b4102"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">d</span></p></td><td class="cl-6c8b4102"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">c + d</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6c8b4103"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">Total</span></p></td><td class="cl-6c8b4103"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">a + c</span></p></td><td class="cl-6c8b4103"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">b + d</span></p></td><td class="cl-6c8b4103"><p class="cl-6c8b34e6"><span class="cl-6c89e1c2">N</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-389a5b62{}.cl-3896a058{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-389814d8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3898223e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3898223f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3898225c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-389a5b62"><thead><tr style="overflow-wrap:break-word;"><th class="cl-3898223e"><p class="cl-389814d8"><span class="cl-3896a058"> </span></p></th><th class="cl-3898223e"><p class="cl-389814d8"><span class="cl-3896a058">Negative at follow-up</span></p></th><th class="cl-3898223e"><p class="cl-389814d8"><span class="cl-3896a058">Positive at follow-up</span></p></th><th class="cl-3898223e"><p class="cl-389814d8"><span class="cl-3896a058">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">Negative at baseline</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">a</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">b</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">a + b</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">Positive at baseline</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">c</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">d</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">c + d</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3898225c"><p class="cl-389814d8"><span class="cl-3896a058">Total</span></p></td><td class="cl-3898225c"><p class="cl-389814d8"><span class="cl-3896a058">a + c</span></p></td><td class="cl-3898225c"><p class="cl-389814d8"><span class="cl-3896a058">b + d</span></p></td><td class="cl-3898225c"><p class="cl-389814d8"><span class="cl-3896a058">N</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </figure>
@@ -765,8 +766,8 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 </div>
 <p>The columns <code>group</code> and <code>side_effect</code> have been entered as factors, with “Placebo” and “No nausea” as the first levels. We should use the <code>relevel()</code> command to re-order the factor levels.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nausea<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">relevel</span>(nausea<span class="sc">$</span>group, <span class="at">ref=</span><span class="st">"Active"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>nausea<span class="sc">$</span>side_effect <span class="ot">&lt;-</span> <span class="fu">relevel</span>(nausea<span class="sc">$</span>side_effect, <span class="at">ref=</span><span class="st">"Nausea"</span>)</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nausea<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">relevel</span>(nausea<span class="sc">$</span>group, <span class="at">ref =</span> <span class="st">"Active"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>nausea<span class="sc">$</span>side_effect <span class="ot">&lt;-</span> <span class="fu">relevel</span>(nausea<span class="sc">$</span>side_effect, <span class="at">ref =</span> <span class="st">"Nausea"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(nausea<span class="sc">$</span>group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -779,9 +780,11 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 </div>
 <p>After confirming the factors are appropriately defined, we can construct our 2-by-2 table and view the expected frequencies.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contTables</span>(<span class="at">data=</span>nausea,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">rows=</span>group, <span class="at">cols=</span>side_effect,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">exp=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contTables</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> nausea,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">rows =</span> group, <span class="at">cols =</span> side_effect,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">exp =</span> <span class="cn">TRUE</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  CONTINGENCY TABLES
@@ -813,9 +816,11 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 <p>After confirming that there are no cells with small expected frequencies, we can interpret the chi-square test. The last section reports the chi-squared test statistic which has a value of 7.86 with 1 degree of freedom and a P-value of 0.005.</p>
 <p>If there are small values of expected frequencies, Fisher’s exact test can be requested using <code>fisher = TRUE</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contTables</span>(<span class="at">data=</span>nausea,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">rows=</span>group, <span class="at">cols=</span>side_effect,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fisher =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contTables</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> nausea,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">rows =</span> group, <span class="at">cols =</span> side_effect,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fisher =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  CONTINGENCY TABLES
@@ -846,9 +851,9 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 <p>When you only have the summarised date (for example, the cross-tabulated data), you need to enter the summarised data manually. As we did in Module 6, the 2-by-2 table can be entered as four lines of data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>drug_aggregated <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"Active"</span>, <span class="st">"Active"</span>, <span class="st">"Placebo"</span>, <span class="st">"Placebo"</span>),</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">side_effect =</span> <span class="fu">c</span>(<span class="st">"Nausea"</span>, <span class="st">"No nausea"</span>, <span class="st">"Nausea"</span>, <span class="st">"No nausea"</span>),</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">35</span>, <span class="dv">4</span>, <span class="dv">46</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"Active"</span>, <span class="st">"Active"</span>, <span class="st">"Placebo"</span>, <span class="st">"Placebo"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">side_effect =</span> <span class="fu">c</span>(<span class="st">"Nausea"</span>, <span class="st">"No nausea"</span>, <span class="st">"Nausea"</span>, <span class="st">"No nausea"</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">35</span>, <span class="dv">4</span>, <span class="dv">46</span>)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>contTables()</code> function is used in the usual way, specifying <code>count=n</code>.</p>
@@ -878,9 +883,11 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contTables</span>(<span class="at">data=</span>allergy, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">rows=</span>allergy_severity, <span class="at">cols=</span>sex, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">pcCol=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contTables</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> allergy,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">rows =</span> allergy_severity, <span class="at">cols =</span> sex,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pcCol =</span> <span class="cn">TRUE</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  CONTINGENCY TABLES
@@ -948,8 +955,8 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 </div>
 <p>Here we see that the first level of the factor is “No” - we need to use the <code>relevel()</code> function to re-order the levels so “Yes” is the first level:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>drug<span class="sc">$</span>druga <span class="ot">&lt;-</span> <span class="fu">relevel</span>(drug<span class="sc">$</span>druga, <span class="at">ref=</span><span class="st">"Yes"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>drug<span class="sc">$</span>drugb <span class="ot">&lt;-</span> <span class="fu">relevel</span>(drug<span class="sc">$</span>drugb, <span class="at">ref=</span><span class="st">"Yes"</span>)</span>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>drug<span class="sc">$</span>druga <span class="ot">&lt;-</span> <span class="fu">relevel</span>(drug<span class="sc">$</span>druga, <span class="at">ref =</span> <span class="st">"Yes"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>drug<span class="sc">$</span>drugb <span class="ot">&lt;-</span> <span class="fu">relevel</span>(drug<span class="sc">$</span>drugb, <span class="at">ref =</span> <span class="st">"Yes"</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(drug<span class="sc">$</span>druga)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -962,7 +969,7 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 </div>
 <p>We can use the <code>contTablesPaired()</code> function within the <code>jmv</code> library to conduct McNemar’s test of paired proportions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contTablesPaired</span>(<span class="at">data=</span>drug, <span class="at">rows=</span>druga, <span class="at">cols=</span>drugb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contTablesPaired</span>(<span class="at">data =</span> drug, <span class="at">rows =</span> druga, <span class="at">cols =</span> drugb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  PAIRED SAMPLES CONTINGENCY TABLES
@@ -991,27 +998,27 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Copied from gist.githubusercontent.com</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>mcNemarDiff <span class="ot">&lt;-</span> <span class="cf">function</span>(data, var1, var2, <span class="at">digits =</span> <span class="dv">3</span>) {</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"epibasix"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"This function requires epibasix to be installed"</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  tab <span class="ot">&lt;-</span> <span class="fu">table</span>(data[[var1]], data[[var2]])</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> (tab[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">+</span> tab[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="sc">/</span> <span class="fu">sum</span>(tab)</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  p2 <span class="ot">&lt;-</span> (tab[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">+</span> tab[<span class="dv">2</span>, <span class="dv">1</span>]) <span class="sc">/</span> <span class="fu">sum</span>(tab)</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  pd <span class="ot">&lt;-</span> epibasix<span class="sc">::</span><span class="fu">mcNemar</span>(tab)<span class="sc">$</span>rd</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  pd.cil <span class="ot">&lt;-</span> epibasix<span class="sc">::</span><span class="fu">mcNemar</span>(tab)<span class="sc">$</span>rd.CIL</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  pd.ciu <span class="ot">&lt;-</span> epibasix<span class="sc">::</span><span class="fu">mcNemar</span>(tab)<span class="sc">$</span>rd.CIU</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Proportion 1: "</span>,</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(<span class="fu">round</span>(p1, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits),</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"; Proportion 2: "</span>, <span class="fu">format</span>(<span class="fu">round</span>(p2, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits)</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Difference in paired proportions: "</span>,</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(<span class="fu">round</span>(pd, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits),</span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"; 95% CI: "</span>, <span class="fu">format</span>(<span class="fu">round</span>(pd.cil, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits),</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">" to "</span>, <span class="fu">format</span>(<span class="fu">round</span>(pd.ciu, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits)</span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"epibasix"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">"This function requires epibasix to be installed"</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    tab <span class="ot">&lt;-</span> <span class="fu">table</span>(data[[var1]], data[[var2]])</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    p1 <span class="ot">&lt;-</span> (tab[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">+</span> tab[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="sc">/</span> <span class="fu">sum</span>(tab)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    p2 <span class="ot">&lt;-</span> (tab[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">+</span> tab[<span class="dv">2</span>, <span class="dv">1</span>]) <span class="sc">/</span> <span class="fu">sum</span>(tab)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    pd <span class="ot">&lt;-</span> epibasix<span class="sc">::</span><span class="fu">mcNemar</span>(tab)<span class="sc">$</span>rd</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    pd.cil <span class="ot">&lt;-</span> epibasix<span class="sc">::</span><span class="fu">mcNemar</span>(tab)<span class="sc">$</span>rd.CIL</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    pd.ciu <span class="ot">&lt;-</span> epibasix<span class="sc">::</span><span class="fu">mcNemar</span>(tab)<span class="sc">$</span>rd.CIU</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste0</span>(</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Proportion 1: "</span>,</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">format</span>(<span class="fu">round</span>(p1, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits),</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"; Proportion 2: "</span>, <span class="fu">format</span>(<span class="fu">round</span>(p2, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits)</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste0</span>(</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Difference in paired proportions: "</span>,</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">format</span>(<span class="fu">round</span>(pd, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits),</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"; 95% CI: "</span>, <span class="fu">format</span>(<span class="fu">round</span>(pd.cil, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits),</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">" to "</span>, <span class="fu">format</span>(<span class="fu">round</span>(pd.ciu, <span class="at">digits =</span> digits), <span class="at">nsmall =</span> digits)</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    ))</span>
 <span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a><span class="do">### End copy</span></span>
 <span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a></span>
@@ -1029,7 +1036,7 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 <h1 class="unnumbered">Activities</h1>
 <section id="activity-7.1" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="activity-7.1">Activity 7.1</h3>
-<p>Use the files <code>Activity_S7.1.dta</code> or <code>Activity_S7.1.rds</code> to further investigate whether there is a gender difference in asthma in a random sample of 514 upper primary school children:</p>
+<p>Use the file <code>Activity_7.1.rds</code> to further investigate whether there is a gender difference in asthma in a random sample of 514 upper primary school children:</p>
 <ol type="a">
 <li>Use a contingency table (cross-tabulation) to determine the observed and expected frequencies. Which cell has the lowest expected cell count?</li>
 <li>Use a chi-squared test to evaluate the hypothesis and interpret the result. Are the assumptions for a chi-squared test met? Calculate the 95% CI of the difference in proportions.</li>
@@ -1037,10 +1044,10 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 </section>
 <section id="activity-7.2" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="activity-7.2">Activity 7.2</h3>
-<p>The files <code>Activity_S7.2.dta</code> and <code>Activity_S7.2.rds</code> summarise 5-year mortality (the outcome) for 89 people who did or did not have a heart attack (the exposure).</p>
+<p>The file <code>Activity_7.2.rds</code> summarise 5-year mortality (the outcome) for 89 people who did or did not have a heart attack (the exposure).</p>
 <ol type="a">
 <li>State the null hypothesis.</li>
-<li>Using Stata or R, carry out the appropriate significance test to evaluate the hypothesis. Do the data fulfil the assumptions of the statistical test you have used?</li>
+<li>Using jamovi or R, carry out the appropriate significance test to evaluate the hypothesis. Do the data fulfil the assumptions of the statistical test you have used?</li>
 <li>Estimate the appropriate risk estimate for mortality. Are the confidence intervals of the risk estimates consistent with the P value?</li>
 <li>Summarise your results and state your conclusion.</li>
 </ol>
@@ -1048,7 +1055,7 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 <section id="activity-7.3" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="activity-7.3">Activity 7.3</h3>
 <p>The effect of two penicillin allergens B and G was tested in a random sample of 500 people. All people were tested with both allergens. For each person, data were recorded for whether or not there was an allergic reaction to the allergen.</p>
-<p>Use <code>Activity_S7.3.dta</code> or <code>Activity_S7.3.rds</code> to test the null hypothesis that the proportion of participants who react to allergen G is the same as the proportion who react to allergen B. Are the 95% CI around the difference consistent with the P value?</p>
+<p>Use <code>Activity_7.3.rds</code> to test the null hypothesis that the proportion of participants who react to allergen G is the same as the proportion who react to allergen B. Are the 95% CI around the difference consistent with the P value?</p>
 </section>
 <section id="activity-7.4" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="activity-7.4">Activity 7.4</h3>

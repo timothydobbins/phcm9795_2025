@@ -10,7 +10,7 @@ c) Write the regression equation
 d) If we randomly sampled a person from the population and found that their weight is 80kg, what would be the predicted value of plasma volume for this person?  
 
 ### Activity 8.2 {-}
-To examine whether age predicts IQ, data were collected on 104 people. Use the data in the file `Activity_8.2.csv` to answer the following questions.
+To examine whether age predicts IQ, data were collected on 104 people. Use the data in the file `Activity_8.2.rds` to answer the following questions.
 
 a)	What is the outcome variable and the explanatory variable? 
 b)	Create a scatter plot with the two variables. What can you infer from the scatter plot? 
@@ -35,7 +35,7 @@ b) If a researcher has data on two variables, there will be a higher correlation
 
 ### Supplementary Activity 8.5 {-}
 
-A cross-sectional study was conducted to examine the association between gestational age and systolic blood pressure in low birthweight babies. Data were collected at birth from 60 low birthweight babies and saved in the file Activity_8.6_babies.csv. The dataset contains the following variables:
+A cross-sectional study was conducted to examine the association between gestational age and systolic blood pressure in low birthweight babies. Data were collected at birth from 60 low birthweight babies and saved in the file Activity_8.5_babies.csv. The dataset contains the following variables:
 
 - ID: participant ID number
 - sbp: systolic blood pressure (mmHg)

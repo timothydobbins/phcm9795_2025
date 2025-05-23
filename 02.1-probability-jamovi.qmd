@@ -33,7 +33,7 @@ Row or column percents can be requested in the **Cells** section. For example, t
 
 ## Creating bar charts for one categorical variable
 
-Here we will create the bar chart shown in @fig-bar-1 using the `mod01_pbc.dta` dataset. The x-axis of this graph will be the stage of disease, and the y-axis will show the number of participants in each category.
+Here we will create the bar chart shown in @fig-bar-1 using the `mod01_pbc.rds` dataset. The x-axis of this graph will be the stage of disease, and the y-axis will show the number of participants in each category.
 
 Bar charts are created in the **Exploration** tab. We can summarise `stage`, and request a **Frequency table** in the usual way. To request a bar chart as well, tick **Bar plot** within the **Plots** section:
 

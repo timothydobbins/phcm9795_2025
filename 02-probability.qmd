@@ -223,7 +223,7 @@ tab1_pres <- tibble::tribble(
 "Regression coefficient", "Use one more significant figure than the underlying data   (adapted from Cole)"
      )
    
-flextable(tab1_pres, cwidth = c(1.5, 5.5))
+flextable(tab1_pres, cwidth = c(1.5, 5))
 ```
 
 ### Table presentation guidelines

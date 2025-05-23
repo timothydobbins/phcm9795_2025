@@ -22,7 +22,7 @@ knitr::include_graphics(here::here("img", "mod05", "jamovi", "ttest-1-unequal.pn
 
 ## Checking the assumptions for a Paired t-test
 
-Before performing a paired t-test, you must check that the assumptions for the test have been met. Using the dataset `mod05_ankle_bp.xls` to show that the difference between the pair of measurements between the sites is normally distributed, we first need to compute a new variable of the differences.
+Before performing a paired t-test, you must check that the assumptions for the test have been met. Using the dataset `mod05_ankle_bp.xlsx` to show that the difference between the pair of measurements between the sites is normally distributed, we first need to compute a new variable of the differences.
 
 To create a new column at the end of your dataset, click a cell in the first empty column, then choose **Data > Compute**. We want to compute `difference` as `sbp_dp − sbp_tp`, so we enter this in the formula box as below:
 

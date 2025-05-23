@@ -66,6 +66,8 @@ contTables(data=drug,
            pcRow=TRUE, relRisk = TRUE)
 ```
 
+{{< pagebreak >}}
+
 If you only have the cross-tabulated data (i.e. aggregated), you will need to enter your data into a new data frame. For example, to recreate the above analyses, we can re-write the 2-by-2 table as follows:
 
 | Group | side_effect | Number |
@@ -197,5 +199,3 @@ contTables(data=hpv,
    Odds ratio    17.61130    8.992580    34.49041   
  ────────────────────────────────────────────────── 
 ```
-
-Note that 95% confidence intervals for the odds ratio based on `jmv` differ from those calculated by Stata. It appears that `jmv` uses the Woolf method to calculate confidence intervals, but this is not documented.

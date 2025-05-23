@@ -113,7 +113,7 @@ Chi-squared tests can also be used for tables larger than a 2-by-2 dimension. Wh
 
 ### Worked Example 7.2
 
-The files `mod07_allergy.dta` and `mod07_allergy.rds` contain information about the severity of allergic reaction, coded as absent, slight, moderate or severe. We can test the hypothesis that the severity of allergy is not different between males and females. To do this we can use a two-way tabulation to obtain @tbl-allergy which shows the counts, expected counts and the percent of females and males who fall into each severity group for allergy. The table shows that the percentage of males is higher in each of the categories of severity (slight, moderate, severe) than the percentage of females.
+The file `mod07_allergy.rds` contain information about the severity of allergic reaction, coded as absent, slight, moderate or severe. We can test the hypothesis that the severity of allergy is not different between males and females. To do this we can use a two-way tabulation to obtain @tbl-allergy which shows the counts, expected counts and the percent of females and males who fall into each severity group for allergy. The table shows that the percentage of males is higher in each of the categories of severity (slight, moderate, severe) than the percentage of females.
 
 ::: {#tbl-allergy layout-nrow="2"}
 | Sex | Non-allergenic | Slight allergy | Moderate allergy | Severe allergy | Total |
@@ -132,7 +132,7 @@ The files `mod07_allergy.dta` and `mod07_allergy.rds` contain information about 
 
 : Expected counts
 
-Allergy data
+Association between sex and allergy severity
 :::
 
 The Pearson chi-squared statistic is calculated as 4.31, with 3 degrees of freedom, providing a P-value of 0.23. Therefore, there is little evidence of an association between gender and the severity of allergy.
@@ -145,16 +145,19 @@ For McNemar's test, the data are displayed as shown in @tbl-7-1. Cells 'a' and '
 
 For other types of paired data such as twins or matched cases and controls, the data are similarly displayed with the responses of one of the pairs in the columns and the responses for the other of the pairs in the rows. For paired data, the grand total 'N' is always the number of pairs and not the total number of participants.
 
+{{< pagebreak >}}
+
 ```{r tbl-7-1, echo=FALSE}
 #| tbl-cap: Table layout for testing matched proportions
 
 library(flextable)
 
 tab7_1 <- tibble::tribble(
-  ~` `, ~`Negative at follow-up`, ~`Positive at follow-up`, ~Total,
-  "Negative at baseline", "a", "b", "a + b",
-  "Positive at baseline",  "c", "d", "c + d",
-  "Total", "a + c", "b + d", "N")
+    ~` `, ~`Negative at follow-up`, ~`Positive at follow-up`, ~Total,
+    "Negative at baseline", "a", "b", "a + b",
+    "Positive at baseline", "c", "d", "c + d",
+    "Total", "a + c", "b + d", "N"
+)
 
 flextable(tab7_1)
 ```

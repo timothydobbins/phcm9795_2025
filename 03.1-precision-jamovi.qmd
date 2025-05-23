@@ -2,7 +2,7 @@
 
 We commonly need to create new variables based on existing variables in our data. For example, body size is often summarised using the **Body Mass Index (BMI)**. BMI is calculated as: $\frac{\text{weight (kg)}}{\text{height (m)}^2}$.
 
-In this demonstration, we will import a selection of records from a large health survey, stored in the file `mod02_health_survey.xlsx`. The health survey data contains 1140 records, comprising:
+In this demonstration, we will import a selection of records from a large health survey, stored in the file `mod03_health_survey.xlsx`. The health survey data contains 1140 records, comprising:
  
 - sex: 1 = respondent identifies as male; 2 = respondent identifies as female
 - height: height in meters
@@ -28,7 +28,7 @@ In the general population, BMI ranges between about 15 to 30. It appears that BM
 
 ## Summarising data by another variable
 
-We will often want to calculate the same summary statistics by another variable. For example, we might want to calculate summary statistics for BMI for males and females separately. We can do this in Stata by defining sex as a *by-variable*.
+We will often want to calculate the same summary statistics by another variable. For example, we might want to calculate summary statistics for BMI for males and females separately. We can do this in jamovi by defining sex as a *by-variable*.
 
 This can be done easily in jamovi by defining a **Split by** variable. For example, to summarise BMI for males and females separately, we use `sex` as the Split by variable:
 

@@ -11,7 +11,7 @@ library(jmv)
 
 bwt <- readRDS("data/examples/mod05_birthweight.rds")
 
-descriptives(data=bwt, vars=birthweight, splitBy=gender, dens=TRUE)
+descriptives(data = bwt, vars = birthweight, splitBy = gender, dens = TRUE)
 ```
 
 ## Independent samples t-test
@@ -19,34 +19,34 @@ descriptives(data=bwt, vars=birthweight, splitBy=gender, dens=TRUE)
 We can use the `ttestIS()` (t-test, independent samples) function from the `jmv` package to perform the independent samples t-test. We include the `meanDiff=TRUE` and `ci=TRUE` options to obtain the difference in means, with its 95% confidence interval. We can request a Welch's test (which does not assume equal variances) by the `welchs=TRUE` option:
 
 ```{r}
-ttestIS(data=bwt, vars=birthweight, group=gender, meanDiff=TRUE, ci=TRUE, welchs=TRUE)
+ttestIS(data = bwt, vars = birthweight, group = gender, meanDiff = TRUE, ci = TRUE, welchs = TRUE)
 ```
 
 ## Checking the assumptions for a Paired t-test
 
-Before performing a paired t-test, you must check that the assumptions for the test have been met. Using the dataset `mod05_ankle_bp.xls` to show that the difference between the pair of measurements between the sites is normally distributed, we first need to compute a new variable of the differences and examine its distribution.
+Before performing a paired t-test, you must check that the assumptions for the test have been met. Using the dataset `mod05_ankle_bp.xlsx` to show that the difference between the pair of measurements between the sites is normally distributed, we first need to compute a new variable of the differences and examine its distribution.
 
 ```{r}
 library(readxl)
 
 sbp <- read_excel("data/examples/mod05_ankle_bp.xlsx")
-sbp$diff = sbp$sbp_dp - sbp$sbp_tp
-descriptives(data=sbp, vars=diff, dens=TRUE)
+sbp$diff <- sbp$sbp_dp - sbp$sbp_tp
+descriptives(data = sbp, vars = diff, dens = TRUE)
 ```
 
 While there is a large difference in blood pressure (around 60 mmHg) that warrants further checking, the curve is roughly symmetric with an approximately Normal distribution.
 
 ## Paired t-Test
 
-To perform a paired t-test we will use the dataset `mod05_ankle_bp.xls`. We can perform a paired t-test using the `ttestPS()` function within the `jmv` package, where we defined the paired observations as: `pairs=list(list(i1 = 'variable1', i2 = 'variable2'))
+To perform a paired t-test we will use the dataset `mod05_ankle_bp.xlsx`. We can perform a paired t-test using the `ttestPS()` function within the `jmv` package, where we defined the paired observations as: `pairs=list(list(i1 = 'variable1', i2 = 'variable2'))
 
 ```{r}
-ttestPS(data=sbp, pairs=list(list(i1 = 'sbp_dp', i2 = 'sbp_tp')), meanDiff=TRUE, ci=TRUE)
+ttestPS(data = sbp, pairs = list(list(i1 = "sbp_dp", i2 = "sbp_tp")), meanDiff = TRUE, ci = TRUE)
 ```
 
 The syntax of the ttestPS function is a little cumbersome. The `t.test` function can be used as an alternative:
 
 ```{r}
-t.test(sbp$sbp_dp, sbp$sbp_tp, paired=TRUE)
+t.test(sbp$sbp_dp, sbp$sbp_tp, paired = TRUE)
 ```
 

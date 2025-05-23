@@ -168,7 +168,7 @@ In stratified sampling, the population is divided into distinct non-overlapping 
 
 The purpose of using random sampling is to minimise selection bias to ensure that the sample enrolled in a study is representative of the population being studied. This is important because the summary statistics that are obtained can then be regarded as valid in that they can be applied (generalised) back to the population.
 
-A non-representative sample might occur when random sampling is used, simply by chance. However, non-random sampling methods, such as using a study population that does not represent the whole population, will often result in a non-representative sample being selected so that the summary statistics from the sample cannot be generalised back to the population from which the participants were drawn. The effects of non-random error are much more serious than the effects of random error. Concepts such as non-random error (i.e. systematic bias), selection bias, validity and generalisability are discussed in more detail in PHCM9796: Foundations of Epidemiology.
+A non-representative sample might occur when random sampling is used, simply by chance. However, non-random sampling methods, such as using a study population that does not represent the whole population, will often result in a non-representative sample being selected so that the summary statistics from the sample cannot be generalised back to the population from which the participants were drawn. The effects of non-random error are much more serious than the effects of random error. Concepts such as non-random error (i.e. systematic bias), selection bias, validity and generalisability are discussed in more detail in PHCM9794: Foundations of Epidemiology.
 
 ## Standard error and precision
 
@@ -184,6 +184,7 @@ In particular, the *standard error of the mean* measures the extent to which we 
 
 $$ \text{SE}(\bar{x}) = \frac{\text{SD}}{\sqrt{n}} $$
 
+{{< pagebreak >}}
 Take for example, a set of weights of students attending a university gym in a particular hour. The thirty weights are given below:
 
 ```{r tbl-3-weights, echo=FALSE}

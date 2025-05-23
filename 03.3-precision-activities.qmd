@@ -25,17 +25,43 @@ A dental epidemiologist wishes to estimate the mean weekly consumption of sweets
 - 625 children or 
 - 3,000 children.
 
-a)	Estimate the standard error and maximum likely (95% confidence) error of the sample mean for each of these four sample sizes.
+a)	Estimate the standard error of the sample mean for each of these four sample sizes.
 b)	What happens to the standard error as the sample size increases? What can you say about the precision of the sample mean as the sample size increases?
 
 ### Activity 3.3 {-}
 
-The dataset for this activity is the same as the one used in Activity 1.4 in Module 1. The file is `Activity1.4.dta` or `Activity1.4.rds` on Moodle.
+The dataset for this activity is the same as the one used in Activity 1.4 in Module 1. The file is `Activity_1.4.rds` on Moodle.
 
 a) Plot a histogram of diastolic BP and describe the distribution.
-b) Use Stata or R to obtain an estimate of the mean, standard error of the mean and the 95% confidence interval for the mean diastolic blood pressure.
+b) Use jamovi or R to obtain an estimate of the mean, standard error of the mean and the 95% confidence interval for the mean diastolic blood pressure.
 c) Interpret the 95% confidence interval for the mean diastolic blood pressure.
 
 ### Activity 3.4 {-}
 
 Suppose that a random sample of 81 newborn babies delivered in a hospital located in a poor neighbourhood during the last year had a mean birth weight of 2.7 kg and a standard deviation of 0.9 kg. Calculate the 95% confidence interval for the unknown population mean. Interpret the 95% confidence interval. 
+
+
+### Activity 3.5 {-}
+
+Using the health survey data (`Activity_3.5.xlsx`) described in the computing notes of this module, create a new variable, BMI, which is equal to a person's weight (in kg) divided by their height (in metres) squared (i.e. $\text{BMI} = \frac{\text{weight (kg)}}{\text{[height (m)]}^2}$. Categorise BMI using the categories:
+
+-   Underweight: BMI \< 18.5
+-   Normal weight: 18.5 $\le$ BMI \< 25
+-   Overweight: 25 $\le$ BMI \< 30
+-   Obese: BMI $\ge$ 30
+
+Note: BMI does not necessarily reflect body fat distribution or describe the same degree of fatness in different individuals. However, at a population level, BMI is a practical and useful measure for identifying overweight or obesity. [^BMI]
+
+[^BMI]: https://www.aihw.gov.au/reports/overweight-obesity/overweight-and-obesity/contents/measuring-overweight-and-obesity
+
+Create a two-way table to display the distribution of BMI categories by sex (sex: 1 = respondent identifies as male; 2 = respondent identifies as female). Does there appear to be a difference in categorised BMI between males and females?
+
+### Activity 3.6 {-}
+The data set of hospital stay data for 1323 hypothetical patients is available on Moodle in csv format (`Activity_3.6.csv`). Import this dataset into jamovi or R. There are two variables in this dataset:
+
+- female: female=1; male=0
+- los: length of stay in days
+
+a)	Use jamovi or R to examine the distribution of length of stay: overall; and separately for females and males. Comment on the distributions.
+b)	Use jamovi or R to calculate measures of central tendency for hospital stay to obtain information about the average duration of hospital stay. Which summary statistics should you report and why? Report the appropriate statistics of the spread and measure of central tendency chosen.
+c)	Calculate the measures of central tendency for hospital duration separately for males and females. What can you conclude from comparing these measures for males and females? 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,7 +93,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-29fdfc89ac7fc112ecf2c1fbf9d5ebfc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-eec57d228108029869aff2aaa2fb6ef4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-9a71a2450f5674972ff858c43d8deec0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -347,6 +347,8 @@ window.Quarto = {
   <li><a href="#activity-3.2" id="toc-activity-3.2" class="nav-link" data-scroll-target="#activity-3.2">Activity 3.2</a></li>
   <li><a href="#activity-3.3" id="toc-activity-3.3" class="nav-link" data-scroll-target="#activity-3.3">Activity 3.3</a></li>
   <li><a href="#activity-3.4" id="toc-activity-3.4" class="nav-link" data-scroll-target="#activity-3.4">Activity 3.4</a></li>
+  <li><a href="#activity-3.5" id="toc-activity-3.5" class="nav-link" data-scroll-target="#activity-3.5">Activity 3.5</a></li>
+  <li><a href="#activity-3.6" id="toc-activity-3.6" class="nav-link" data-scroll-target="#activity-3.6">Activity 3.6</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -534,7 +536,7 @@ Figure&nbsp;3.6: Density plot of serum bilirubin from PBC study data
 <p>In simple random sampling, every person in the population from which the sample is drawn has the same random chance of being selected into the sample. To implement this method, every person in the population is allocated an ID number and then a random sample of the ID numbers is selected. Software packages can be used to generate a list of random numbers to select the random sample.</p>
 <p>In stratified sampling, the population is divided into distinct non-overlapping subgroups (strata) according to an important characteristic (e.g.&nbsp;age or sex) and then a random sample is selected from each of the strata. This method is used to ensure that sufficient numbers of people are sampled from each stratum and therefore each subgroup of interest is adequately represented in the sample.</p>
 <p>The purpose of using random sampling is to minimise selection bias to ensure that the sample enrolled in a study is representative of the population being studied. This is important because the summary statistics that are obtained can then be regarded as valid in that they can be applied (generalised) back to the population.</p>
-<p>A non-representative sample might occur when random sampling is used, simply by chance. However, non-random sampling methods, such as using a study population that does not represent the whole population, will often result in a non-representative sample being selected so that the summary statistics from the sample cannot be generalised back to the population from which the participants were drawn. The effects of non-random error are much more serious than the effects of random error. Concepts such as non-random error (i.e.&nbsp;systematic bias), selection bias, validity and generalisability are discussed in more detail in PHCM9796: Foundations of Epidemiology.</p>
+<p>A non-representative sample might occur when random sampling is used, simply by chance. However, non-random sampling methods, such as using a study population that does not represent the whole population, will often result in a non-representative sample being selected so that the summary statistics from the sample cannot be generalised back to the population from which the participants were drawn. The effects of non-random error are much more serious than the effects of random error. Concepts such as non-random error (i.e.&nbsp;systematic bias), selection bias, validity and generalisability are discussed in more detail in PHCM9794: Foundations of Epidemiology.</p>
 </section>
 <section id="standard-error-and-precision" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="standard-error-and-precision"><span class="header-section-number">3.10</span> Standard error and precision</h2>
@@ -545,7 +547,7 @@ Figure&nbsp;3.6: Density plot of serum bilirubin from PBC study data
 <p>A point estimate is a single best guess of the true value in the population - taken from our sample of data. Different samples will provide slightly different point estimates. The standard error is a measure of variability of the point estimate.</p>
 <p>In particular, the <em>standard error of the mean</em> measures the extent to which we expect the means from different samples to vary because of chance due to the sampling process. This statistic is directly proportional to the standard deviation of the variable, and inversely proportional to the size of the sample. The standard error of the mean for a continuously distributed measurement for which the SD is an accurate measure of spread is computed as follows:</p>
 <p><span class="math display">\[ \text{SE}(\bar{x}) = \frac{\text{SD}}{\sqrt{n}} \]</span></p>
-<p>Take for example, a set of weights of students attending a university gym in a particular hour. The thirty weights are given below:</p>
+<p></p><div style="page-break-after: always;"></div> Take for example, a set of weights of students attending a university gym in a particular hour. The thirty weights are given below:<p></p>
 <div class="cell">
 <div id="tbl-3-weights" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -554,7 +556,7 @@ Table&nbsp;3.1: Weight of 30 gym attendees
 </figcaption>
 <div aria-describedby="tbl-3-weights-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-605bd252{}.cl-6058ea42{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-605a1e4e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-605a2a42{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-605a2a43{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-605a2a44{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-605bd252"><tbody><tr style="overflow-wrap:break-word;"><td class="cl-605a2a42"><p class="cl-605a1e4e"><span class="cl-6058ea42">65.0</span></p></td><td class="cl-605a2a42"><p class="cl-605a1e4e"><span class="cl-6058ea42">70.0</span></p></td><td class="cl-605a2a42"><p class="cl-605a1e4e"><span class="cl-6058ea42">70.0</span></p></td><td class="cl-605a2a42"><p class="cl-605a1e4e"><span class="cl-6058ea42">67.5</span></p></td><td class="cl-605a2a42"><p class="cl-605a1e4e"><span class="cl-6058ea42">65.0</span></p></td><td class="cl-605a2a42"><p class="cl-605a1e4e"><span class="cl-6058ea42">80.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">70.0</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">72.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">67.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">62.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">67.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">72.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">60.0</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">65.0</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">72.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">77.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">75.0</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">75.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">75.0</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">70.0</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">67.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">77.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">67.5</span></p></td><td class="cl-605a2a43"><p class="cl-605a1e4e"><span class="cl-6058ea42">62.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-605a2a44"><p class="cl-605a1e4e"><span class="cl-6058ea42">75.0</span></p></td><td class="cl-605a2a44"><p class="cl-605a1e4e"><span class="cl-6058ea42">62.5</span></p></td><td class="cl-605a2a44"><p class="cl-605a1e4e"><span class="cl-6058ea42">70.0</span></p></td><td class="cl-605a2a44"><p class="cl-605a1e4e"><span class="cl-6058ea42">75.0</span></p></td><td class="cl-605a2a44"><p class="cl-605a1e4e"><span class="cl-6058ea42">72.5</span></p></td><td class="cl-605a2a44"><p class="cl-605a1e4e"><span class="cl-6058ea42">70.0</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-2ba2f75c{}.cl-2b9f9f94{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2ba10334{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ba11162{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ba1116c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ba1116d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2ba2f75c"><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2ba11162"><p class="cl-2ba10334"><span class="cl-2b9f9f94">65.0</span></p></td><td class="cl-2ba11162"><p class="cl-2ba10334"><span class="cl-2b9f9f94">70.0</span></p></td><td class="cl-2ba11162"><p class="cl-2ba10334"><span class="cl-2b9f9f94">70.0</span></p></td><td class="cl-2ba11162"><p class="cl-2ba10334"><span class="cl-2b9f9f94">67.5</span></p></td><td class="cl-2ba11162"><p class="cl-2ba10334"><span class="cl-2b9f9f94">65.0</span></p></td><td class="cl-2ba11162"><p class="cl-2ba10334"><span class="cl-2b9f9f94">80.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">70.0</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">72.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">67.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">62.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">67.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">72.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">60.0</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">65.0</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">72.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">77.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">75.0</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">75.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">75.0</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">70.0</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">67.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">77.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">67.5</span></p></td><td class="cl-2ba1116c"><p class="cl-2ba10334"><span class="cl-2b9f9f94">62.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ba1116d"><p class="cl-2ba10334"><span class="cl-2b9f9f94">75.0</span></p></td><td class="cl-2ba1116d"><p class="cl-2ba10334"><span class="cl-2b9f9f94">62.5</span></p></td><td class="cl-2ba1116d"><p class="cl-2ba10334"><span class="cl-2b9f9f94">70.0</span></p></td><td class="cl-2ba1116d"><p class="cl-2ba10334"><span class="cl-2b9f9f94">75.0</span></p></td><td class="cl-2ba1116d"><p class="cl-2ba10334"><span class="cl-2b9f9f94">72.5</span></p></td><td class="cl-2ba1116d"><p class="cl-2ba10334"><span class="cl-2b9f9f94">70.0</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </figure>
@@ -670,7 +672,7 @@ Table&nbsp;3.2: Summary of blood pressure from female Pima indigenous Americans
 <section id="generating-new-variables" class="level2" data-number="3.13">
 <h2 data-number="3.13" class="anchored" data-anchor-id="generating-new-variables"><span class="header-section-number">3.13</span> Generating new variables</h2>
 <p>We commonly need to create new variables based on existing variables in our data. For example, body size is often summarised using the <strong>Body Mass Index (BMI)</strong>. BMI is calculated as: <span class="math inline">\(\frac{\text{weight (kg)}}{\text{height (m)}^2}\)</span>.</p>
-<p>In this demonstration, we will import a selection of records from a large health survey, stored in the file <code>mod02_health_survey.xlsx</code>. The health survey data contains 1140 records, comprising:</p>
+<p>In this demonstration, we will import a selection of records from a large health survey, stored in the file <code>mod03_health_survey.xlsx</code>. The health survey data contains 1140 records, comprising:</p>
 <ul>
 <li>sex: 1 = respondent identifies as male; 2 = respondent identifies as female</li>
 <li>height: height in meters</li>
@@ -698,7 +700,7 @@ Table&nbsp;3.2: Summary of blood pressure from female Pima indigenous Americans
 </section>
 <section id="summarising-data-by-another-variable" class="level2" data-number="3.14">
 <h2 data-number="3.14" class="anchored" data-anchor-id="summarising-data-by-another-variable"><span class="header-section-number">3.14</span> Summarising data by another variable</h2>
-<p>We will often want to calculate the same summary statistics by another variable. For example, we might want to calculate summary statistics for BMI for males and females separately. We can do this in Stata by defining sex as a <em>by-variable</em>.</p>
+<p>We will often want to calculate the same summary statistics by another variable. For example, we might want to calculate summary statistics for BMI for males and females separately. We can do this in jamovi by defining sex as a <em>by-variable</em>.</p>
 <p>This can be done easily in jamovi by defining a <strong>Split by</strong> variable. For example, to summarise BMI for males and females separately, we use <code>sex</code> as the Split by variable:</p>
 <p><img src="img/mod03/jamovi/mod03-splitby.png" class="img-fluid"></p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
@@ -752,7 +754,7 @@ Table&nbsp;3.2: Summary of blood pressure from female Pima indigenous Americans
 <h1 class="unnumbered">R notes</h1>
 <section id="importing-excel-data-into-r" class="level2" data-number="3.18">
 <h2 data-number="3.18" class="anchored" data-anchor-id="importing-excel-data-into-r"><span class="header-section-number">3.18</span> Importing Excel data into R</h2>
-<p>Another common type of file that data are stored in is a Microsoft Excel file (.xls or .xlsx). In this demonstration, we will import a selection of records from a large health survey, stored in the file <code>mod02_health_survey.xlsx</code>.</p>
+<p>Another common type of file that data are stored in is a Microsoft Excel file (.xls or .xlsx). In this demonstration, we will import a selection of records from a large health survey, stored in the file <code>mod03_health_survey.xlsx</code>.</p>
 <p>The health survey data contains 1140 records, comprising:</p>
 <ul>
 <li>sex: 1 = respondent identifies as male; 2 = respondent identifies as female</li>
@@ -763,7 +765,7 @@ Table&nbsp;3.2: Summary of blood pressure from female Pima indigenous Americans
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/examples/mod02_health_survey.xlsx"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/examples/mod03_health_survey.xlsx"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(survey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      sex           height          weight      
@@ -1081,22 +1083,47 @@ Table&nbsp;3.2: Summary of blood pressure from female Pima indigenous Americans
 <li>3,000 children.</li>
 </ul>
 <ol type="a">
-<li>Estimate the standard error and maximum likely (95% confidence) error of the sample mean for each of these four sample sizes.</li>
+<li>Estimate the standard error of the sample mean for each of these four sample sizes.</li>
 <li>What happens to the standard error as the sample size increases? What can you say about the precision of the sample mean as the sample size increases?</li>
 </ol>
 </section>
 <section id="activity-3.3" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="activity-3.3">Activity 3.3</h3>
-<p>The dataset for this activity is the same as the one used in Activity 1.4 in Module 1. The file is <code>Activity1.4.dta</code> or <code>Activity1.4.rds</code> on Moodle.</p>
+<p>The dataset for this activity is the same as the one used in Activity 1.4 in Module 1. The file is <code>Activity_1.4.rds</code> on Moodle.</p>
 <ol type="a">
 <li>Plot a histogram of diastolic BP and describe the distribution.</li>
-<li>Use Stata or R to obtain an estimate of the mean, standard error of the mean and the 95% confidence interval for the mean diastolic blood pressure.</li>
+<li>Use jamovi or R to obtain an estimate of the mean, standard error of the mean and the 95% confidence interval for the mean diastolic blood pressure.</li>
 <li>Interpret the 95% confidence interval for the mean diastolic blood pressure.</li>
 </ol>
 </section>
 <section id="activity-3.4" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="activity-3.4">Activity 3.4</h3>
 <p>Suppose that a random sample of 81 newborn babies delivered in a hospital located in a poor neighbourhood during the last year had a mean birth weight of 2.7 kg and a standard deviation of 0.9 kg. Calculate the 95% confidence interval for the unknown population mean. Interpret the 95% confidence interval.</p>
+</section>
+<section id="activity-3.5" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="activity-3.5">Activity 3.5</h3>
+<p>Using the health survey data (<code>Activity_3.5.xlsx</code>) described in the computing notes of this module, create a new variable, BMI, which is equal to a person’s weight (in kg) divided by their height (in metres) squared (i.e.&nbsp;<span class="math inline">\(\text{BMI} = \frac{\text{weight (kg)}}{\text{[height (m)]}^2}\)</span>. Categorise BMI using the categories:</p>
+<ul>
+<li>Underweight: BMI &lt; 18.5</li>
+<li>Normal weight: 18.5 <span class="math inline">\(\le\)</span> BMI &lt; 25</li>
+<li>Overweight: 25 <span class="math inline">\(\le\)</span> BMI &lt; 30</li>
+<li>Obese: BMI <span class="math inline">\(\ge\)</span> 30</li>
+</ul>
+<p>Note: BMI does not necessarily reflect body fat distribution or describe the same degree of fatness in different individuals. However, at a population level, BMI is a practical and useful measure for identifying overweight or obesity. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Create a two-way table to display the distribution of BMI categories by sex (sex: 1 = respondent identifies as male; 2 = respondent identifies as female). Does there appear to be a difference in categorised BMI between males and females?</p>
+</section>
+<section id="activity-3.6" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="activity-3.6">Activity 3.6</h3>
+<p>The data set of hospital stay data for 1323 hypothetical patients is available on Moodle in csv format (<code>Activity_3.6.csv</code>). Import this dataset into jamovi or R. There are two variables in this dataset:</p>
+<ul>
+<li>female: female=1; male=0</li>
+<li>los: length of stay in days</li>
+</ul>
+<ol type="a">
+<li>Use jamovi or R to examine the distribution of length of stay: overall; and separately for females and males. Comment on the distributions.</li>
+<li>Use jamovi or R to calculate measures of central tendency for hospital stay to obtain information about the average duration of hospital stay. Which summary statistics should you report and why? Report the appropriate statistics of the spread and measure of central tendency chosen.</li>
+<li>Calculate the measures of central tendency for hospital duration separately for males and females. What can you conclude from comparing these measures for males and females?</li>
+</ol>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -1114,6 +1141,7 @@ Kirkwood, Betty, and Jonathan Sterne. 2001. <em>Essentials of <span>Medical Stat
 <ol>
 <li id="fn1"><p>Source: https://www.aihw.gov.au/reports/risk-factors/high-blood-pressure/contents/high-blood-pressure (accessed March 2021)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Source: https://ourworldindata.org/human-height (accessed March 2021)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://www.aihw.gov.au/reports/overweight-obesity/overweight-and-obesity/contents/measuring-overweight-and-obesity<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

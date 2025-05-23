@@ -33,7 +33,7 @@ When a variable has a skewed distribution, one possibility is to transform the d
 
 ### Worked Example
 
-We have data from 132 patients who had a hospital stay following admission to ICU available on Moodle (`mod09_infection.dta` and `mod09_infection.rds`). The distribution of the length of stay for these patients is shown in the density plot in @fig-mod09-los. As is common with variables that record time, the data are skewed with many patients having relatively short stays and a few patients having very long hospital stays. Clearly, it would be inappropriate to use parametric statistical methods for these data.
+We have data from 132 patients who had a hospital stay following admission to ICU available on Moodle (`mod09_infection.rds`). The distribution of the length of stay for these patients is shown in the density plot in @fig-mod09-los. As is common with variables that record time, the data are skewed with many patients having relatively short stays and a few patients having very long hospital stays. Clearly, it would be inappropriate to use parametric statistical methods for these data.
 
 ```{r fig-mod09-los, echo=FALSE, out.width = "66%", fig.cap="Length of hospital stay for 132 patients"}
 knitr::include_graphics(here::here("img", "mod09", "mod09-los-dist.png"))
@@ -188,7 +188,7 @@ In terms of which is the more appropriate measure to use, the following passage 
 
 > "Why have two different rank correlation coefficients? Spearman’s $\rho$ is older than Kendall’s $\tau$, and can be thought of as a simple analogue of the product moment correlation coefficient, Pearson’s r. Kendall’s $\tau$ is a part of a more general and consistent system of ranking methods, and has a direct interpretation, as the difference between the proportions of concordant and discordant pairs. In general, the numerical value of $\rho$ is greater than that of $\tau$. It is not possible to calculate $\tau$ from $\rho$ or $\rho$ from $\tau$, they measure different sorts of correlation. $\rho$ gives more weight to reversals of order when data are far apart in rank than when there is a reversal close together in rank, $\tau$ does not. However, in terms of tests of significance, both have the same power to reject a false null hypothesis, so for this purpose it does not matter which is used."
 
-We will illustrate estimating rank correlation using the data `mod08_lung_function.dta` or `mod08_lung_function.rds`, which has information about height and lung function collected from a sample of 120 adults.
+We will illustrate estimating rank correlation using the data `mod08_lung_function.csv`, which has information about height and lung function collected from a sample of 120 adults.
 
 The Spearman rank correlation coefficient is estimated as 0.75, demonstrating a positive association between height and FVC. The Kendall rank correlation coefficient is estimated as 0.56, again demonstrating a positive association between height and FVC.
 

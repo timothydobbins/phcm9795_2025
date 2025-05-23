@@ -16,8 +16,8 @@ str(nausea$side_effect)
 The columns `group` and `side_effect` have been entered as factors, with "Placebo" and "No nausea" as the first levels. We should use the `relevel()` command to re-order the factor levels.
 
 ```{r}
-nausea$group <- relevel(nausea$group, ref="Active")
-nausea$side_effect <- relevel(nausea$side_effect, ref="Nausea")
+nausea$group <- relevel(nausea$group, ref = "Active")
+nausea$side_effect <- relevel(nausea$side_effect, ref = "Nausea")
 
 str(nausea$group)
 str(nausea$side_effect)
@@ -26,9 +26,11 @@ str(nausea$side_effect)
 After confirming the factors are appropriately defined, we can construct our 2-by-2 table and view the expected frequencies.
 
 ```{r}
-contTables(data=nausea,
-           rows=group, cols=side_effect,
-           exp=TRUE)
+contTables(
+    data = nausea,
+    rows = group, cols = side_effect,
+    exp = TRUE
+)
 ```
 
 After confirming that there are no cells with small expected frequencies, we can interpret the chi-square test. The last section reports the chi-squared test statistic which has a value of 7.86 with 1 degree of freedom and a P-value of 0.005.
@@ -36,9 +38,11 @@ After confirming that there are no cells with small expected frequencies, we can
 If there are small values of expected frequencies, Fisher's exact test can be requested using `fisher = TRUE`:
 
 ```{r}
-contTables(data=nausea,
-           rows=group, cols=side_effect,
-           fisher = TRUE)
+contTables(
+    data = nausea,
+    rows = group, cols = side_effect,
+    fisher = TRUE
+)
 ```
 
 ## Pearson’s chi-squared test for summarised data
@@ -47,9 +51,9 @@ When you only have the summarised date (for example, the cross-tabulated data), 
 
 ```{r}
 drug_aggregated <- data.frame(
-  group = c("Active", "Active", "Placebo", "Placebo"),
-  side_effect = c("Nausea", "No nausea", "Nausea", "No nausea"),
-  n = c(15, 35, 4, 46)
+    group = c("Active", "Active", "Placebo", "Placebo"),
+    side_effect = c("Nausea", "No nausea", "Nausea", "No nausea"),
+    n = c(15, 35, 4, 46)
 )
 ```
 
@@ -65,9 +69,11 @@ head(allergy)
 ```
 
 ```{r}
-contTables(data=allergy, 
-           rows=allergy_severity, cols=sex, 
-           pcCol=TRUE)
+contTables(
+    data = allergy,
+    rows = allergy_severity, cols = sex,
+    pcCol = TRUE
+)
 ```
 
 
@@ -91,8 +97,8 @@ str(drug$drugb)
 Here we see that the first level of the factor is "No" - we need to use the `relevel()` function to re-order the levels so "Yes" is the first level:
 
 ```{r}
-drug$druga <- relevel(drug$druga, ref="Yes")
-drug$drugb <- relevel(drug$drugb, ref="Yes")
+drug$druga <- relevel(drug$druga, ref = "Yes")
+drug$drugb <- relevel(drug$drugb, ref = "Yes")
 
 str(drug$druga)
 str(drug$drugb)
@@ -101,7 +107,7 @@ str(drug$drugb)
 We can use the `contTablesPaired()` function within the `jmv` library to conduct McNemar's test of paired proportions:
 
 ```{r}
-contTablesPaired(data=drug, rows=druga, cols=drugb)
+contTablesPaired(data = drug, rows = druga, cols = drugb)
 ```
 
 Note that `contTablesPaired()` does not calculate an exact P-value.
@@ -112,27 +118,27 @@ To estimate the proportion in each of the paired samples, its difference, and th
 
 ### Copied from gist.githubusercontent.com
 mcNemarDiff <- function(data, var1, var2, digits = 3) {
-  if (!requireNamespace("epibasix", quietly = TRUE)) {
-    stop("This function requires epibasix to be installed")
-  }
-  
-  tab <- table(data[[var1]], data[[var2]])
-  p1 <- (tab[1, 1] + tab[1, 2]) / sum(tab)
-  p2 <- (tab[1, 1] + tab[2, 1]) / sum(tab)
-  pd <- epibasix::mcNemar(tab)$rd
-  pd.cil <- epibasix::mcNemar(tab)$rd.CIL
-  pd.ciu <- epibasix::mcNemar(tab)$rd.CIU
-  print(paste0(
-    "Proportion 1: ",
-    format(round(p1, digits = digits), nsmall = digits),
-    "; Proportion 2: ", format(round(p2, digits = digits), nsmall = digits)
-  ))
-  print(paste0(
-    "Difference in paired proportions: ",
-    format(round(pd, digits = digits), nsmall = digits),
-    "; 95% CI: ", format(round(pd.cil, digits = digits), nsmall = digits),
-    " to ", format(round(pd.ciu, digits = digits), nsmall = digits)
-  ))
+    if (!requireNamespace("epibasix", quietly = TRUE)) {
+        stop("This function requires epibasix to be installed")
+    }
+
+    tab <- table(data[[var1]], data[[var2]])
+    p1 <- (tab[1, 1] + tab[1, 2]) / sum(tab)
+    p2 <- (tab[1, 1] + tab[2, 1]) / sum(tab)
+    pd <- epibasix::mcNemar(tab)$rd
+    pd.cil <- epibasix::mcNemar(tab)$rd.CIL
+    pd.ciu <- epibasix::mcNemar(tab)$rd.CIU
+    print(paste0(
+        "Proportion 1: ",
+        format(round(p1, digits = digits), nsmall = digits),
+        "; Proportion 2: ", format(round(p2, digits = digits), nsmall = digits)
+    ))
+    print(paste0(
+        "Difference in paired proportions: ",
+        format(round(pd, digits = digits), nsmall = digits),
+        "; 95% CI: ", format(round(pd.cil, digits = digits), nsmall = digits),
+        " to ", format(round(pd.ciu, digits = digits), nsmall = digits)
+    ))
 }
 ### End copy
 

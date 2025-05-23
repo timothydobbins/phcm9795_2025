@@ -5,11 +5,11 @@ In a clinical trial involving a dietary intervention, 150 adult volunteers agree
 a) State the null hypothesis.
 b) Calculate the proportion of regular drinkers (and its 95% confidence interval) in the sample using software.
 c) Conduct a hypothesis test to decide if the sample of volunteers is representative of the population.
-d) Repeat (b) and (c) using the data saved in Activity_6.1.csv.
+d) Repeat (b) and (c) using the data saved in `Activity_6.1.rds`.
 
 ### Activity 6.2 {-}
 
-A survey was conducted of a random sample of upper primary school children to measure the prevalence of asthma using questionnaires completed by the parents. A total of 514 children were enrolled. Use the dataset Activity_S6.2.csv for this activity.
+A survey was conducted of a random sample of upper primary school children to measure the prevalence of asthma using questionnaires completed by the parents. A total of 514 children were enrolled. Use the dataset `Activity_6.2.rds` for this activity.
 
 a) What type of study was used to collect these data? Based on this, which measure of effect would you use to summarise the association between gender and asthma symptoms?
 b) Calculate the relevant measure of effect (with its 95% confidence interval).
@@ -26,18 +26,18 @@ In an experiment to test the effect of Vitamin C on IQ scores, the following con
 library(flextable)
 
 tab6_5 <- tibble::tribble(
-  ~Population, ~`% with improved IQ`, ~`95% confidence interval`,
-    1L,  "35.0",  "32.0 to 38.0",
-    2L,  "29.5",  "25.0 to 34.0",
-    3L,  "43.5",  "42.0 to 45.0",
-    4L,  "30.5",  "20.0 to 41.0",
-    5L,  "24.5",  "21.0 to 28.0"
-  )
+    ~Population, ~`% with improved IQ`, ~`95% confidence interval`,
+    1L, "35.0", "32.0 to 38.0",
+    2L, "29.5", "25.0 to 34.0",
+    3L, "43.5", "42.0 to 45.0",
+    4L, "30.5", "20.0 to 41.0",
+    5L, "24.5", "21.0 to 28.0"
+)
 
 flextable(tab6_5) |>
-  autofit() |> 
-  align(align="center", part="all") |> 
-  set_caption("Summary of improvement in IQ")
+    autofit() |>
+    align(align = "center", part = "all") |>
+    set_caption("Summary of improvement in IQ")
 ```
 
 

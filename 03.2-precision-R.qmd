@@ -1,6 +1,6 @@
 ## Importing Excel data into R
 
-Another common type of file that data are stored in is a Microsoft Excel file (.xls or .xlsx). In this demonstration, we will import a selection of records from a large health survey, stored in the file `mod02_health_survey.xlsx`.
+Another common type of file that data are stored in is a Microsoft Excel file (.xls or .xlsx). In this demonstration, we will import a selection of records from a large health survey, stored in the file `mod03_health_survey.xlsx`.
 
 The health survey data contains 1140 records, comprising:
 
@@ -13,7 +13,7 @@ To import data from Microsoft Excel, we can use the `read_excel()` function in t
 ```{r}
 library(readxl)
 
-survey <- read_excel("data/examples/mod02_health_survey.xlsx")
+survey <- read_excel("data/examples/mod03_health_survey.xlsx")
 summary(survey)
 ```
 

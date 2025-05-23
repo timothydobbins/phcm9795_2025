@@ -30,15 +30,6 @@ We use the `wilcox.test` function to perform the Wilcoxon ranked-sum test:
 wilcox.test(continuous_variable ~ group_variable, data=df)
 ```
 
-Note that the implementation of R's Wilcoxon rank-sum test uses a "continuity correction" for calculating the P-value from the ranks. This differs from Stata which does not use the continuity correction. While the use of the continuity correction is preferable, in most cases the difference in P-values between the methods will be minimal.
-
-To obtain results that are consistent with Stata, the `correct=FALSE` option can be used:
-
-```
-wilcox.test(continuous_variable ~ group_variable, data=df, correct=FALSE)
-```
-
-
 The Wilcoxon ranked-sum test will be demonstrated using the length of stay data in `mod09_infection.rds`. Here, out continuous variable is `los` and the grouping variable is `infect`.
 
 ```{r}

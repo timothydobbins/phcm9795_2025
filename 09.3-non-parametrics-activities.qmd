@@ -1,6 +1,6 @@
 ### Activity 9.1 {-}
 
-There is a hypothesis that university students who live and dine in the university hall consume less vitamin C than the students who live and dine at home. To test the hypothesis, 30 students were randomly selected and their urinary ascorbic acid level was measured in mg over 3 hours. Urinary excretion of ascorbic acid is a measure of vitamin C nutrition in humans. The data is given in the following table and a copy of the data set, `Activity_9.1.csv` is also available on Moodle.
+There is a hypothesis that university students who live and dine in the university hall consume less vitamin C than the students who live and dine at home. To test the hypothesis, 30 students were randomly selected and their urinary ascorbic acid level was measured in mg over 3 hours. Urinary excretion of ascorbic acid is a measure of vitamin C nutrition in humans. The data is given in the following table and a copy of the data set, `Activity_9.1.rds` is also available on Moodle.
 
 ```{r act-9-1, echo=FALSE}
 #| tab-cap: Urinary level of ascorbic acid (mg per 3 hours) of university students
@@ -37,7 +37,7 @@ c) State the hypotheses appropriate to the analytical method you mentioned in (b
 d) Carry out the statistical test you have mentioned in (b) and write your conclusion.
 
 ### Activity 9.2 {-}
-A drug was tested for its effect in lowering blood pressure. Fifteen women with hypertension were enrolled and had their systolic blood pressure measured before and after taking the drug. The data are available in the file `Activity_9.2.csv` on Moodle.
+A drug was tested for its effect in lowering blood pressure. Fifteen women with hypertension were enrolled and had their systolic blood pressure measured before and after taking the drug. The data are available in the file `Activity_9.2.rds` on Moodle.
 
 a) State the research question and the null hypothesis.
 b) Obtain suitable summary statistics and test the null hypothesis. Describe the reason for choosing the test. 
@@ -51,7 +51,7 @@ It is often necessary to take blood from newborn babies, which causes them pain.
 Analyse these data to answer the research question. Write a brief report summarising your results and state your conclusion.
 
 ### Supplementary Activity 9.4 {-}
-A study was conducted among 201 people who had recently quit smoking. The dataset Activity_9.4_smoke.csv contains the following variables:
+A study was conducted among 201 people who had recently quit smoking. The dataset `Activity_9.4_smoke.csv` contains the following variables:
 
 - ID: participant ID number
 - age: participant age (years)

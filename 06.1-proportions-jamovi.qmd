@@ -22,7 +22,7 @@ Note that the jamovi provides the proportion with scabies as well as the proport
 
 ### Binomial test for testing one sample proportion
 
-A binomial test can be performed using a similar approach. Here we consider Worked example 6.3, testing whether a sample is consistent with a true smoking proportion of 20%. `mod06_smoking_status.csv` contains individual level data, so we do not need to use weighting.
+A binomial test can be performed using a similar approach. Here we consider Worked example 6.3, testing whether a sample is consistent with a true smoking proportion of 20%. `mod06_smoking_status.rds` contains individual level data, so we do not need to use weighting.
 
 After opening the data, click **Analyses \> Frequencies \> One Sample Proportion Tests \> 2 Outcomes \| Binomial Test**. Set the **Test value** as 0.2, and tick the **Confidence intervals** box:
 
