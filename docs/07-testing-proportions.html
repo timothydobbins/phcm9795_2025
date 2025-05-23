@@ -301,21 +301,21 @@ window.Quarto = {
   <li><a href="#optional-readings" id="toc-optional-readings" class="nav-link" data-scroll-target="#optional-readings">Optional readings</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a>
   <ul class="collapse">
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">7.1.1</span> Worked Example</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked Example</a></li>
   </ul></li>
   <li><a href="#chi-squared-test-for-independent-proportions" id="toc-chi-squared-test-for-independent-proportions" class="nav-link" data-scroll-target="#chi-squared-test-for-independent-proportions"><span class="header-section-number">7.2</span> Chi-squared test for independent proportions</a>
   <ul class="collapse">
-  <li><a href="#assumptions-for-using-a-pearsons-chi-squared-test" id="toc-assumptions-for-using-a-pearsons-chi-squared-test" class="nav-link" data-scroll-target="#assumptions-for-using-a-pearsons-chi-squared-test"><span class="header-section-number">7.2.1</span> Assumptions for using a Pearson’s chi-squared test</a></li>
-  <li><a href="#worked-example-7.1" id="toc-worked-example-7.1" class="nav-link" data-scroll-target="#worked-example-7.1"><span class="header-section-number">7.2.2</span> Worked Example 7.1</a></li>
-  <li><a href="#fishers-exact-test" id="toc-fishers-exact-test" class="nav-link" data-scroll-target="#fishers-exact-test"><span class="header-section-number">7.2.3</span> Fisher’s exact test</a></li>
+  <li><a href="#assumptions-for-using-a-pearsons-chi-squared-test" id="toc-assumptions-for-using-a-pearsons-chi-squared-test" class="nav-link" data-scroll-target="#assumptions-for-using-a-pearsons-chi-squared-test">Assumptions for using a Pearson’s chi-squared test</a></li>
+  <li><a href="#worked-example-7.1" id="toc-worked-example-7.1" class="nav-link" data-scroll-target="#worked-example-7.1">Worked Example 7.1</a></li>
+  <li><a href="#fishers-exact-test" id="toc-fishers-exact-test" class="nav-link" data-scroll-target="#fishers-exact-test">Fisher’s exact test</a></li>
   </ul></li>
   <li><a href="#chi-squared-tests-for-tables-larger-than-2-by-2" id="toc-chi-squared-tests-for-tables-larger-than-2-by-2" class="nav-link" data-scroll-target="#chi-squared-tests-for-tables-larger-than-2-by-2"><span class="header-section-number">7.3</span> Chi-squared tests for tables larger than 2-by-2</a>
   <ul class="collapse">
-  <li><a href="#worked-example-7.2" id="toc-worked-example-7.2" class="nav-link" data-scroll-target="#worked-example-7.2"><span class="header-section-number">7.3.1</span> Worked Example 7.2</a></li>
+  <li><a href="#worked-example-7.2" id="toc-worked-example-7.2" class="nav-link" data-scroll-target="#worked-example-7.2">Worked Example 7.2</a></li>
   </ul></li>
   <li><a href="#mcnemars-test-for-categorical-paired-data" id="toc-mcnemars-test-for-categorical-paired-data" class="nav-link" data-scroll-target="#mcnemars-test-for-categorical-paired-data"><span class="header-section-number">7.4</span> McNemar’s test for categorical paired data</a>
   <ul class="collapse">
-  <li><a href="#worked-example-7.3" id="toc-worked-example-7.3" class="nav-link" data-scroll-target="#worked-example-7.3"><span class="header-section-number">7.4.1</span> Worked Example 7.3</a></li>
+  <li><a href="#worked-example-7.3" id="toc-worked-example-7.3" class="nav-link" data-scroll-target="#worked-example-7.3">Worked Example 7.3</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.5</span> Summary</a></li>
   <li><a href="#jamovi-notes" id="toc-jamovi-notes" class="nav-link" data-scroll-target="#jamovi-notes">jamovi notes</a>
@@ -369,8 +369,8 @@ window.Quarto = {
 <p>In Module 6, we estimated the 95% confidence intervals of proportions and measures of association for categorical data and conducted a significance test comparing a sample proportion to a known value.</p>
 <p>When both the outcome variable and the exposure variable are categorical, a chi-squared test can be used as a formal statistical test to assess whether the exposure and outcome are related. The P-value obtained from a chi-squared test gives the probability of obtaining the observed association (or more extreme) if there is in fact no association between the exposure and outcome.</p>
 <p>In this Module, we also include tests for a difference in proportion for paired data.</p>
-<section id="worked-example" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">7.1.1</span> Worked Example</h3>
+<section id="worked-example" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example">Worked Example</h3>
 <p>We are using the randomised controlled trial as given in Worked Example 6.4 on the nauseating side effect of a drug.</p>
 <p>The research question is whether the active drug resulted in a different rate of nausea than the placebo drug. This is equivalent to testing whether there is an association between nausea and type of drug received (active or placebo). Thus, we will test the null hypothesis that the experience of nausea and the treatment are not related to one another. The null hypothesis is:</p>
 <ul>
@@ -392,8 +392,8 @@ window.Quarto = {
 <p>with [Number of rows <span class="math inline">\(-\)</span> 1] <span class="math inline">\(\times\)</span> [Number of columns <span class="math inline">\(-\)</span> 1] degrees of freedom.</p>
 <p>As for many statistics, the deviations between the observed and expected values are squared to prevent the negative and positive values balancing one another out.</p>
 <p>If the expected counts are close to the observed counts, the chi-squared statistic will be close to zero, and the P-value will be close to 1. The larger the difference between the observed and expected counts, the larger the chi-squared statistic becomes (and the smaller the P-value). A large chi-squared statistic provides more evidence of an association between the exposure and outcome.</p>
-<section id="assumptions-for-using-a-pearsons-chi-squared-test" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="assumptions-for-using-a-pearsons-chi-squared-test"><span class="header-section-number">7.2.1</span> Assumptions for using a Pearson’s chi-squared test</h3>
+<section id="assumptions-for-using-a-pearsons-chi-squared-test" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions-for-using-a-pearsons-chi-squared-test">Assumptions for using a Pearson’s chi-squared test</h3>
 <p>The assumptions that must be met when using Pearson’s chi-squared test are that:</p>
 <ul>
 <li>each observation must be independent;</li>
@@ -403,8 +403,8 @@ window.Quarto = {
 </ul>
 <p>The first two assumptions are dictated by the study design. The last two assumptions relate to the numbers in the cells and should be explored when running the test. There should not be too many cells with low expected counts.</p>
 </section>
-<section id="worked-example-7.1" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="worked-example-7.1"><span class="header-section-number">7.2.2</span> Worked Example 7.1</h3>
+<section id="worked-example-7.1" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example-7.1">Worked Example 7.1</h3>
 <p>We will revisit Worked Example 6.4, investigating the relationship between nausea and drug exposure:</p>
 <div id="tbl-rr-observed" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -489,8 +489,8 @@ Table&nbsp;7.2: Expected counts of nausea status by drug exposure
 <p>The chi-squared statistic is calculated as 7.86 with 1 df, giving a P-value of 0.005. Combining these results with the estimated relative risk (from Module 6), we can state:</p>
 <p>The proportion with nausea in those who received the active drug is 30%, compared to 8% in those who received the placebo drug. Nausea was more frequent in those who received the active drug (Relative Risk = 3.75, 95% CI: 1.34 to 10.51). There is strong evidence that the proportion with nausea differs between the two groups (<span class="math inline">\(\chi ^2\)</span> = 7.86 with 1 df, P=0.005).</p>
 </section>
-<section id="fishers-exact-test" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="fishers-exact-test"><span class="header-section-number">7.2.3</span> Fisher’s exact test</h3>
+<section id="fishers-exact-test" class="level3">
+<h3 class="anchored" data-anchor-id="fishers-exact-test">Fisher’s exact test</h3>
 <p>If small expected cell counts are present, Fisher’s exact test can be used instead. More information on Fisher’s exact test can be found in Chapter 13 of An Introduction to Medical Statistics, <span class="citation" data-cites="bland15">Bland (<a href="references.html#ref-bland15" role="doc-biblioref">2015</a>)</span>, or Section 17.3 of Essential Medical Statistics, <span class="citation" data-cites="kirkwood_sterne01">Kirkwood and Sterne (<a href="references.html#ref-kirkwood_sterne01" role="doc-biblioref">2001</a>)</span>. The computation of Fisher’s exact test is complex, and best conducted by statistical software.</p>
 <p>A reasonable question could be posed: why not conduct Fisher’s exact test by default? The answer to this is complex.</p>
 <p>Fisher’s exact test has quite a restrictive assumption: we assume that the totals of the rows and columns are fixed before we conduct the study.</p>
@@ -503,8 +503,8 @@ Table&nbsp;7.2: Expected counts of nausea status by drug exposure
 <section id="chi-squared-tests-for-tables-larger-than-2-by-2" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="chi-squared-tests-for-tables-larger-than-2-by-2"><span class="header-section-number">7.3</span> Chi-squared tests for tables larger than 2-by-2</h2>
 <p>Chi-squared tests can also be used for tables larger than a 2-by-2 dimension. When a contingency table larger than 2-by-2 is used, say a 4-by-2 table if there were 4 exposure groups, the Pearson’s chi-squared can still be used.</p>
-<section id="worked-example-7.2" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="worked-example-7.2"><span class="header-section-number">7.3.1</span> Worked Example 7.2</h3>
+<section id="worked-example-7.2" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example-7.2">Worked Example 7.2</h3>
 <p>The file <code>mod07_allergy.rds</code> contain information about the severity of allergic reaction, coded as absent, slight, moderate or severe. We can test the hypothesis that the severity of allergy is not different between males and females. To do this we can use a two-way tabulation to obtain <a href="#tbl-allergy" class="quarto-xref">Table&nbsp;<span>7.3</span></a> which shows the counts, expected counts and the percent of females and males who fall into each severity group for allergy. The table shows that the percentage of males is higher in each of the categories of severity (slight, moderate, severe) than the percentage of females.</p>
 <div id="tbl-allergy" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -634,14 +634,14 @@ Table&nbsp;7.4: Table layout for testing matched proportions
 </figcaption>
 <div aria-describedby="tbl-7-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-389a5b62{}.cl-3896a058{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-389814d8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3898223e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3898223f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3898225c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-389a5b62"><thead><tr style="overflow-wrap:break-word;"><th class="cl-3898223e"><p class="cl-389814d8"><span class="cl-3896a058"> </span></p></th><th class="cl-3898223e"><p class="cl-389814d8"><span class="cl-3896a058">Negative at follow-up</span></p></th><th class="cl-3898223e"><p class="cl-389814d8"><span class="cl-3896a058">Positive at follow-up</span></p></th><th class="cl-3898223e"><p class="cl-389814d8"><span class="cl-3896a058">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">Negative at baseline</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">a</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">b</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">a + b</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">Positive at baseline</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">c</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">d</span></p></td><td class="cl-3898223f"><p class="cl-389814d8"><span class="cl-3896a058">c + d</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3898225c"><p class="cl-389814d8"><span class="cl-3896a058">Total</span></p></td><td class="cl-3898225c"><p class="cl-389814d8"><span class="cl-3896a058">a + c</span></p></td><td class="cl-3898225c"><p class="cl-389814d8"><span class="cl-3896a058">b + d</span></p></td><td class="cl-3898225c"><p class="cl-389814d8"><span class="cl-3896a058">N</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-5b90da7e{}.cl-5b8cf9a4{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5b8e8c74{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5b8e99e4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5b8e99ee{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5b8e99ef{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-5b90da7e"><thead><tr style="overflow-wrap:break-word;"><th class="cl-5b8e99e4"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4"> </span></p></th><th class="cl-5b8e99e4"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">Negative at follow-up</span></p></th><th class="cl-5b8e99e4"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">Positive at follow-up</span></p></th><th class="cl-5b8e99e4"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-5b8e99ee"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">Negative at baseline</span></p></td><td class="cl-5b8e99ee"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">a</span></p></td><td class="cl-5b8e99ee"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">b</span></p></td><td class="cl-5b8e99ee"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">a + b</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5b8e99ee"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">Positive at baseline</span></p></td><td class="cl-5b8e99ee"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">c</span></p></td><td class="cl-5b8e99ee"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">d</span></p></td><td class="cl-5b8e99ee"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">c + d</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5b8e99ef"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">Total</span></p></td><td class="cl-5b8e99ef"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">a + c</span></p></td><td class="cl-5b8e99ef"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">b + d</span></p></td><td class="cl-5b8e99ef"><p class="cl-5b8e8c74"><span class="cl-5b8cf9a4">N</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </figure>
 </div>
 </div>
-<section id="worked-example-7.3" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="worked-example-7.3"><span class="header-section-number">7.4.1</span> Worked Example 7.3</h3>
+<section id="worked-example-7.3" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example-7.3">Worked Example 7.3</h3>
 <p>Two drugs labelled A and B have been administered to patients in random order so that each patient acts as their own control. The dataset <code>mod07_drug_response.rds</code> is available on Moodle. The null hypothesis is as follows:</p>
 <ul>
 <li>H<sub>0</sub>: The proportion of patients who do better on drug A is the same as the proportion of patients who do better on drug B</li>
