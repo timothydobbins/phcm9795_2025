@@ -11,9 +11,9 @@ By the end of this module you will be able to:
 
 ## Optional readings {.unnumbered}
 
-@kirkwood_sterne01; Chapters 5, 14 and 15. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728)
+@kirkwood_sterne01; Chapters 3, 14 and 15. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=624728)
 
-@bland15; Chapters 6 and 7. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
+@bland15; Chapters 5 and 6. [\[UNSW Library Link\]](http://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=https://ebookcentral.proquest.com/lib/unsw/detail.action?docID=5891730)
 
 Graphics and statistics for cardiology: designing effective tables for presentation and publication, @boers18 [[UNSW Library Link](https://er1.library.unsw.edu.au/er/cgi-bin/eraccess.cgi?url=http://dx.doi.org/10.1136/heartjnl-2017-311581)]
 
@@ -38,22 +38,28 @@ library(ftExtra)
 library(gtsummary)
 library(huxtable)
 
-pbc <- readRDS("data/examples/mod01_pbc.rds") |> 
-  mutate(sex = factor(sex, levels=c(1,2),
-                      labels=c("Male", "Female")))
+pbc <- readRDS("data/examples/mod01_pbc.rds") |>
+    mutate(sex = factor(sex,
+        levels = c(1, 2),
+        labels = c("Male", "Female")
+    ))
 
-tab <- descriptives(pbc, sex, freq=TRUE)
+tab <- descriptives(pbc, sex, freq = TRUE)
 
-tab_out <- as.data.frame(tab$frequencies[[1]]) |> 
-  rename(Sex = sex,
-         Frequency = counts,
-         `Relative frequency (%)` = pc,
-         `Cumulative relative frequency (%)` = cumpc) |> 
-  mutate(`Relative frequency (%)` = 100*`Relative frequency (%)`,
-         `Cumulative relative frequency (%)` = 100*`Cumulative relative frequency (%)`)
+tab_out <- as.data.frame(tab$frequencies[[1]]) |>
+    rename(
+        Sex = sex,
+        Frequency = counts,
+        `Relative frequency (%)` = pc,
+        `Cumulative relative frequency (%)` = cumpc
+    ) |>
+    mutate(
+        `Relative frequency (%)` = 100 * `Relative frequency (%)`,
+        `Cumulative relative frequency (%)` = 100 * `Cumulative relative frequency (%)`
+    )
 
-flextable(select(tab_out, 1:3), cwidth = c(1, 1, 1.5)) |> 
-  colformat_double(j = 3, digits = 1)
+flextable(select(tab_out, 1:3), cwidth = c(1, 1, 1.5)) |>
+    colformat_double(j = 3, digits = 1)
 
 ```
 
@@ -62,22 +68,26 @@ It is sometimes useful to present the cumulative relative frequency, which shows
 ```{r tbl-1-stage, echo=FALSE, fig.pos="H"}
 #| tbl-cap: Stage of disease for participants in PBC study
 
-pbc <- pbc |> 
-  mutate(stage = factor(stage))
+pbc <- pbc |>
+    mutate(stage = factor(stage))
 
-tab_stage <- descriptives(pbc, stage, freq=TRUE)
+tab_stage <- descriptives(pbc, stage, freq = TRUE)
 
-tab_stage_out <- as.data.frame(tab_stage$frequencies[[1]]) |> 
-  rename(`Stage *` = stage,
-         Frequency = counts,
-         `Relative frequency (%)` = pc,
-         `Cumulative relative frequency (%)` = cumpc) |> 
-  mutate(`Relative frequency (%)` = 100*`Relative frequency (%)`,
-         `Cumulative relative frequency (%)` = 100*`Cumulative relative frequency (%)`)
+tab_stage_out <- as.data.frame(tab_stage$frequencies[[1]]) |>
+    rename(
+        `Stage *` = stage,
+        Frequency = counts,
+        `Relative frequency (%)` = pc,
+        `Cumulative relative frequency (%)` = cumpc
+    ) |>
+    mutate(
+        `Relative frequency (%)` = 100 * `Relative frequency (%)`,
+        `Cumulative relative frequency (%)` = 100 * `Cumulative relative frequency (%)`
+    )
 
-flextable(select(tab_stage_out, 1:4), , cwidth = c(1, 1, 1.5, 1.5)) |> 
-  colformat_double(j = c(3,4), digits = 1) |> 
-  add_footer_lines("* Disease stage was missing for 6 participants")
+flextable(select(tab_stage_out, 1:4), , cwidth = c(1, 1, 1.5, 1.5)) |>
+    colformat_double(j = c(3, 4), digits = 1) |>
+    add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
 From @tbl-1-stage, we can see that 65.0% of participants had Stage 3 disease or lower.
@@ -112,11 +122,13 @@ Using our PBC data, we can summarise the two categorical variables: sex and stag
 ```{r tbl-1-sex-stage-freq, echo=FALSE, message=FALSE}
 #| tbl-cap: Frequency of participants by sex and stage of disease*
 
-t_cross <- tbl_cross(pbc, sex, stage, missing="no",
-                  label = list(sex ="Sex", stage="Stage"))
+t_cross <- tbl_cross(pbc, sex, stage,
+    missing = "no",
+    label = list(sex = "Sex", stage = "Stage")
+)
 
-as_flex_table(t_cross) |> 
-  add_footer_lines("* Disease stage was missing for 6 participants")
+as_flex_table(t_cross) |>
+    add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
 We can add percentages to two-way tables as either *column* or *row* percents. Using @tbl-1-sex-stage-freq as an example, column percents represent the relative frequencies of sex within each stage (@tbl-1-sex-stage-col).
@@ -124,13 +136,15 @@ We can add percentages to two-way tables as either *column* or *row* percents. U
 ```{r tbl-1-sex-stage-col, echo=FALSE, message=FALSE}
 #| tbl-cap: Frequency of participants by sex and stage of disease*, including column percents
 
-t_col <- tbl_cross(pbc, sex, stage, missing="no",
-                     percent = "column",
-                  label = list(sex ="Sex", stage="Stage"),
-                  digits = 0)
+t_col <- tbl_cross(pbc, sex, stage,
+    missing = "no",
+    percent = "column",
+    label = list(sex = "Sex", stage = "Stage"),
+    digits = 0
+)
 
-as_flex_table(t_col) |> 
-  add_footer_lines("* Disease stage was missing for 6 participants")
+as_flex_table(t_col) |>
+    add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
 Conversely, row percents represent the relative frequencies of stage within each sex (@tbl-1-sex-stage-row).
@@ -138,13 +152,15 @@ Conversely, row percents represent the relative frequencies of stage within each
 ```{r tbl-1-sex-stage-row, echo=FALSE, message=FALSE}
 #| tbl-cap: Frequency of participants by sex and stage of disease, including row percents
 
-t_rwo <- tbl_cross(pbc, sex, stage, missing="no",
-                     percent = "row",
-                  label = list(sex ="Sex", stage="Stage"),
-                  digits = 0)
+t_rwo <- tbl_cross(pbc, sex, stage,
+    missing = "no",
+    percent = "row",
+    label = list(sex = "Sex", stage = "Stage"),
+    digits = 0
+)
 
-as_flex_table(t_rwo) |> 
-  add_footer_lines("* Disease stage was missing for 6 participants")
+as_flex_table(t_rwo) |>
+    add_footer_lines("* Disease stage was missing for 6 participants")
 ```
 
 ### Tables containing more than two variables
@@ -206,23 +222,23 @@ A summary of these guidelines that will be used in this course appear in @tbl-1-
 #| fig-pos: 'h'
 
 tab1_pres <- tibble::tribble(
-~`Summary statistic`,       ~`Guideline (reference)`,
-"Mean", "It is usually appropriate to quote the mean to one extra decimal place compared with the raw data. (Altman)",
-"Median, Interquartile range, Range", "As medians, interquartile ranges and ranges are based on individual data points, these values should be presented with the same precision as the original data.",
-"Percentage", "Percentages do not need to be given with more than one decimal place at most. When the sample size is less than 100, no decimal places should be given. (Altman)",
-"Probability", "It is acceptable to present probabilities to 2 or 3 decimal places. If the probability is presented as a percentage, present the percentage with 0 or 1 decimal place.",
-"Standard deviation", "The standard deviation should usually be given to the same accuracy as the mean, or with one extra decimal place. (Altman)",
-"Standard error", "As per standard deviation",
-"Confidence interval", "Use the same rule as for the corresponding effect size (be it mean, percentage, mean difference, regression coefficient, correlation coefficient or risk ratio) (Cole)",
-"Test statistic", "Test statistics should not be presented with more than two decimal places.",
-"P-value", "Report P-values to a single significant figure unless the P-value is close to 0.05 (say, 0.01 to 0.2), in which case, report two significant figures. Do not report `not significant` for P-values of 0.05 or higher. Very low P-values can be reported as P < 0.001 or P < 0.0001. A P-value can indeed be 1, although some investigators prefer to report this as >0.9. (Based on Assel)",
-"Difference in means", "As for the estimated means",
-"Difference in proportions", "As for the estimated proportions",
-"Odds ratio / Relative risk", "Hazard and odds ratios are normally reported to two decimal places, although this can be avoided for high odds ratios (Assel)",
-"Correlation coefficient", "One or two decimal places, or more when very close to ±1   (Cole)",
-"Regression coefficient", "Use one more significant figure than the underlying data   (adapted from Cole)"
-     )
-   
+    ~`Summary statistic`, ~`Guideline (reference)`,
+    "Mean", "It is usually appropriate to quote the mean to one extra decimal place compared with the raw data. (Altman)",
+    "Median, Interquartile range, Range", "As medians, interquartile ranges and ranges are based on individual data points, these values should be presented with the same precision as the original data.",
+    "Percentage", "Percentages do not need to be given with more than one decimal place at most. When the sample size is less than 100, no decimal places should be given. (Altman)",
+    "Probability", "It is acceptable to present probabilities to 2 or 3 decimal places. If the probability is presented as a percentage, present the percentage with 0 or 1 decimal place.",
+    "Standard deviation", "The standard deviation should usually be given to the same accuracy as the mean, or with one extra decimal place. (Altman)",
+    "Standard error", "As per standard deviation",
+    "Confidence interval", "Use the same rule as for the corresponding effect size (be it mean, percentage, mean difference, regression coefficient, correlation coefficient or risk ratio) (Cole)",
+    "Test statistic", "Test statistics should not be presented with more than two decimal places.",
+    "P-value", "Report P-values to a single significant figure unless the P-value is close to 0.05 (say, 0.01 to 0.2), in which case, report two significant figures. Do not report `not significant` for P-values of 0.05 or higher. Very low P-values can be reported as P < 0.001 or P < 0.0001. A P-value can indeed be 1, although some investigators prefer to report this as >0.9. (Based on Assel)",
+    "Difference in means", "As for the estimated means",
+    "Difference in proportions", "As for the estimated proportions",
+    "Odds ratio / Relative risk", "Hazard and odds ratios are normally reported to two decimal places, although this can be avoided for high odds ratios (Assel)",
+    "Correlation coefficient", "One or two decimal places, or more when very close to ±1   (Cole)",
+    "Regression coefficient", "Use one more significant figure than the underlying data   (adapted from Cole)"
+)
+
 flextable(tab1_pres, cwidth = c(1.5, 5))
 ```
 
@@ -302,12 +318,12 @@ Using the information from https://www.donateblood.com.au/learn/about-blood let�
 
 
 tab2_1 <- tibble::tribble(
-  ~`Blood Type`, ~`% of population`, ~Probability,
-  "A",              "38%",         0.38,
-  "B",              "10%",          0.1,
-  "AB",               "3%",         0.03,
-  "O",              "49%",         0.49,
-  "Total",             "100%",          1.0
+    ~`Blood Type`, ~`% of population`, ~Probability,
+    "A", "38%", 0.38,
+    "B", "10%", 0.1,
+    "AB", "3%", 0.03,
+    "O", "49%", 0.49,
+    "Total", "100%", 1.0
 )
 
 flextable(tab2_1)
@@ -343,10 +359,10 @@ For example, the probability distribution for a single coin toss is straightforw
 #| tbl-cap: Probability distribution for a single coin toss
 
 tab2_coin <- tibble::tribble(
-            ~`Coin face`, ~Probability,
-               "Heads",          0.5,
-               "Tails",          0.5
-            )
+    ~`Coin face`, ~Probability,
+    "Heads", 0.5,
+    "Tails", 0.5
+)
 
 flextable(tab2_coin)
 
@@ -358,21 +374,22 @@ Similarly, the probability distribution for a single roll of a die is straightfo
 #| tbl-cap: Probability distributions for a single roll of a die
 library(flextable)
 set_flextable_defaults(
-  font.family = "Roboto",
-  font.size = 10)
-  
+    font.family = "Roboto",
+    font.size = 10
+)
+
 tab2_die <- tibble::tribble(
-            ~`Face of a die`, ~Probability,
-                   1L,      "1/6",
-                   2L,      "1/6",
-                   3L,      "1/6",
-                   4L,      "1/6",
-                   5L,      "1/6",
-                   6L,      "1/6"
-            )
+    ~`Face of a die`, ~Probability,
+    1L, "1/6",
+    2L, "1/6",
+    3L, "1/6",
+    4L, "1/6",
+    5L, "1/6",
+    6L, "1/6"
+)
 
 flextable(tab2_die, cwidth = c(1.25, 1))
-# |> 
+# |>
 #  align(align = "center", part="all")
 ```
 
@@ -401,22 +418,22 @@ The possible combinations for three coin tosses are as follows:
 #| tbl-cap: The number of heads from three coin tosses
 
 tab2_3toss <- tibble::tribble(
-            ~`Pattern`, ~`Number of heads`,
-            "Tail, Tail, Tail", 0,
-            "Head, Tail, Tail", 1,
-            "Tail, Head, Tail", 1,
-            "Tail, Tail, Head", 1,
-            "Head, Head, Tail", 2,
-            "Head, Tail, Head", 2,
-            "Tail, Head, Head", 2,
-            "Head, Head, Head", 3
-            )
+    ~`Pattern`, ~`Number of heads`,
+    "Tail, Tail, Tail", 0,
+    "Head, Tail, Tail", 1,
+    "Tail, Head, Tail", 1,
+    "Tail, Tail, Head", 1,
+    "Head, Head, Tail", 2,
+    "Head, Tail, Head", 2,
+    "Tail, Head, Head", 2,
+    "Head, Head, Head", 3
+)
 
 
-flextable(tab2_3toss) |> 
-  autofit() |> 
-  merge_v(j="Number of heads") |> 
-  hline(i=c(1, 4, 7))
+flextable(tab2_3toss) |>
+    autofit() |>
+    merge_v(j = "Number of heads") |>
+    hline(i = c(1, 4, 7))
 
 ```
 
@@ -430,17 +447,17 @@ Therefore, the probability distribution for X, the number of heads from three co
 #| tbl-cap: Probability distribution for the number of heads from three coin tosses
 
 tab2_4 <- tibble::tribble(
-            ~`x (number of heads observed)`, ~`P(X=x)`,
-                                         0L,        "1/8",
-                                         1L,        "1/8 + 1/8 + 1/8 = 3/8",
-                                         2L,        "1/8 + 1/8 + 1/8 = 3/8",
-                                         3L,        "1/8"
-            )
+    ~`x (number of heads observed)`, ~`P(X=x)`,
+    0L, "1/8",
+    1L, "1/8 + 1/8 + 1/8 = 3/8",
+    2L, "1/8 + 1/8 + 1/8 = 3/8",
+    3L, "1/8"
+)
 
 
-flextable(tab2_4) |> 
-  autofit()
-# |> 
+flextable(tab2_4) |>
+    autofit()
+# |>
 #  align(j=1, align="center", part="all")
 
 ```
@@ -457,20 +474,20 @@ The number of ways two people out of three could have Type A blood is 3, and eac
 #| tbl-cap: Combinations and probabilities of Type A blood in three people
 
 tab2_5 <- tibble::tribble(
-        ~`Person 1`, ~`Person 2`, ~`Person 3`,                  ~Probability,
-                  "A",       "A",       "A", "0.38 × 0.38 × 0.38 = 0.0549",
-                  "A",       "A",   "Not A", "0.38 × 0.38 × 0.62 = 0.0895",
-                  "A",   "Not A",       "A", "0.38 × 0.62 × 0.38 = 0.0895",
-              "Not A",       "A",       "A", "0.62 × 0.38 × 0.38 = 0.0895",
-                  "A",   "Not A",   "Not A", "0.38 × 0.62 × 0.62 = 0.1461",
-              "Not A",       "A",   "Not A", "0.62 × 0.38 × 0.62 = 0.1461",
-              "Not A",   "Not A",       "A", "0.62 × 0.62 × 0.38 = 0.1461",
-              "Not A",   "Not A",   "Not A", "0.62 × 0.62 × 0.62 = 0.2383"
-            )
+    ~`Person 1`, ~`Person 2`, ~`Person 3`, ~Probability,
+    "A", "A", "A", "0.38 × 0.38 × 0.38 = 0.0549",
+    "A", "A", "Not A", "0.38 × 0.38 × 0.62 = 0.0895",
+    "A", "Not A", "A", "0.38 × 0.62 × 0.38 = 0.0895",
+    "Not A", "A", "A", "0.62 × 0.38 × 0.38 = 0.0895",
+    "A", "Not A", "Not A", "0.38 × 0.62 × 0.62 = 0.1461",
+    "Not A", "A", "Not A", "0.62 × 0.38 × 0.62 = 0.1461",
+    "Not A", "Not A", "A", "0.62 × 0.62 × 0.38 = 0.1461",
+    "Not A", "Not A", "Not A", "0.62 × 0.62 × 0.62 = 0.2383"
+)
 
-flextable(tab2_5) |> 
-  autofit() |> 
-  hline(i=c(1, 4, 7))
+flextable(tab2_5) |>
+    autofit() |>
+    hline(i = c(1, 4, 7))
 
 ```
 
@@ -480,16 +497,16 @@ flextable(tab2_5) |>
 #| tbl-cap: Probabilities of observing numbers of people with Type A blood in a sample of three people
 
 tab2_6 <- tibble::tribble(
-        ~`Number of people with Type A blood`,        ~`Probability of each pattern`,
-                                         3L,                            "0.0549",
-                                         2L, "0.0895 + 0.0895 + 0.0895 = 0.2689",
-                                         1L, "0.1461 + 0.1461 + 0.1461 = 0.4382",
-                                         0L,                            "0.2383"
-        )
+    ~`Number of people with Type A blood`, ~`Probability of each pattern`,
+    3L, "0.0549",
+    2L, "0.0895 + 0.0895 + 0.0895 = 0.2689",
+    1L, "0.1461 + 0.1461 + 0.1461 = 0.4382",
+    0L, "0.2383"
+)
 
-flextable(tab2_6) |> 
-  autofit()
-# |> 
+flextable(tab2_6) |>
+    autofit()
+# |>
 #  align(j=1, align="center", part="all")
 
 ```
