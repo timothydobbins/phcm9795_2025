@@ -558,6 +558,18 @@ plot(density(pbc$age),
      main="Density plot of participant age from pbc study data")
 ```
 
+::: {.callout-warning}
+## Note
+
+The `density()` function requires the analysis variable to contain no missing values, and will give an error if there are any missing values. We can use the option `na.rm=TRUE` to request that the density function ignore any missing values. For example:
+
+```
+plot(density(pbc$ast, na.rm=TRUE),
+     xlab="AST (U/mL)",
+     main="Density plot of aspartate aminotransferase from pbc study data")
+```
+:::
+
 
 ### Producing a boxplot
 

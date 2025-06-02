@@ -34,7 +34,7 @@ Note: to obtain output similar to Jamovi output, we can use the `scatr` package:
 
 ```{r}
 # Install scatr if required:
-# install.package("scatr")
+# install.packages("scatr")
 library(scatr)
 
 scat(data=lung, x="Height", y="FVC", line="linear")

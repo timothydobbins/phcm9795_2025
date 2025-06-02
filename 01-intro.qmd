@@ -216,7 +216,7 @@ As well as calculating measures of central tendency and spread to describe the c
 
 A frequency histogram is a plot of the number of observations that fall within defined ranges of non-overlapping intervals (called bins). Examples of frequency histograms are given in @fig-hist-1.
 
-```{r fig-hist-1, echo=FALSE, out.width = "100%", fig.cap="Density plots of age (left) and serum bilirubin (right) from PBC data"}
+```{r fig-hist-1, echo=FALSE, out.width = "100%", fig.cap="Histograms of age (left) and serum bilirubin (right) from PBC data"}
 knitr::include_graphics(here::here("img", "mod01", "hist-symmetric-skewed.png"))
 ```
 
@@ -234,7 +234,7 @@ Both the frequency and density histograms are useful for understanding how the d
 
 A density plot can be thought of as a smoothed version of a density histogram. Like histograms, density plots show areas where there are a lot of observations and areas where there are relatively few observations. @fig-dens-1 illustrates example density plots for the same data as plotted in @fig-hist-1.
 
-```{r fig-dens-1, echo=FALSE, out.width = "100%", fig.cap="Histogram of age (left) and serum bilirubin (right) from a sample of data"}
+```{r fig-dens-1, echo=FALSE, out.width = "100%", fig.cap="Density plots of age (left) and serum bilirubin (right) from a sample of data"}
 knitr::include_graphics(here::here("img", "mod01", "dens-symmetric-skewed.png"))
 ```
 

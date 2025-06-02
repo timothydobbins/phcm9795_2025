@@ -45,10 +45,3 @@ b.  Complete the following summary statistics for each variable:
 
 Make a decision about whether each variable is symmetric or not, and which measure of central tendency and variability should be reported.
 
-### Activity 2.6 {-}
-
-If weights of men are Normally distributed with a population mean $\mu$ = 87, and a population standard deviation, $\sigma$ = 8 kg:
-
-a)	What is the probability that a man will weigh 95 kg or more?  Draw a Normal curve of the area represented by this probability in the population (i.e. with $\mu$ = 87 kg and $\sigma$ = 8 kg).
-b)	What is the probability that a man will weigh more than 75 kg but less than 95 kg?  Draw the area represented by this probability on a Normal curve.
-

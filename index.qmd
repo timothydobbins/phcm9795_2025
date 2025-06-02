@@ -34,3 +34,11 @@ On successful completion of this course, you will be able to:
 
 ## Change log
 
+2 June 2025
+
+- Section 1.4: corrected the figure labels for Figure 1.2 and Figure 1.3
+- Section 1.8: included hyperlink to download jamovi
+- Section 1.13: Added a note about using `na.rm=TRUE` when using the `density()` function in the presence of missing data
+- Activity 2.6: moved to Activity 3.7
+- Section 8.13: corrected typo - `install.packages(scatr)`
+

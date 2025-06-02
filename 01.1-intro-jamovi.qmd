@@ -32,7 +32,7 @@ In this very brief section, we will introduce jamovi by calculating the average 
 
 ## Installing jamovi
 
-jamovi can be downloaded for no cost at https://www.jamovi.org/download.html for Windows, macOS and linux. At the time of writing, Version 2.6.26 solid is the appropriate version to use. Download and install jamovi in the usual way.
+jamovi can be downloaded for no cost at [https://www.jamovi.org/download.html](https://www.jamovi.org/download.html) for Windows, macOS and linux. At the time of writing, Version 2.6.26 solid is the appropriate version to use. Download and install jamovi in the usual way.
 
 ## A simple jamovi analysis
 

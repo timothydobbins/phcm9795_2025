@@ -65,3 +65,10 @@ The data set of hospital stay data for 1323 hypothetical patients is available o
 a)	Use jamovi or R to examine the distribution of length of stay: overall; and separately for females and males. Comment on the distributions.
 b)	Use jamovi or R to calculate measures of central tendency for hospital stay to obtain information about the average duration of hospital stay. Which summary statistics should you report and why? Report the appropriate statistics of the spread and measure of central tendency chosen.
 c)	Calculate the measures of central tendency for hospital duration separately for males and females. What can you conclude from comparing these measures for males and females? 
+
+### Activity 3.7 {-}
+
+If weights of men are Normally distributed with a population mean $\mu$ = 87, and a population standard deviation, $\sigma$ = 8 kg:
+
+a)	What is the probability that a man will weigh 95 kg or more?  Draw a Normal curve of the area represented by this probability in the population (i.e. with $\mu$ = 87 kg and $\sigma$ = 8 kg).
+b)	What is the probability that a man will weigh more than 75 kg but less than 95 kg?  Draw the area represented by this probability on a Normal curve.
