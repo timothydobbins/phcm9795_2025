@@ -1,6 +1,6 @@
 ---
 title: "Module 1: Solutions to learning activities"
-subtitle: "R version"
+subtitle: "jamovi version"
 format: pdf
 papersize: A4
 mainfont: Roboto
@@ -50,52 +50,24 @@ library(jmv)
 # Read in the data
 weightloss <- readRDS("data/activities/Activity_1.1.rds")
 
-plot(density(weightloss$weightloss),
-     xlab="Weight loss (g)",
-     main="")
-
+weightloss$"Weight loss (g)" <- weightloss$weightloss
+d <- descriptives(data=weightloss, vars="Weight loss (g)", dens=TRUE)
+d$plots[[1]]
 ```
 
 \newpage
 
 ### Process
 
-```
-library(jmv)
+After opening the data in jamovi, we first change the name of the variable `weightloss` to `Weight loss (g)`, so the plot is appropriately labelled. This can be done by double-clicking the column name of `weightloss` in the spreadsheet view:
 
-# Read in the data
-weightloss <- readRDS("data/activities/Activity_1.1.rds")
+![](img/mod01/jamovi-activities/act1.1-1.png)
 
-# Check the default density plot:
-plot(density(weightloss$weightloss))
+After the name is changed, we choose **Analyses > Exploration > Descriptives**. Choose `Weight loss (g)` as the analysis variable, and make sure that **Plots > Density** is selected:
 
-# Let's add labels and titles
-plot(density(weightloss$weightloss),
-     xlab="Weight loss (g)",
-     main="Figure 1: Weight loss for 25 participants")
+![](img/mod01/jamovi-activities/act1.1-2.png)
 
-# Alternatively, use the descriptives function from jmv:
-descriptives(data=weightloss, vars=weightloss, dens=TRUE)
-```
-
-Note that it is difficult to customise the plot when using the descriptives function. You could create a new column called "Weight loss (g)" and plot it using the following code (note the use of the quotation marks – these are **very important**):
-
-\newpage
-
-```
-weightloss$"Weight loss (g)" <- weightloss$weightloss
-descriptives(data=weightloss, vars="Weight loss (g)", dens=TRUE)
-```
-
-```{r, out.width="50%"}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-cap: "Weight loss for 25 participants"
-
-weightloss$"Weight loss (g)" <- weightloss$weightloss
-descriptives(data=weightloss, vars="Weight loss (g)", dens=TRUE)
-```
+Note that the title of the figure can be added as text after copying the figure into a word processing package.
 
 \newpage
 ## Activity 1.2 {.unnumbered}
@@ -132,15 +104,11 @@ The standard deviation is estimated as 0.843, and the inter-quartile range is fr
 
 Note: no units were provided for the data used in this question. Summary statistics must be presented with their units where the units are available.
 
-\newpage
 ### Process
 
-```{r}
-act1_3 <- readRDS("data/activities/Activity_1.3.rds")
+A similar process is used as for Activity 1.1. To obtain the interquartile range, ensure that **Statistics > Percentiles** is selected, to obtain the first and third quartiles (the 25th and 75th percentiles respectively):
 
-descriptives(act1_3, pc=TRUE)
-```
-
+![](img/mod01/jamovi-activities/act1.3.png)
 
 ## Activity 1.4 {.unnumbered}
 
@@ -245,24 +213,7 @@ box$plots[[1]]
 
 Based on this exercise, the best advice for coding unusual or missing values in data would be to never set the values as a numerical value (here 999). Numerical values can always be inadvertently analysed as if they were true, observed values resulting in inflated means and standard deviations. Further, if a code like 99 was used, it would be unclear whether this was a true age, or a code for a missing value.
 
-Rather, values should be set to missing: using a "NA" in R.
+Rather, values should be set to missing: using an empty cell in the spreadsheet of jamovi.
 
 Finally, this question highlights the importance of always examining your data before analysing - either by plotting a density plot and/or a boxplot.
 
-### Process
-
-The following code was used to answer this question:
-
-```
-library(jmv)
-
-# Load original data
-study <- readRDS("data/activities/Activity_1.5.rds")
-
-descriptives(data=study, vars=age, pc = TRUE, dens = TRUE, box = TRUE)
-
-# Load cleaned data
-study_clean <- readRDS("data/activities/Activity_1.5_clean.rds")
-
-descriptives(data=study_clean, vars=age, pc = TRUE, dens = TRUE, box = TRUE)
-```
