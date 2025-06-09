@@ -1,0 +1,275 @@
+---
+title: "Module 1 solutions"
+format: pdf
+papersize: A4
+mainfont: Roboto
+sansfont: Clancy
+fig-cap-location: top
+include-in-header:
+  text: |
+    \newfontfamily\tfont{Roboto Light}
+    \usepackage[section]{placeins}
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(flextable)
+library(jmv)
+```
+
+# Module 2: Solutions to Learning Activities
+
+## Activity 2.1 {-}
+\tfont
+Researchers at a maternity hospital in the 1970s conducted a study of low birth weight babies. Low birth weight is classified as a weight of 2500g or less at birth. Data were collected on age and smoking status of mothers and the birth weight of their babies. The file `Activity_2.1.rds` contain data on the participants in the study. The file is located on Moodle in the Learning Activities section.
+
+Create a 2 by 2 table to show the proportions of low birth weight babies born to mothers who smoked during pregnancy and those that did not smoke during pregnancy. Answer the following questions:
+
+a) What was the total number of mothers who smoked during pregnancy?
+b) What proportion of mothers who smoked gave birth to low birth weight babies? What proportion of non-smoking mothers gave birth to low birth weight babies?
+c) Construct a stacked bar chart of the data to examine if there a difference in the proportion of babies born with a low birth weight in relation to the age group of the mother? Provide appropriate labels for the axes and give the graph an appropriate title. [Hint: plot the data using the `AgeGrp` variable]
+d) Using your answers to the question a) and b), write a brief conclusion about the relationship of low birth weight and mother’s age and smoking status.
+\normalfont
+
+\newpage
+### Answers
+
+```{r tbl-act2-1}
+#| echo: false
+#| tbl-cap: Cross tabulation of smoking status during pregnancy by low birth weight of the babies among 189 mothers
+
+tabdata <- tribble(
+  ~"Smoking status during pregnancy", ~"Yes (%)", ~"No (%)", ~"Total (%)",
+  "Yes", "30 (40.5)", "44 (59.5)", "74 (100)",
+  "No", "39 (25.2)", "86 (74.8)", "115 (100)",
+  "Total", "59 (31.2)", "130 (68.8)", "189 (100)"
+)
+
+ft <- flextable(tabdata) |>
+  autofit() |>
+  add_header_row(values=c("Smoking status during pregnancy",
+                          "Low birth weight", "Low birth weight", "")) |>
+  merge_h(part="header") |>
+  merge_v(part="header") |>
+  theme_booktabs() |>
+  valign(i=1, valign="top", part="header") |>
+  align(j=2, align="center", part="header") |>
+  bold(i=1, part="header")
+
+ft
+```
+
+Note: this table has been constructed from jamovi output.
+
+a)	There were 74 mothers who smoked during pregnancy.
+b)	41% of mothers who smoked and 25% of non-smoking mothers gave birth to low-birth-weight babies.
+c)	See Figure 2.1.
+d)	A larger proportion of mothers in the <20 years, 20-24 years and 25-29 years age groups gave birth to low birth weight babies compared to mothers aged 30-34 years. No low birth weight babies were born to mothers aged 35 or more (@fig-act2-1). A larger proportion of mothers who smoked during pregnancy gave birth to low birth weight babies compared to mothers who did not smoke during pregnancy (@tbl-act2-1).
+
+NB: You will revisit two-way tables in Module 7 where you will conduct statistical tests to determine if the there is evidence of a difference in proportions.
+
+```{r fig-act2-1}
+#| echo: false
+#| fig-cap: Relative frequency of low birth weight by mother's age group
+
+babies <-readRDS("data/activities/Activity_2.1.rds")
+
+babies$"Birth weight" <- babies$LOW
+babies$"Smoke" <- babies$SMOKE
+babies$"Age group" <- babies$AgeGrp
+
+
+# Create a two-way table showing row percents
+j <- contTables(data=babies, rows="Birth weight", cols="Age group", pcCol=TRUE,
+           barplot = TRUE, xaxis = "xcols", bartype = "stack",
+           yaxis = "ypc", yaxisPc = "column_pc")
+
+j$barplot
+```
+
+\newpage
+
+### Process
+
+After reading in the data and creating more meaningful variable names, @tbl-act2-1 was created as follows. Note that we request **Row Percentages**:
+
+![](img/mod02/jamovi/act2.1.1.png)
+
+@fig-act2-1 was also created using the `contTables` function, and is based on thinking of constructing a two-way table consisting of `Age group` and `Low birth weight`, and requesting percents within each age group:
+
+![](img/mod02/jamovi/act2.1.2.png)
+
+We can request a bar-chart in the **Plots** section, where the x-axis of the plot is `Age group` (i.e. the columns; [1]), and we want the bars to be stacked [2]. We request the y-axis to be percentages [3], and the percentages to be the column percents [4]:
+
+![](img/mod02/jamovi/act2.1.3.png)
+
+The final figure is shown below. Note that the x-axis on this figure is not ideal. jamovi currently does not allow editing of figures, so we are stuck with this version.
+
+![Relative frequency of low birth weight by mother's age group](img/mod02/jamovi/act2.1.4.png)
+
+\newpage
+
+## Activity 2.2 {-}
+\tfont
+In a Randomised Controlled Trial, the preference of a new drug was tested against an established drug by giving both drugs to each of 90 people. Assume that the two drugs are equally preferred, that is, the probability that a patient prefers either of the drugs is equal (50%). Use either the web applet, or one of the binomial functions in R to compute the probability that 60 or more patients would prefer the new drug. In completing this question, determine:
+
+a)	The number of trials (`n` for the web applet, `size` for R)
+b)	The number of successes we are interested in (`x` for web applet, `x` or `q` for R)
+c)	The probability of success for each trial (`p` for the web applet, `prob` for R)
+d)	The form of the binomial function
+    - for the web applet: P(X=x), P(X≤x) or P(X≥x);
+    - for R: `dbinom`, `pbinom` or `pbinom(lower.tail=FALSE)`
+e)	The final probability.
+
+\normalfont
+
+### Answers
+
+a) Here, each participant represents a ‘trial’, so `n` is 90.
+b) We are interested in determining the probability that 60 or more participants prefer the new drug, so we define `x` as 59.
+c) We are told to assume that the two drugs are equally preferred, so `p` is 0.5.
+d) We need to calculate the probability that 60 or more participants prefer the new drug, so we change the drop-down to **P(X≥x)= **.
+e) The result is cmoputed as 0.00103. Therefore, the probability that 60 or more patients would prefer the new drug is 0.001 or 0.1%.
+
+### Process
+
+The applet is completed as below.
+
+![](img/mod02/jamovi/act2.2.png)
+
+## Activity 2.3 {-}
+\tfont
+A case of Schistosomiasis is identified by the detection of schistosome ova in a faecal sample. In patients with a low level of infection, a field technique of faecal examination has a probability of 0.35 of detecting ova in any one faecal sample. If five samples are routinely examined for each patient, use the web applet or R to compute the probability that a patient with a low level of infection:
+
+a)	Will not be identified?
+b)	Will be identified in two of the samples?
+c)	Will be identified in all the samples?
+d)	Will be identified in at most 3 of the samples?
+\normalfont
+
+### Answers
+
+a) The probability P(X=0) = 0.116 or 11.6%.
+b) The probability P(X=2) = 0. 336 or 33.6%.
+c) The probability P(X=5) = .005 or 0.5%.
+d) The probability P(X≤3) = .946 or 94.6%.
+
+### Process
+
+In all of these questions, `n` is 5 and `p` is 0.35. For (a) to (c), we need to calculate the probability of finding a certain number of infected samples, so we change the drop-down to **P(X=x)= **. For (a) we define `x` as 0, for (b) we define `x` as 2, and for (c) we define `x` as 5.
+
+For (d) we change the drop-down to **P(X≤x)= ** and define `x` as 3.
+
+
+## Activity 2.4 {-}
+\tfont
+A health survey was conducted, and an extract of data has been provided in `Activity_2.4-health-survey.csv`. Categorise height into 20cm intervals, and present the height-groups appropriately.
+\normalfont
+
+### Answer
+
+```{r tbl-act2-4}
+#| echo: false
+#| tbl-cap: Heights of 1140 health survey participants
+
+htgp <- tribble(
+~"Height", ~"Frequency", ~"Relative frequency (%)",
+"120 to less than 140cm",   1,  " 0.1",
+"140 to less than 160cm", 160,  "14.0",
+"160 to less than 180cm", 756,  "66.3",
+"180 to less than 200cm", 222,  "19.5",
+"200 to less than 220cm",   1,  " 0.1")
+
+flextable(htgp) |>
+  autofit() |>
+  align(j=c(3), align="center", part="all") |>
+  bold(part="header")
+
+```
+
+### Process
+
+After opening the data, it is useful to plot a density plot to check the distribution of height. After confirming there are no biologically impossible values of height, and noting the minimum (122cm) and maximum (201cm) we create height groups.
+
+First, click on the `height` column, then choose **Data > Transform**. Name the new variable, e.g. `Height group`, and select **Create New Transform...**:
+
+![](img/mod02/jamovi/act2.4.1.png)
+
+Follow the process as outlined in Section 2.16 of the course notes. Your screen should look as follows, with the final two conditions showing:
+
+![](img/mod02/jamovi/act2.4.2.png)
+Finally, we use **Analyses > Exploration > Descriptives** to summarise the new `Height group` variable, and request a Frequency table:
+
+![](img/mod02/jamovi/act2.4.3.png)
+
+\newpage
+## Activity 2.5 {-}
+\tfont
+The data in the file `Activity_2.5-LengthOfStay.rds` (available on Moodle) has information about **birth weight** and **length of stay** collected from 117 babies admitted consecutively to a hospital for surgery. For each variable:
+
+a.  Create a histogram, density plot and boxplot to inspect the distribution of birth weight and length of stay;
+
+b.  Complete the following summary statistics for each variable:
+    - mean and median;
+    - standard deviation and interquartile range.
+
+Make a decision about whether each variable is symmetric or not, and which measure of central tendency and variability should be reported.
+\normalfont
+
+### Answers
+
+a) See @fig-2-5-1 to @fig-2-5-6.
+
+```{r fig-2-5-1, echo=FALSE, out.width = "50%"}
+#| fig-cap: Histogram of birth weight
+
+knitr::include_graphics(here::here("img", "mod02", "jamovi", "act2.5.1.png"))
+```
+
+```{r fig-2-5-2, echo=FALSE, out.width = "50%"}
+#| fig-cap: Density plot of birth weight
+
+knitr::include_graphics(here::here("img", "mod02", "jamovi", "act2.5.2.png"))
+```
+
+```{r fig-2-5-3, echo=FALSE, out.width = "50%"}
+#| fig-cap: Box plot of birth weight
+
+knitr::include_graphics(here::here("img", "mod02", "jamovi", "act2.5.3.png"))
+```
+
+
+
+```{r fig-2-5-4, echo=FALSE, out.width = "50%"}
+#| fig-cap: Histogram of length of stay
+
+knitr::include_graphics(here::here("img", "mod02", "jamovi", "act2.5.4.png"))
+```
+
+```{r fig-2-5-5, echo=FALSE, out.width = "50%"}
+#| fig-cap: Density plot of length of stay
+
+knitr::include_graphics(here::here("img", "mod02", "jamovi", "act2.5.5.png"))
+```
+
+```{r fig-2-5-6, echo=FALSE, out.width = "50%"}
+#| fig-cap: Box plot of length of stay
+
+knitr::include_graphics(here::here("img", "mod02", "jamovi", "act2.5.6.png"))
+```
+
+
+\newpage
+b) See @tbl-babies.
+
+|                                        | Birthweight (grams) | Length of stay (days) |
+|----------------------------------------|---------------------|-----------------------|
+| Mean (Standard deviation)              |     2451.2 (504.82) |       41.1 (36.93)    |
+| Median [Interquartile range]           | 2438 [2012 to 2830] |     30 [21 to 43]     |
+
+: Summary of data from 117 babies admitted to a hospital {#tbl-babies}
+
+As the histogram for birthweight shows a roughly symmetric distribution, we should present the mean and standard deviation as the appropriate measures of central tendency and spread. Notice that the mean and median are similar, which is to be expected for a symmetric distribution.
+
+The histogram for length of stay shows a highly skewed distribution (skewed to the right). In this case, the median and interquartile range are the appropriate measures to present. Notice that the mean is higher than the median, which is typical for distributions that are skewed to the right.
+
