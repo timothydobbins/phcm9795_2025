@@ -34,6 +34,11 @@ On successful completion of this course, you will be able to:
 
 ## Change log
 
+11 June 2025
+
+- Section 2.15 jamovi: Added instructions for creating a stacked relative frequency bar chart using Survey Plots command
+- Section 2.19 R: Added instructions for creating a stacked relative frequency bar chart using surveyPlot function
+
 2 June 2025
 
 - Section 1.4: corrected the figure labels for Figure 1.2 and Figure 1.3

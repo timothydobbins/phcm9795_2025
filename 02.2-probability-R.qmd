@@ -80,6 +80,8 @@ Note that stage is a categorical variable, that has been defined as a factor (in
 
 ## Creating bar charts for two categorical variables
 
+### Option 1: Using the contTables function
+
 Creating a **clustered bar chart** as shown in @fig-bar-2 can be done easily using the `contTables` function in the `jmv` package. First create a cross-tab from the variables to be plotted, for example, Stage by Sex:
 
 ```{r}
@@ -117,6 +119,55 @@ contTables(pbc,
 )
 ```
 
+### Option 2: Using surveyPlot function
+
+An alternative way of producing barcharts is via a package called `surveymv`. Unfortunately, surveymv is not hosted on the standard package repository, we need to install the package from github.com. This is a straight-forward process, which involves installing a package called `devtools` that allows packages to be installed from alternative locations:
+
+```{r}
+#| eval: false
+#| include: true
+
+install.packages("devtools")
+library(devtools)
+install_github("raviselker/surveymv")
+```
+
+These commands have installed the `surveymv` package. We load the packing using the standard `library()` command:
+
+```{r}
+#| eval: false
+#| include: true
+
+library(surveymv)
+```
+
+`surveymv` has only one function: `surveyPlot`, with the following syntax:
+
+```
+surveyPlot(
+  data = babies,
+  vars = "Birth weight",
+  group = "Age group",
+  type = "stacked",
+  freq = "perc")
+```
+
+We specify our data (`data=`), and the main variable to be plotted (`vars=`). If we have a grouping variable, we specify a `group=` variable. We define the chart to be either a stacked (`type = "stacked"`) or clustered (`type = "grouped"`) bar chart, and specify whether to plot frequencies (`freq = "count"`) or percentages (`freq = "perc"`).
+
+To demonstrate, we will recreate @fig-bar-4, a figure of the relative frequencies of sex within stage of disease:
+
+```{r message=FALSE}
+library(surveymv)
+
+surveyPlot(
+  data = pbc,
+  vars = "sex",
+  group = "stage",
+  type = "stacked",
+  freq = "perc")
+```
+
+While this produces a bar chart with horizontal bars, it often performs better with labelling of the groups than the previous method.
 
 ## Importing data into R
 

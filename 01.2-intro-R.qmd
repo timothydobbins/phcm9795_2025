@@ -365,7 +365,7 @@ While writing code is usually the recommended way to use R, installing packages 
 
 #### How to load a package
 
-When you begin a new session in RStudio, i.e. when you open RStudio, only certain core packages are automatically loaded. You can use the `library()` function to load a package that you has previously been installed. For example, now that we have installed `skimr`, we need to load it before we can use it:
+When you begin a new session in RStudio, i.e. when you open RStudio, only certain core packages are automatically loaded. You can use the `library()` function to load a package that has previously been installed. For example, now that we have installed `skimr`, we need to load it before we can use it:
 
 ```{r}
 library(skimr)

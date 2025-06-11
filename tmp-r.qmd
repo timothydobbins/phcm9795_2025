@@ -1,0 +1,60 @@
+---
+title: "surveymv for jamovi"
+---
+
+An alternative way of producing barcharts is via a package called `surveymv`. Unfortunately, surveymv is not hosted on the standard package repository, we need to install the package from github.com. This is a straight-forward process:
+
+```{r}
+#| eval: false
+#| include: true
+
+install.packages("devtools")
+library(devtools)
+install_github("raviselker/surveymv")
+```
+
+Once we install `surveymv`, we load it using the standard `library()` command:
+
+```{r}
+#| eval: false
+#| include: true
+
+library(surveymv)
+```
+
+`surveymv` has only one function: `surveyPlot`, with the following syntax:
+
+```
+surveyPlot(
+  data = babies,
+  vars = "Birth weight",
+  group = "Age group",
+  type = "stacked",
+  freq = "perc")
+```
+
+We specify our data (`data=`), and the main variable to be plotted (`vars=`). If we have a grouping variable, we specify a `group=` variable. We define the chart to be either a stacked (`type = "stacked"`) or clustered (`type = "grouped"`) bar chart, and specify whether to plot frequencies (`freq = "count"`) or percentages (`freq = "perc"`).
+
+To demonstrate, we will recreate @fig-bar-4, a figure of the relative frequencies of sex within stage of disease:
+
+```{r message=FALSE}
+library(surveymv)
+
+pbc <- readRDS("data/activities/mod01_pbc.rds")
+
+pbc$sex <- factor(pbc$sex,
+                  levels = c(1, 2),
+                  labels = c("Male", "Female"))
+pbc$stage <- factor(pbc$stage,
+                    levels = c(1, 2, 3, 4),
+                    labels = c("Stage 1", "Stage 2", "Stage 3", "Stage 4"))
+
+surveyPlot(
+  data = pbc,
+  vars = "sex",
+  group = "stage",
+  type = "stacked",
+  freq = "perc")
+```
+
+While this produces a bar chart with horizontal bars, it often performs better with labelling of the groups than the previous method.

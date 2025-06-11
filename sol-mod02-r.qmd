@@ -68,24 +68,7 @@ d)	A larger proportion of mothers in the <20 years, 20-24 years and 25-29 years 
 
 NB: You will revisit two-way tables in Module 7 where you will conduct statistical tests to determine if the there is evidence of a difference in proportions.
 
-```{r fig-act2-1}
-#| echo: false
-#| fig-cap: Relative frequency of low birth weight by mother's age group
-
-babies <-readRDS("data/activities/Activity_2.1.rds")
-
-babies$"Birth weight" <- babies$LOW
-babies$"Smoke" <- babies$SMOKE
-babies$"Age group" <- babies$AgeGrp
-
-
-# Create a two-way table showing row percents
-j <- contTables(data=babies, rows="Birth weight", cols="Age group", pcCol=TRUE,
-           barplot = TRUE, xaxis = "xcols", bartype = "stack",
-           yaxis = "ypc", yaxisPc = "column_pc")
-
-j$barplot
-```
+![Relative frequency of low birth weight by mother's age group](img/mod02/jamovi/act2.1.png){#fig-act2-1}
 
 ### Process
 
@@ -102,21 +85,21 @@ babies <-readRDS("data/activities/Activity_1.2.rds")
 contTables(data=babies, rows=SMOKE, cols=LOW, pcRow=TRUE)
 ```
 
-@fig-act2-1 was also created using the `contTables` function, and is based on thinking of constructing a two-way table consisting of `Age group` and `Low birth weight`, and requesting percents within each age group:
-
-```{r}
-contTables(data=babies, rows=LOW, cols=AgeGrp, pcCol=TRUE)
-```
-
-We can request a bar-chart using `barplot=TRUE`, where the x-axis of the plot is `Age group` (i.e. the columns), and we want the bars to be stacked so we add `xaxis = "xcols"` and `bartype = "stack"`. We request the y-axis to be percentages (rather than counts: `yaxis="ypc"`), and the percentages to be the column percents from the previous table (`yaxisPc = "column_pc"`). Putting it all together:
+@fig-act2-1 was created using the `surveyPlot` function from the `surveymv` package. We want to plot the variable `LOW`, by `AgeGrp`. We want a stacked plot, and we want to plot percentages. Putting it all together (and adding some name changes along the way):
 
 ```{r eval=FALSE, include=TRUE}
-contTables(data=babies, rows=LOW, cols=AgeGrp, pcCol=TRUE,
-           barplot = TRUE, xaxis = "xcols", bartype = "stack",
-           yaxis = "ypc", yaxisPc = "column_pc")
+babies$"Birth weight" <- babies$LOW
+babies$"Age group" <- babies$AgeGrp
+
+surveyPlot(
+  data = babies,
+  vars = "Birth weight",
+  group = "Age group",
+  type = "stacked",
+  freq = "perc")
 ```
 
-Note: an alternative, more flexible method for producing a stacked relative frequency bar chart is provided in your notes.
+Note: alternative methods for producing a stacked relative frequency bar chart is provided in your notes.
 
 \newpage
 ## Activity 2.2 {-}
