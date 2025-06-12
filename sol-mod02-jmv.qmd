@@ -5,6 +5,7 @@ papersize: A4
 mainfont: Roboto
 sansfont: Clancy
 fig-cap-location: top
+output-file: "Module 2 Solutions - jamovi.pdf"
 include-in-header:
   text: |
     \newfontfamily\tfont{Roboto Light}
