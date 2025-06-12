@@ -1,5 +1,5 @@
 ---
-title: "Module 1 solutions"
+title: "Module 2 solutions"
 format: pdf
 papersize: A4
 mainfont: Roboto
@@ -17,8 +17,6 @@ library(flextable)
 library(jmv)
 ```
 
-# Module 2: Solutions to Learning Activities
-
 ## Activity 2.1 {-}
 \tfont
 Researchers at a maternity hospital in the 1970s conducted a study of low birth weight babies. Low birth weight is classified as a weight of 2500g or less at birth. Data were collected on age and smoking status of mothers and the birth weight of their babies. The file `Activity_2.1.rds` contain data on the participants in the study. The file is located on Moodle in the Learning Activities section.
@@ -28,7 +26,7 @@ Create a 2 by 2 table to show the proportions of low birth weight babies born to
 a) What was the total number of mothers who smoked during pregnancy?
 b) What proportion of mothers who smoked gave birth to low birth weight babies? What proportion of non-smoking mothers gave birth to low birth weight babies?
 c) Construct a stacked bar chart of the data to examine if there a difference in the proportion of babies born with a low birth weight in relation to the age group of the mother? Provide appropriate labels for the axes and give the graph an appropriate title. [Hint: plot the data using the `AgeGrp` variable]
-d) Using your answers to the question a) and b), write a brief conclusion about the relationship of low birth weight and mother’s age and smoking status.
+d) Using your answers to the question b) and c), write a brief conclusion about the relationship of low birth weight and mother’s age and smoking status.
 \normalfont
 
 \newpage
@@ -63,7 +61,7 @@ Note: this table has been constructed from R output.
 
 a)	There were 74 mothers who smoked during pregnancy.
 b)	41% of mothers who smoked and 25% of non-smoking mothers gave birth to low-birth-weight babies.
-c)	See Figure 2.1.
+c)	See Figure @fig-act2-1.
 d)	A larger proportion of mothers in the <20 years, 20-24 years and 25-29 years age groups gave birth to low birth weight babies compared to mothers aged 30-34 years. No low birth weight babies were born to mothers aged 35 or more (@fig-act2-1). A larger proportion of mothers who smoked during pregnancy gave birth to low birth weight babies compared to mothers who did not smoke during pregnancy (@tbl-act2-1).
 
 NB: You will revisit two-way tables in Module 7 where you will conduct statistical tests to determine if the there is evidence of a difference in proportions.
@@ -79,7 +77,7 @@ NB: You will revisit two-way tables in Module 7 where you will conduct statistic
 #| include: true
 
 library(jmv)
-babies <-readRDS("data/activities/Activity_1.2.rds")
+babies <-readRDS("data/activities/Activity_2.1.rds")
 
 # Create a two-way table showing row percents
 contTables(data=babies, rows=SMOKE, cols=LOW, pcRow=TRUE)
@@ -210,6 +208,7 @@ survey$"Height group" <- cut(survey$height,
                       breaks = c(0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2),
                       right=FALSE,
                       labels=c(
+                        "Less than 120cm",
                         "120 to less than 140cm",
                         "140 to less than 160cm",
                         "160 to less than 180cm",
@@ -241,46 +240,44 @@ a) See @fig-2.5.1 to @fig-2.5.6.
 #| fig-cap: Histogram of birth weight
 #| echo: FALSE
 
-babies <- readRDS("data/activities/Activity_2.5-LengthOfStay.rds")
+los <- readRDS("data/activities/Activity_2.5-LengthOfStay.rds")
 
-hist(babies$BirthWt, xlab = "Birth weight (g)", main = "")
+hist(los$BirthWt, xlab = "Birth weight (g)", main = "")
 ```
 
 ```{r out.width = "75%"}
 #| fig-cap: Density plot of birth weight
 #| echo: FALSE
 
-plot(density(babies$BirthWt, na.rm = TRUE), xlab = "Birth weight (g)", main = "")
+plot(density(los$BirthWt, na.rm = TRUE), xlab = "Birth weight (g)", main = "")
 ```
 
 ```{r out.width = "75%"}
 #| fig-cap: Boxplot of birth weight
 #| echo: FALSE
 
-boxplot(babies$BirthWt, ylab = "Birth weight (g)", main = "")
+boxplot(los$BirthWt, ylab = "Birth weight (g)", main = "")
 ```
 
 ```{r out.width = "75%"}
 #| fig-cap: Histogram of length of stay
 #| echo: FALSE
 
-los <- readRDS("data/activities/Activity_2.5-LengthOfStay.rds")
-
-hist(babies$BirthWt, xlab = "Length of stay (days)", main = "")
+hist(los$LengthStay, xlab = "Length of stay (days)", main = "")
 ```
 
 ```{r out.width = "75%"}
 #| fig-cap: Density plot of length of stay
 #| echo: FALSE
 
-plot(density(babies$BirthWt, na.rm = TRUE), xlab = "Length of stay (days)", main = "")
+plot(density(los$LengthStay, na.rm = TRUE), xlab = "Length of stay (days)", main = "")
 ```
 
 ```{r fig-2.5.6, out.width = "75%"}
 #| fig-cap: Boxplot of length of stay
 #| echo: FALSE
 
-boxplot(babies$BirthWt, ylab = "Length of stay (days)", main = "")
+boxplot(los$LengthStay, ylab = "Length of stay (days)", main = "")
 ```
 
 \newpage
@@ -302,7 +299,7 @@ The histogram for length of stay shows a highly skewed distribution (skewed to t
 The figures were produced using the following code:
 
 ```{r, eval=FALSE}
-babies <- readRDS("data/activities/Activity_2.5-LengthOfStay.rds")
+los <- readRDS("data/activities/Activity_2.5-LengthOfStay.rds")
 
 hist(los$BirthWt,
      xlab = "Birth weight (g)", main = "")
@@ -328,5 +325,5 @@ The summary statistics were produced with the following code:
 ```{r}
 library(jmv)
 
-descriptives(data = babies, vars = c(BirthWt, LengthStay), pc = TRUE)
+descriptives(data = los, vars = c(BirthWt, LengthStay), pc = TRUE)
 ```

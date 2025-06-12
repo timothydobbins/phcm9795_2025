@@ -1,5 +1,5 @@
 ---
-title: "Module 1 solutions"
+title: "Module 2 solutions"
 format: pdf
 papersize: A4
 mainfont: Roboto
@@ -18,8 +18,6 @@ library(jmv)
 library(surveymv)
 ```
 
-# Module 2: Solutions to Learning Activities
-
 ## Activity 2.1 {-}
 \tfont
 Researchers at a maternity hospital in the 1970s conducted a study of low birth weight babies. Low birth weight is classified as a weight of 2500g or less at birth. Data were collected on age and smoking status of mothers and the birth weight of their babies. The file `Activity_2.1.rds` contain data on the participants in the study. The file is located on Moodle in the Learning Activities section.
@@ -29,7 +27,7 @@ Create a 2 by 2 table to show the proportions of low birth weight babies born to
 a) What was the total number of mothers who smoked during pregnancy?
 b) What proportion of mothers who smoked gave birth to low birth weight babies? What proportion of non-smoking mothers gave birth to low birth weight babies?
 c) Construct a stacked bar chart of the data to examine if there a difference in the proportion of babies born with a low birth weight in relation to the age group of the mother? Provide appropriate labels for the axes and give the graph an appropriate title. [Hint: plot the data using the `AgeGrp` variable]
-d) Using your answers to the question a) and b), write a brief conclusion about the relationship of low birth weight and mother’s age and smoking status.
+d) Using your answers to the question b) and c), write a brief conclusion about the relationship of low birth weight and mother’s age and smoking status.
 \normalfont
 
 \newpage
