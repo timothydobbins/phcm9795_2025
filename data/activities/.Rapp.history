@@ -1,2 +1,5 @@
 load("/Users/td/Documents/GitHub/phcm9795_2023/data/activities/pbc.rds")
 load("/Users/td/Documents/GitHub/phcm9795_2023/data/activities/Activity_S6.1.rds")
+load("/Users/td/Documents/GitHub/phcm9795_2025/data/activities/Activity_1.3.rds")
+df <- readRDS("/Users/td/Documents/GitHub/phcm9795_2025/data/activities/Activity_1.3.rds")
+df

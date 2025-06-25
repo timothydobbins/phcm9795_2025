@@ -114,7 +114,7 @@ e)	The final probability.
 ### Answers
 
 a) Here, each participant represents a ‘trial’, so `n` is 90.
-b) We are interested in determining the probability that 60 or more participants prefer the new drug, so we define `x` as 59.
+b) We are interested in determining the probability that 60 or more participants prefer the new drug, so we define `x` as 60.
 c) We are told to assume that the two drugs are equally preferred, so `p` is 0.5.
 d) We need to calculate the probability that 60 or more participants prefer the new drug, so we change the drop-down to **P(X≥x)= **.
 e) The result is cmoputed as 0.00103. Therefore, the probability that 60 or more patients would prefer the new drug is 0.001 or 0.1%.
