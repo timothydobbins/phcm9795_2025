@@ -5,7 +5,7 @@ project:
 book:
   title: "PHCM9795: Foundations of Biostatistics"
   author: "Timothy Dobbins"
-  date: "11-Jun-2025"
+  date: "24-Jul-2025"
   date-format: "DD MMMM, YYYY"
   version: 1.0
   chapters:
@@ -19,7 +19,7 @@ book:
     - 07-testing-proportions.qmd
     - 08-correlation-and-regression.qmd
     - 09-non-parametrics.qmd
-    # - 10-sample-size.qmd
+    - 10-sample-size.qmd
     - 98.1-appendix1.qmd
     - references.qmd
 

@@ -1,0 +1,46 @@
+In this module, we will demonstrate the use of an online calculator called PS, available at https://cqsclinical.app.vumc.org/ps/ While sample size calculations can be conducted in R (using the `EpiR` and `pwr` packages in particular), there is currently an inconsitency in `EpiR` which means that I do not recommend this package.
+
+![](img/mod10/PS/mod10-ps-01.png)
+
+The web-app allows for a variety of variable types; we will focus on **t-test** and **Dichotomous** analyses.
+
+## Sample size calculation for two independent samples t-test
+To do the problem discussed in Worked Example 10.2, choose **t-test > Independent**. Choose **Power** in the first drop-down, and then choose **Sample size**:
+
+![](img/mod10/PS/mod10-twomeans-03.png){width=40%}
+
+Based on the information in Worked Example 10.2, change **Power** to `0.9` and enter `25` as the **Standard deviation (σ)**. We are interested in detecting a difference of 5 mmHg, so this is entered as **Diference in population means (δ)**. We use equal numbers in each group, so **Ratio** is entered as 1.
+
+Click **Calculate** to produce Output 10.2.
+
+## Sample size calculation for difference between two independent proportions
+
+All sample size calculations for analyses based on 2-by-2 tables are conducted under the **Dichotomous** tab, choosing:
+
+  - **Indep / Prospective / Two Prop.** for analyses based on estimating the difference in proportions;
+  - **Indep / Prospective / Rel. Risk** for analyses based on estimating a relative risk;
+  - **Indep / Case Control / Odds Ratio** for case-control studies.
+
+To do the problem discussed in Worked Example 10.3, choose **Indep / Prospective / Two Prop.** and **Sample size** in the first two drop-down options.
+
+![](img/mod10/PS/mod10-twoprop-03.png){width=40%}
+
+Based on the information in Worked Example 10.5, the **Power** is `0.9` and **Significance level** is `0.05`, and the two proportions are entered as `0.35` and `0.2`. Define equal numbers in each group (**Ratio** of `1`).
+
+Click **Calculate** obtain Output 10.3.
+
+Note: It doesn’t matter if you swap the proportions for the **Control** and **Experimental** group, you will get the same result.
+
+## Sample size calculation with a relative risk or odds ratio
+
+Using information from Worked Example 10.4, we select **Indep / Prospective / Rel. Risk**, and enter **Power** as `0.9`, enter `0.5` as the **Probability of the outcome for a control patient (p0)**. Finally, enter `1.5` as the **Relative risk of failure for experimental subjects relative to controls (R)** shown below:
+
+![](img/mod10/PS/mod10-rr-03.png){width=40%}
+
+Now we calculate the sample size for Worked Example 10.5. Select **Indep / Case Control / Odds Ratio** and **Sample size**, and enter **Power** as `0.9`, enter `0.3` as the **Probability of exposure in controls (p0)**. Finally, enter `2` as the **Odds ratio of exposure (ψ)** shown below:
+
+![](img/mod10/PS/mod10-rr-03.png){width=40%}
+
+## Estimating power or effect size
+
+Note that in all PS examples provided here, we have chosen to estimate the sample size (given the study power and effect size of interest). PS also allows us to estimate the power (given the study sample size and effect size) or the effect size (given the study sample size and power).

@@ -40,7 +40,7 @@ To estimate the sample size required for a descriptive study, we usually focus o
 -   nominate the expected prevalence based on other available evidence;
 -   nominate the required level of precision around the estimate. For this, the width of the 95% confidence interval (i.e. the distance equal to 1.96 $\times$ SE) is used.
 
-Table 10.1 is an abbreviated look-up table that we can use to estimate the sample size for this type of study. Note that the sample size required to detect an expected population prevalence of 5% is the same as to detect a prevalence of 95%. Similarly 10% is equivalent to 90% etc. It is symmetric about 50%. From @tbl-10-1, you can see that the sample size required increases as the expected prevalence approaches 50% and as the precision increases (i.e. the required 95% CI becomes narrower).
+@tbl-10-1 is an abbreviated look-up table that we can use to estimate the sample size for this type of study. Note that the sample size required to detect an expected population prevalence of 5% is the same as to detect a prevalence of 95%. Similarly 10% is equivalent to 90% etc. It is symmetric about 50%. From @tbl-10-1, you can see that the sample size required increases as the expected prevalence approaches 50% and as the precision increases (i.e. the required 95% CI becomes narrower).
 
 ```{r tbl-10-1, echo=FALSE, warning=FALSE, message=FALSE}
 #| tbl-cap: Sample size required to calculate a 95% confidence interval with a given precision
@@ -69,13 +69,13 @@ tab10_1 <- tibble::tribble(
 flextable(select(tab10_1, -P)) |> 
   add_header_row(values="Required confidence interval width", colwidths = 11, top=TRUE) |> 
   align(i=1, j=NULL, align="center", part="header") |> 
-  font(fontname="Roboto Condensed", part="all") |> 
+  font(fontname="Arial Narrow", part="all") |> 
   fontsize(size=10, part="all") |> 
   autofit()
 
 ```
 
-### Worked Example {#wex10-1}
+### Worked Example 10.1 {#wex10-1}
 
 A descriptive cross-sectional study is designed to measure the prevalence of bronchitis in children age 0-2 years with a 95% CI of $\pm$ 4%. The prevalence is expected to be 20%. From the table, a sample size of at least 385 will be required for the width of the 95% CI to be $\pm$ 4% (i.e. the reported precision of the summary statistic will be 20% (95% CI 16% to 24%)).
 
@@ -102,6 +102,8 @@ Once the statistical method has been determined, the following issues need to be
 
 In addition to deciding the level of power and probability that will be used, the difference between groups that is regarded as being important has to be estimated. The smallest difference between study groups that we want to detect is described as the minimum expected effect size. This is determined on the basis of clinical judgement, public health importance and expertise in the condition being researched, or may it be need to be determined from a pilot study or a literature review. The smaller the expected effect or association, the larger the sample size will need to obtain statistical significance. We also need some knowledge of how variable the measurement is expected to be. For this we often use the standard deviation for a continuous measure. As measurement variability increases, the sample size will need to increase in order to detect the expected difference between the groups. Above all, a study has to be practical in terms of the availability of a population from which to draw sufficient numbers for the study and in terms of the funds that are available to conduct the study.
 
+\newpage
+
 ### Power and significance level
 
 The power of a study, which was discussed in Module 4, is the chance of finding a statistically significant difference when one exists, i.e. the probability of correctly rejecting the null hypothesis. The relationship between the power of a study and statistical significance is shown in @tbl-truth-vs-study-html.
@@ -118,51 +120,31 @@ df <- tibble::tribble(
 flextable(df)
 ```
 
-The power of a study is expressed as 1-- β where β is the probability of a false negative (that is, the probability of a Type II error - incorrectly not rejecting the null hypothesis. In most research, power is generally set to 80% (a Type II error rate of 20%). However, in some studies, especially in some clinical trials where rigorous results are required, power is set to 90% (a Type II error rate of 10%).
+The power of a study is expressed as 1 - β where β is the probability of a false negative (that is, the probability of a Type II error - incorrectly not rejecting the null hypothesis. In most research, power is generally set to 80% (a Type II error rate of 20%). However, in some studies, especially in some clinical trials where rigorous results are required, power is set to 90% (a Type II error rate of 10%).
 
 The significance level, or α level, is the level at which the P value of a test is considered to be statistically significant. The α level is usually set at 5% indicating a probability of \<0.05 will be regarded as statistically significant. Occasionally, especially if several outcome measures are being compared, the α level is set at 1% indicating a probability of \<0.01 will be regarded as statistically significant.
 
-The calculation of sample sizes for analytic studies are based on calculations that are somewhat tedious to compute by hand. Software packages are the standard method of calculating sample sizes for these types of study, and examples from both R and Stata will be provided.
+The calculation of sample sizes for analytic studies are based on calculations that are somewhat tedious to compute by hand. Software packages or online sample size calculators are the standard method of calculating sample sizes for analytic studies. In this module, we will demonstrate the use of an online calculator called PS, available at https://cqsclinical.app.vumc.org/ps/
 
 ## Detecting the difference between two means
 
-The test that is used to show that two mean values are significantly different from one another is the independent samples t-test (Module 5). The sample size needed for this test to have sufficient power can be calculated using R and Stata as shown in the Worked Example below.
+The test that is used to show that two mean values are significantly different from one another is the independent samples t-test (Module 5). The sample size needed for this test to have sufficient power can be calculated using PS as shown in the Worked Example below.
 
-### Worked Example
+### Worked Example 10.2
 
 There is a hypothesis that the use of the oral contraceptive (OC) pill in premenopausal women can increase systolic blood pressure. A study was planned to test this hypothesis using a two sided t-test. The investigators are interested in detecting an increase of at least 5 mm Hg systolic blood pressure in the women using OC compared to the non-OC users with 90% power at a 5% significance level. A pilot study shows that the SD of systolic blood pressure in the target group is 25 mm Hg and the mean systolic blood pressure of non-OC user women is 110 mm Hg. What is the minimum number of women in each group that need to be recruited for the study to detect this difference?
 
-**Solution** The effect size of interest is 5 mm Hg and the associated standard deviation is 25 mm Hg. For power of 90% and alpha of 5%, the sample size calculation using the `epi.sscompc` function within the `epiR` package in R to calculate the sample size:
+**Solution** The effect size of interest is 5 mm Hg and the associated standard deviation is 25 mm Hg. For power of 90% and alpha of 5%, the sample size calculation using the **t-test \> Independent** tab of PS:
 
-```{r, message=FALSE}
-library(epiR)
-library(pwr)
+![](img/mod10/PS/mod10-twomeans-01.png){width=40%}
 
-epi.sscompc(treat=110, control=115, n=NA, sigma=25, power=0.9)
-```
 
-From the output, we can see that with 90% power we will need 526 participants in each group, i.e., 1052 participants in total.
+#### Output 10.2
+![](img/mod10/PS/mod10-twomeans-02.png)
 
-If the above were carried out by taking baseline measures of systolic blood pressure, and then again when the women were taking the OC pills, it would be a matched-pair study. Computing sample sizes for paired studies requires an estimate of the correlation between the paired obervations. If we do not have any estimates for this correlation, we can assume a value of 0. If the correlation is positive, a zero for correlation would give a more conservative estimate of sample size required (i.e. estimate a sample size larger than necessary). While a negative correlation would require a bigger sample size than a zero correlation, it is relatively uncommon to encounter negative correlations between pairs. Any discussions on the effect of correlation on sample size is beyond the scope of this course. Thus, we will always assume a correlation of zero between paired measurements in this course.
+From the output, we can see that with 90% power we will need 527 participants in each group, i.e., 1054 participants in total.
 
-As discussed in the R notes, calculating the sample size required for a paired t-test is a little more cumbersome in R. Here, only the output of the process is provided - refer to the R notes for detail on the code.
-
-#### Output 10.2: Paired samples t-test sample size using Worked Example 10.2 {.unnumbered}
-
-```{r echo=FALSE, highlight=FALSE}
-m1 <- 110
-m2 <- 115
-s_group <- 25
-corr <- 0
-
-s_paired <- sqrt(2 * s_group^2 - 2*corr*s_group^2)
-
-d <- ((m1 - m2)/s_paired)
-
-pwr.t.test(d=d, power=0.9, type="paired")
-```
-
-Assuming a correlation of 0 between the two sets of measurements, we can see that we will need 528 pairs of measurements to achieve a power of 90% (virtually the same as for an independent samples study).
+If the above were carried out by taking baseline measures of systolic blood pressure, and then again when the women were taking the OC pills, it would be a matched-pair study. Computing sample sizes for paired studies requires an estimate of the correlation between the paired observations, or an estimate of the standard deviation of the differences. Calculating sample sizes for paired studies is a little more complex than for independent studies, and is outside the scope of this course.
 
 ## Detecting the difference between two proportions
 
@@ -170,23 +152,18 @@ The statistical test for deciding if there is a significant difference between t
 
 Other than the power and alpha required for the test, the expected prevalence or incidence rate of the outcome factor needs to be estimated for each of the two groups being compared, based on what is known from other studies or what is expected. Occasionally, we may not know the expected proportion in one of the groups, e.g. in a randomised control trial of a novel intervention. In the sample size calculation for such a study, we should instead justify the minimum expected difference between the proportions based on what is important from a clinical or public health perspective. Based on the minimum difference, we can then derive the expected proportion for both groups. Note that the smaller the difference, the larger the sample size required.
 
-The sample size required in each group to observe a difference in two independent proportions can be calculated using the power twoproportions command in Stata.
+The sample size required in each group to observe a difference in two independent proportions can be calculated using the **Dichotomous** tab of PS.
 
-### Worked Example {#wex10-3}
+### Worked Example 10.3 {#wex10-3}
 
-If we expect that the prevalence of smoking in two comparison groups (e.g. males and females) will be 35% and 20%. The sample size required in each group to show that the prevalences are significantly different at P\<0.05 with 80% power is shown in Output 10.3.
+A health promotion campaign is being developed to reduce smoking in a community, and will be tested in a randomised controlled trial. The researchers would like to detect a reduction in smoking from 35% to 25%. How many participants should be recruited to detect a difference at a 5% significance level, with a power of 90%?
+
+![](img/mod10/PS/mod10-twoprop-01.png){width=40%}
 
 #### Output 10.3: Sample size calculation for two independent proportions {.unnumbered}
+![](img/mod10/PS/mod10-twoprop-02.png)
 
-```{r}
-epi.sscohortc(irexp1=0.35, irexp0=0.2, n=NA, power=0.8) 
-```
-
-From Output 10.3, we see that we would need 138 males and 138 females (i.e. a total sample size of 276 participants).
-
-What sample size would be required if the prevalence of smoking among men was 30%?
-
-Answer = 294 men and 294 women would be needed.
+From Output 10.3, we see that we would need 439 intervention and 439 control participants (i.e. a total sample size of 878 participants).
 
 ## Detecting an association using a relative risk
 
@@ -194,19 +171,14 @@ The relative risk is used to describe the association between an exposure and an
 
 In general, a RR of 2.0 or greater is considered to be of public health importance, however, a smaller RR can be important when exposure is high. For example, there may be a relatively small risk of respiratory infection among young children with a parent who smokes (RR \~ 1.2). If 25% of children are exposed to smoking in their home, then the high exposure rate leads to a very large number of children who have preventable respiratory infections across the community.
 
-### Worked Example {#wex10-4}
+### Worked Example 10.4 {#wex10-4}
 
 A study is planned to investigate the effect of an environmental exposure on the incidence of a certain common disease. In the general (unexposed) population the incidence rate of the disease is 50% and it is assumed that the incidence rate would be 75% in the exposed population. Thus the relative risk of interest would be 1.5 (i.e. 0.75 / 0.50). We want to detect this effect with 90% power at a 5% level of significance.
 
+![](img/mod10/PS/mod10-rr-01.png){width=40%}
+
 #### Output 10.4: Sample size calculation for relative risk
-
-The `epiR` package does not have a function to estimate sample size and power directly for a relative risk, but we can use the `epi.sscohortc` function. To do this, we recognise that the assumed rate in the exposed group will equal the rate in the unexposed group multiplied by the relative risk.
-
-Here we define the risk in the unexposed group as 0.5 and the desired relative risk to detect is 1.5. So we specify `irexp0 = 0.5` and `irexp1 = 1.5 * 0.5`:
-
-```{r}
-epi.sscohortc(irexp1=1.5*0.5, irexp0=0.5, n=NA, power=0.9)
-```
+![](img/mod10/PS/mod10-rr-02.png)
 
 From Output 10.4, we can see that for a control proportion of 0.5 and RR of 1.5, we need a total sample size of 154, that is 77 people would be needed in each of the exposure groups.
 
@@ -219,15 +191,14 @@ If we are designing a case-control study, the appropriate measure of effect is a
 -   the desired level of significance (usually 0.05);
 -   the desired power of the study (usually 80% or 90%).
 
-### Worked Example {#wex10-5}
+### Worked Example 10.5 {#wex10-5}
 
 A case-control study is designed to examine an association between an exposure and outcome factor. Existing literature shows that 30% of the controls are expected to be exposed. We want to detect a minimum OR of 2.0 with 90% power and 5% level of significance.
 
-We can use the `epi.sscc` function in R to calculate a sample size based on an odds ratio in a case-control study:
+![](img/mod10/PS/mod10-or-01.png){width=40%}
 
-```{r}
-epi.sscc(OR=2, p0=0.3, n=NA, power=0.9)
-```
+#### Output 10.5
+![](img/mod10/PS/mod10-or-02.png)
 
 We find that 188 controls and 188 cases are required i.e. a total of 376 participants.
 
@@ -253,26 +224,30 @@ Many factors that come into play in a study can reduce the estimated power of a 
 
 In case-control studies, the number of potential case participants available may be limited but study power can be maintained by enrolling a greater number of controls than cases. Or in an experimental study, more participants may be randomised to the new treatment group to test its effects accurately when much is known about the effect of standard care and a more precise estimate of the new treatment effect is required.
 
-However, there is a trade-off between increasing the ratio of group size and the total number that needs to be enrolled. Consider Worked Example \@ref(wex10-5): selecting an equal number of controls and cases would require 188 cases and 188 controls, a total of 376 participants.
+However, there is a trade-off between increasing the ratio of group size and the total number that needs to be enrolled. Consider Worked Example 10.5: selecting an equal number of controls and cases would require 188 cases and 188 controls, a total of 376 participants.
 
-We may want to reduce the number of cases required, by selecting 2 controls for every case. Selecting 2 controls (N1) per case (N2) would require 142 cases and 283 controls, a total of 425 participants. We can extend this example and investigate the impact of changing the ratio of controls per case.
+We may want to reduce the number of cases required, by selecting 2 controls for every case. Selecting 2 controls (N1) per case (N2) would require 140 cases and 280 controls, a total of 420 participants. We can extend this example and investigate the impact of changing the ratio of controls per case.
+
+\newpage
 
 ```{r tab-unequal-controls, echo=FALSE}
+#| tbl-cap: The effect of unequal groups on Worked Example 10.5
+
 tab <- tibble::tribble(
   ~`Controls per case`, ~`Number of cases required`, ~`Number of controls required`, ~`Total participants required`,
     1L,   188L,    188,    376,
-    2L,   142L,    283,    425,
-    3L,   126L,    378,    504,
-    4L,   118L,    472,    590,
-    5L,   114L,    566,    680,
-    6L,   110L,    660,    770,
-    7L,   108L,    753,    861,
-    8L,   106L,    847,    953,
-    9L,   105L,    941,   1046,
-   10L,   104L,   1035,   1139
+    2L,   140L,    280,    420,
+    3L,   124L,    372,    496,
+    4L,   115L,    460,    575,
+    5L,   111L,    555,    666,
+    6L,   107L,    642,    749,
+    7L,   105L,    735,    840,
+    8L,   103L,    824,    927,
+    9L,   102L,    918,   1020,
+   10L,   101L,   1010,   1111
   )
 
-flextable(tab)
+flextable(tab, cwidth = c(1.5, 1.5, 1.5, 1.5))
 ```
 
 This can be visualised graphically, as in @fig-unequal-controls.
@@ -281,15 +256,15 @@ This can be visualised graphically, as in @fig-unequal-controls.
 tab <- tibble::tribble(
   ~`Controls per case`, ~`Number of cases required`, ~`Number of controls required`, ~`Total participants required`,
     1L,   188L,    188,    376,
-    2L,   142L,    283,    425,
-    3L,   126L,    378,    504,
-    4L,   118L,    472,    590,
-    5L,   114L,    566,    680,
-    6L,   110L,    660,    770,
-    7L,   108L,    753,    861,
-    8L,   106L,    847,    953,
-    9L,   105L,    941,   1046,
-   10L,   104L,   1035,   1139
+    2L,   140L,    280,    420,
+    3L,   124L,    372,    496,
+    4L,   115L,    460,    575,
+    5L,   111L,    555,    666,
+    6L,   107L,    642,    749,
+    7L,   105L,    735,    840,
+    8L,   103L,    824,    927,
+    9L,   102L,    918,   1020,
+   10L,   101L,   1010,   1111
   )
 
 ggplot(tab, aes(x=`Controls per case`, y=`Number of cases required`)) +
@@ -299,41 +274,24 @@ ggplot(tab, aes(x=`Controls per case`, y=`Number of cases required`)) +
   scale_y_continuous(limits=c(0, 200))
 ```
 
-We can see that the number of cases required drops off if we go from 1 to 2 controls per case, and again from 2 to 3 controls per case. Once we go from 3 to 4 controls per case, we only reduce the number of cases by 8 (124 vs 116 cases), but at an increase of 91 (371 vs 462) controls. Clearly, this reduction in cases is not offset by the extra controls required.
-
-Note that there is some inconsistency in the allocation ratio in R, which as of May 2023, as summarised below.
-
-|                           |                R                |
-|---------------------------|:-------------------------------:|
-| Difference in means       | ratio = n-exposed / n-unexposed |
-| Difference in proportions | ratio = n-exposed / n-unexposed |
-| Relative risk             | ratio = n-exposed / n-unexposed |
-| Odds ratio                |  ratio = n-controls / n-cases   |
+We can see that the number of cases required drops off if we go from 1 to 2 controls per case, and again from 2 to 3 controls per case. Once we go from 3 to 4 controls per case, we only reduce the number of cases by 9 (124 vs 115 cases), but at an increase of 88 (372 vs 460) controls. Clearly, this reduction in cases is not offset by the extra controls required.
 
 ## Limitations in sample size estimations
 
-In this module we have seen how to use Stata for estimating the sample size requirement of a study given the statistical test that will be used and the expected characteristics of the sample. However, once a study is underway, it is not unusual for sample size to be compromised by the lack of research resources, difficulties in recruiting participants or, in a clinical trial, participants wanting to change groups when information about the new experimental treatment rapidly becomes available in the press or on the internet.
+In this module we have seen how to use a sample size calculator to estimate the sample size requirement of a study given the statistical test that will be used and the expected characteristics of the sample. However, once a study is running, it is not unusual for sample size to be compromised by the lack of research resources, difficulties in recruiting participants or, in a clinical trial, participants wanting to change groups when information about the new experimental treatment rapidly becomes available in the press or on the internet.
 
 One approach that is increasingly being used is to conduct a blinded interim analysis say when 50% of the total data that are planned have been collected. In this, a statistician external to the research team who is blinded to the interpretation of the group code is asked to measure the effect size in the data with the sole aim of validating the sample size requirement. It is rarely a good idea to use an interim analysis to reduce the planned sample size and terminate a trial early because the larger the sample size, the greater the precision with which the treatment effect is estimated. However, interim analyses are useful for deciding whether the sample size needs to be increased in order to answer the study question and avoid a Type II error.
 
 ## Summary
 
-In this module we have discussed the importance of conducting a clinical or epidemiological study with enough participants so that an effect or association can be identified if it exists (i.e. study power), and how this has to be balanced by the need to not enrol more participants than necessary because of resource issues. We have looked at the parameters that need to be considered when estimating the sample size for different studies and have used a look-up table to estimate required sample size for a prevalence study and Stata to estimate appropriate sample sizes in epidemiological research under the most straightforward situations. The common requirement in all the situations is that the researchers need to specify the minimum effect measure (e.g. difference in means, OR, RR etc) they want to detect with a given probability (usually 80% to 90%) at a certain level of significance (usually P\<0.05). The ultimate decision on the sample size depends on a compromise among different objectives such as power, minimum effect size, and available resources. To make the final decision, it is helpful to do some trial calculations using revised power and the minimum detectable effect measure.
+In this module we have discussed the importance of conducting a clinical or epidemiological study with enough participants so that an effect or association can be identified if it exists (i.e. study power), and how this has to be balanced by the need to not enrol more participants than necessary because of resource issues. We have looked at the parameters that need to be considered when estimating the sample size for different studies and have used a look-up table to estimate required sample size for a prevalence study and a sample size calculator to estimate appropriate sample sizes in epidemiological research under the most straightforward situations. The common requirement in all the situations is that the researchers need to specify the minimum effect measure (e.g. difference in means, OR, RR etc) they want to detect with a given probability (usually 80% to 90%) at a certain level of significance (usually P\<0.05). The ultimate decision on the sample size depends on a compromise among different objectives such as power, minimum effect size, and available resources. To make the final decision, it is helpful to do some trial calculations using revised power and the minimum detectable effect measure.
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
-<!-- # Stata notes {.unnumbered} -->
+# Software notes {.unnumbered}
 
-<!-- {{< include 10.1-sample-size-stata.qmd >}} -->
+{{< include 10.1-sample-size-software.qmd >}}
 
-<!-- {{< pagebreak >}} -->
+# Activities {.unnumbered}
 
-<!-- # R notes {.unnumbered} -->
-
-<!-- {{< include 10.2-sample-size-R.qmd >}} -->
-
-<!-- {{< pagebreak >}} -->
-
-<!-- # Activities {.unnumbered} -->
-
-<!-- {{< include 10.3-sample-size-activities.qmd >}} -->
+{{< include 10.3-sample-size-activities.qmd >}}
